@@ -10,9 +10,7 @@ import NotFound from './pages/NotFound';
 const Root = () => (
 	<BrowserRouter>
 		<Switch>
-			<Route exact path="/" component={Index} />
-			<Route path="/search" component={Index} />
-			<Route component={NotFound} />
+			<Route path="/" component={Index} />
 		</Switch>
 	</BrowserRouter>
 )

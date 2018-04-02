@@ -5,9 +5,7 @@ import Index from './Index';
 
 describe('Index', () => {
 	it('should add new recurring expense to state', () => {
-		const instance = shallow(<Index />).instance();
-
-		instance.setState({ recurringExpenses: [] })
+		const instance = shallow(<Index testing={true} />).instance();
 
 		const newRecurringExpense = {
 			date: '',

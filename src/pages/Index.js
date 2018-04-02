@@ -1,10 +1,18 @@
 import React from 'react';
+import { bool } from 'prop-types';
 import styled from 'styled-components';
 
 import RecurringExpenses from '../components/RecurringExpenses';
 import ProjectionTable from '../components/ProjectionTable';
+import Footer from '../components/Footer';
 
-const Wrapper = styled.div`
+const MasterWrapper = styled.div`
+	display: grid;
+	grid-auto-flow: row;
+`
+
+const ExpensesWrapper = styled.div`
+	min-height: 94vh;
 	border-top: 8px solid HSLA(209, 100%, 60%, 1.00);
 	padding: 50px;
 	@media (min-width: 1000px) {
@@ -16,27 +24,14 @@ const Wrapper = styled.div`
 	}
 `
 
-const recurringExpenses = [
-	{
-		name: 'ya!',
-		startDate: 1522698884359,
-		name: 'an expenses',
-		frequency: 2,
-		interval: 'days',
-	},
-	{
-		name: 'check this out',
-		startDate: 1522698884359,
-		name: 'an expenses',
-		frequency: 1,
-		interval: 'weeks',
-	}
-]
-
 class Index extends React.PureComponent {
 
 	state = {
-		recurringExpenses,
+		recurringExpenses: [],
+	}
+
+	static propTypes = {
+		testing: bool,
 	}
 
 	addRecurringExpense = (newRecurringExpense) => {
@@ -49,8 +44,20 @@ class Index extends React.PureComponent {
 		// TODO
 	}
 
-	componentWillMount() {
-		this.setState({ recurringExpenses });
+	componentDidMount = () => {
+		if (this.props.testing) return;
+		const localStorageRef = localStorage.getItem('cashflow');
+		if (localStorageRef) {
+			this.setState({ recurringExpenses: JSON.parse(localStorageRef) })
+		}
+	}
+
+	componentDidUpdate() {
+		if (this.props.testing) return;
+		localStorage.setItem(
+			'cashflow',
+			JSON.stringify(this.state.recurringExpenses)
+		);
 	}
 
 	render() {
@@ -58,10 +65,13 @@ class Index extends React.PureComponent {
 		const { recurringExpenses } = this.state;
 
 		return (
-			<Wrapper>
-				<RecurringExpenses recurringExpenses={recurringExpenses} addRecurringExpense={this.addRecurringExpense} />
-				<ProjectionTable />
-			</Wrapper>
+			<MasterWrapper>
+				<ExpensesWrapper>
+					<RecurringExpenses recurringExpenses={recurringExpenses} addRecurringExpense={this.addRecurringExpense} />
+					<ProjectionTable />
+				</ExpensesWrapper>
+				<Footer />
+			</MasterWrapper>
 		)
 	}
 }

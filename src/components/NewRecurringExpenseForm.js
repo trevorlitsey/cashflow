@@ -56,7 +56,10 @@ class NewRecurringExpenseForm extends React.Component {
 		e.preventDefault();
 		const { startDate, name, frequency, interval } = this.state;
 		console.log({ startDate, name, frequency, interval });
-		if (!startDate || !name || !frequency || !interval) return message.error('all fields are required')
+		if (!startDate || !name || !frequency || !interval) {
+			return message.error('all fields are required')
+		}
+		this.props.addRecurringExpense({ startDate, name, frequency, interval })
 	}
 
 	render() {

@@ -1,5 +1,9 @@
 import './styles.css';
 import 'normalize.css/normalize.css'
-import 'antd/dist/antd.css';
-// import 'antd/lib/input/style/css';
-// import 'antd/lib/input-number/style/css';
+import InputNumber from 'antd/lib/input-number/style/css';
+import Input from 'antd/lib/input/style/css';
+import Form from 'antd/lib/form/style/css';
+import DatePicker from 'antd/lib/date-picker/style/css';
+import List from 'antd/lib/list/style/css';
+import Button from 'antd/lib/button/style/css';
+import message from 'antd/lib/message/style/css';
