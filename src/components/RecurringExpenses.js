@@ -1,5 +1,5 @@
 import React from 'react';
-import { func, array } from 'prop-types';
+import { object, func } from 'prop-types';
 import styled from 'styled-components';
 import { SubTitle } from '../styles/components';
 
@@ -9,7 +9,7 @@ import NewRecurringExpenseForm from './NewRecurringExpenseForm';
 class RecurringExpenses extends React.PureComponent {
 
 	static propTypes = {
-		recurringExpenses: array.isRequired,
+		recurringExpenses: object.isRequired,
 		addRecurringExpense: func.isRequired,
 	}
 

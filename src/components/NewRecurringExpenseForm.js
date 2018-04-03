@@ -5,6 +5,9 @@ import { message, Form, Input, InputNumber, DatePicker, Select, Icon, Button } f
 
 import { SubSubTitle } from '../styles/components';
 
+// ---- TODO ----
+// Add expense amount duh
+
 const Container = styled.div`
 
 	margin-top: 20px;

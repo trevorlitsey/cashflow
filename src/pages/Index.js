@@ -1,6 +1,7 @@
 import React from 'react';
 import { bool } from 'prop-types';
 import styled from 'styled-components';
+import addDays from 'date-fns/add_days';
 
 import RecurringExpenses from '../components/RecurringExpenses';
 import ProjectionTable from '../components/ProjectionTable';
@@ -26,49 +27,71 @@ const ExpensesWrapper = styled.div`
 
 class Index extends React.PureComponent {
 
-	state = {
-		recurringExpenses: [],
-	}
-
 	static propTypes = {
 		testing: bool,
 	}
 
+	state = {
+		startingDate: new Date().valueOf(),
+		endingDate: addDays(new Date(), 60).valueOf,
+		startingCash: 0,
+		recurringExpenses: {},
+	}
+
 	addRecurringExpense = (newRecurringExpense) => {
-		const recurringExpenses = [...this.state.recurringExpenses];
-		recurringExpenses.push(newRecurringExpense);
+		const recurringExpenses = { ...this.state.recurringExpenses };
+		const id = Date.now();
+		recurringExpenses[Date.now()] = {
+			id,
+			...newRecurringExpense,
+		}
 		this.setState({ recurringExpenses });
 	}
 
-	deleteRecurringExpense = () => {
-		// TODO
+	deleteRecurringExpense = (id) => {
+		const recurringExpenses = { ...this.state.recurringExpenses };
+		delete recurringExpenses[id];
+		this.setState({ recurringExpenses })
+	}
+
+	updateStartingDate = (newDate) => {
+		this.setState({ startingDate: newDate })
+	}
+
+	updateEndingDate = (newDate) => {
+		this.setState({ endingDate: newDate })
+	}
+
+	updateStartingCash = (newStartingCash) => {
+		this.setState({ startingCash: newStartingCash })
 	}
 
 	componentDidMount = () => {
-		if (this.props.testing) return;
+		if (this.props.testing) return; // don't run is we're testing
 		const localStorageRef = localStorage.getItem('cashflow');
 		if (localStorageRef) {
-			this.setState({ recurringExpenses: JSON.parse(localStorageRef) })
+			const state = JSON.parse(localStorageRef);
+			this.setState(state)
 		}
 	}
 
 	componentDidUpdate() {
-		if (this.props.testing) return;
+		if (this.props.testing) return;  // don't run is we're testing
 		localStorage.setItem(
 			'cashflow',
-			JSON.stringify(this.state.recurringExpenses)
+			JSON.stringify(this.state)
 		);
 	}
 
 	render() {
 
-		const { recurringExpenses } = this.state;
+		const { recurringExpenses, startingDate, startingCash } = this.state;
 
 		return (
 			<MasterWrapper>
 				<ExpensesWrapper>
 					<RecurringExpenses recurringExpenses={recurringExpenses} addRecurringExpense={this.addRecurringExpense} />
-					<ProjectionTable />
+					<ProjectionTable recurringExpenses={recurringExpenses} startingDate={startingDate} startingCash={startingCash} />
 				</ExpensesWrapper>
 				<Footer />
 			</MasterWrapper>
