@@ -11,16 +11,17 @@ class RecurringExpenses extends React.PureComponent {
 	static propTypes = {
 		recurringExpenses: object.isRequired,
 		addRecurringExpense: func.isRequired,
+		deleteRecurringExpense: func.isRequired,
 	}
 
 	render() {
 
-		const { recurringExpenses, addRecurringExpense } = this.props;
+		const { recurringExpenses, addRecurringExpense, deleteRecurringExpense } = this.props;
 
 		return (
 			<div>
 				<SubTitle>Recurring Expenses:</SubTitle>
-				<RecurringExpenseTable recurringExpenses={recurringExpenses} />
+				<RecurringExpenseTable recurringExpenses={recurringExpenses} deleteRecurringExpense={deleteRecurringExpense} />
 				<NewRecurringExpenseForm addRecurringExpense={addRecurringExpense} />
 			</div>
 		)

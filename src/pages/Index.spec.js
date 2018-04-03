@@ -1,5 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import moment from 'moment';
+
 
 import Index from './Index';
 
@@ -28,7 +30,7 @@ describe('Index', () => {
 
 		const recurringExpense = {
 			id: 23456789,
-			date: 234567890,
+			date: moment(234567890),
 			name: 'oh ya',
 			repeatFrequency: 2,
 			repeatInterval: 'weeks',
@@ -52,7 +54,7 @@ describe('Index', () => {
 	it('should update starting date', () => {
 		const instance = shallow(<Index testing={true} />).instance();
 
-		const newStartingDate = 234567890;
+		const newStartingDate = moment(234567890);
 		instance.updateStartingDate(newStartingDate);
 
 		expect(instance.state.startingDate).toEqual(newStartingDate);

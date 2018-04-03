@@ -1,27 +1,41 @@
 import React from 'react';
-import { array } from 'prop-types'
+import { object } from 'prop-types'
 import { format } from 'date-fns';
-import { List, Avatar } from 'antd';
+import { List, Avatar, Popconfirm, message } from 'antd';
+import currencyFormatter from 'currency-formatter';
+
+import { convertObjToArr } from '../helpers';
 
 class RecurringExpenseTable extends React.Component {
 
 	static propTypes = {
-		recurringExpenses: array.isRequired,
+		recurringExpenses: object.isRequired,
+	}
+
+	handleRecurringExpenseDelete = (e, id) => {
+		e.preventDefault();
+		this.props.deleteRecurringExpense(id)
+		return message.success('recurring expenses deleted');
 	}
 
 	render() {
 
-		const { recurringExpenses } = this.props
+		const { recurringExpenses, deleteRecurringExpense } = this.props
 
 		return (
 			<List
 				itemLayout="horizontal"
-				dataSource={recurringExpenses || []}
+				dataSource={convertObjToArr(recurringExpenses) || []}
 				renderItem={item => (
-					<List.Item actions={[<a>edit</a>, <a>delete</a>]}>
+					<List.Item actions={[
+						<a>edit</a>,
+						<Popconfirm title="Are you sure delete this expense?" onConfirm={(e) => this.handleRecurringExpenseDelete(e, item.id)} okText="Yes" cancelText="No">
+							<a>delete</a>
+						</Popconfirm>
+					]}>
 						<List.Item.Meta
 							avatar={<Avatar icon="calendar" />}
-							title={<a href="https://ant.design">{item.name}</a>}
+							title={`${item.name} (${currencyFormatter.format(item.amount, { code: 'USD' })})`}
 							description={`every ${item.frequency} ${item.interval} starting on ${format(item.startDate, 'MMMM D, YYYY')}`}
 						/>
 					</List.Item>
@@ -30,5 +44,7 @@ class RecurringExpenseTable extends React.Component {
 		)
 	}
 }
+
+
 
 export default RecurringExpenseTable;

@@ -4,23 +4,29 @@ import moment from 'moment';
 
 import NewRecurringExpenseForm from './NewRecurringExpenseForm';
 
+import { default as sampleExpense } from '../data/sampleRecurringExpenses';
+import blankExpense from '../data/blankExpense';
+
+const event = {
+	target: {
+		value: '',
+	},
+	preventDefault: () => { },
+}
+
 describe('NewRecurringExpenseForm', () => {
 
-	it('should update startDate', () => {
+	it('should update name', () => {
 		const instance = renderNewRecurringExpenseForm().instance();
 
 		const newName = 'a new name'
-		const e = {
-			target: {
-				value: newName,
-			}
-		}
-		instance.handleNameChange(e)
+		event.target.value = newName;
+		instance.handleNameChange(event)
 
 		expect(instance.state.name).toEqual(newName);
 	})
 
-	it('should update name', () => {
+	it('should update startingDate', () => {
 		const instance = renderNewRecurringExpenseForm().instance();
 
 		const newDate = 1522704470525;
@@ -45,6 +51,21 @@ describe('NewRecurringExpenseForm', () => {
 		instance.handleIntervalChange(newInterval);
 
 		expect(instance.state.interval).toEqual(newInterval);
+	})
+
+	it('should clear form on submit', () => {
+		const instance = renderNewRecurringExpenseForm().instance();
+
+		instance.setState(sampleExpense);
+
+		instance.handleSubmit(event);
+
+		expect(instance.state.name).toEqual(blankExpense.name);
+		expect(instance.state.startDate.format('LL')).toEqual(blankExpense.startDate.format('LL'));
+		expect(instance.state.amount).toEqual(blankExpense.amount);
+		expect(instance.state.frequency).toEqual(blankExpense.frequency);
+		expect(instance.state.interval).toEqual(blankExpense.interval);
+
 	})
 
 })

@@ -2,6 +2,7 @@ import React from 'react';
 import { func } from 'prop-types';
 import styled from 'styled-components';
 import { message, Form, Input, InputNumber, DatePicker, Select, Icon, Button } from 'antd';
+import moment from 'moment';
 
 import { SubSubTitle } from '../styles/components';
 
@@ -16,15 +17,23 @@ const Container = styled.div`
 		display: block;
 		margin-bottom: 10px;
 	}
-
 `
 
 const IntervalSelect = styled.div`
-	display: flex;
+	
 	& > * {
+		margin-bottom: 6px;
 		max-width: 100px;
 	}
 `
+
+const blankExpense = {
+	name: '',
+	startDate: moment(),
+	amount: 100,
+	frequency: 2,
+	interval: 'days',
+}
 
 class NewRecurringExpenseForm extends React.Component {
 
@@ -33,10 +42,7 @@ class NewRecurringExpenseForm extends React.Component {
 	}
 
 	state = {
-		name: '',
-		startDate: null,
-		frequency: 2,
-		interval: 'days',
+		...blankExpense,
 	}
 
 	handleNameChange = (e) => {
@@ -45,6 +51,10 @@ class NewRecurringExpenseForm extends React.Component {
 
 	handleDateChange = (e) => {
 		this.setState({ startDate: e.valueOf() });
+	}
+
+	handleAmountChange = (e) => {
+		this.setState({ amount: e });
 	}
 
 	handleFrequencyChange = (e) => {
@@ -57,24 +67,38 @@ class NewRecurringExpenseForm extends React.Component {
 
 	handleSubmit = (e) => {
 		e.preventDefault();
-		const { startDate, name, frequency, interval } = this.state;
-		console.log({ startDate, name, frequency, interval });
-		if (!startDate || !name || !frequency || !interval) {
+		const { startDate, name, amount, frequency, interval } = this.state;
+
+		if (!startDate || !name || !amount || !frequency || !interval) {
 			return message.error('all fields are required')
 		}
-		this.props.addRecurringExpense({ startDate, name, frequency, interval })
+
+		// all good
+		this.props.addRecurringExpense({ startDate, name, amount, frequency, interval })
+		this.setState({ ...blankExpense });
+		return message.success('recurring expenses added');
 	}
 
 	render() {
 
-		const { startDate, name, frequency, interval } = this.state;
+		const { startDate, name, amount, frequency, interval } = this.state;
 
 		return (
 			<Container>
 				<SubSubTitle>Add recurring expense:</SubSubTitle>
 				<form onSubmit={this.handleSubmit}>
-					<Input onChange={this.handleNameChange} value={name} placeholder="Name" required />
-					<DatePicker onChange={this.handleDateChange} placeholder="Start date" required />
+					<label htmlFor="name">Name:</label>
+					<Input onChange={this.handleNameChange} value={name} placeholder="Name of income or expense ..." required />
+					<label htmlFor="name">Start date:</label>
+					<DatePicker onChange={this.handleDateChange} value={startDate} placeholder="Start date" required />
+					<label htmlFor="name">Amount:</label>
+					<InputNumber
+						value={amount}
+						formatter={value => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+						parser={value => value.replace(/\$\s?|(,*)/g, '')}
+						onChange={this.handleAmountChange}
+						required
+					/>
 					<label htmlFor="frequency">Repeat every:</label>
 					<IntervalSelect>
 						<InputNumber min={1} max={10} value={frequency} onChange={this.handleFrequencyChange} required />

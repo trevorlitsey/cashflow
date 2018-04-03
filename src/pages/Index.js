@@ -1,7 +1,7 @@
 import React from 'react';
 import { bool } from 'prop-types';
 import styled from 'styled-components';
-import addDays from 'date-fns/add_days';
+import moment from 'moment';
 
 import RecurringExpenses from '../components/RecurringExpenses';
 import ProjectionTable from '../components/ProjectionTable';
@@ -25,6 +25,9 @@ const ExpensesWrapper = styled.div`
 	}
 `
 
+// ----- TODO -----
+// place moment object at top of tree
+
 class Index extends React.PureComponent {
 
 	static propTypes = {
@@ -32,8 +35,8 @@ class Index extends React.PureComponent {
 	}
 
 	state = {
-		startingDate: new Date().valueOf(),
-		endingDate: addDays(new Date(), 60).valueOf,
+		startingDate: moment(),
+		endingDate: moment().add(30, 'd'),
 		startingCash: 0,
 		recurringExpenses: {},
 	}
@@ -67,19 +70,29 @@ class Index extends React.PureComponent {
 	}
 
 	componentDidMount = () => {
-		if (this.props.testing) return; // don't run is we're testing
+		if (this.props.testing) return; // don't run if we're testing
 		const localStorageRef = localStorage.getItem('cashflow');
 		if (localStorageRef) {
-			const state = JSON.parse(localStorageRef);
-			this.setState(state)
+			const stateFromStorage = JSON.parse(localStorageRef);
+
+			this.setState({
+				...stateFromStorage,
+				startingDate: moment(stateFromStorage.startingDate), // covert to moment obj
+			})
 		}
 	}
 
 	componentDidUpdate() {
-		if (this.props.testing) return;  // don't run is we're testing
+		if (this.props.testing) return;  // don't run if we're testing
+
+		const stateToStorage = {
+			...this.state,
+			startingDate: this.state.startingDate.valueOf(),
+		}
+
 		localStorage.setItem(
 			'cashflow',
-			JSON.stringify(this.state)
+			JSON.stringify(stateToStorage)
 		);
 	}
 
@@ -90,7 +103,7 @@ class Index extends React.PureComponent {
 		return (
 			<MasterWrapper>
 				<ExpensesWrapper>
-					<RecurringExpenses recurringExpenses={recurringExpenses} addRecurringExpense={this.addRecurringExpense} />
+					<RecurringExpenses recurringExpenses={recurringExpenses} addRecurringExpense={this.addRecurringExpense} deleteRecurringExpense={this.deleteRecurringExpense} />
 					<ProjectionTable recurringExpenses={recurringExpenses} startingDate={startingDate} startingCash={startingCash} />
 				</ExpensesWrapper>
 				<Footer />

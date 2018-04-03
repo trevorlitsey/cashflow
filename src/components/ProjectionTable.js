@@ -35,7 +35,7 @@ const Row = (props) => {
 
 	return (
 		<tr>
-			<td>{moment(date).format('LL')}</td>
+			<td>{date.format('LL')}</td>
 			<td>{`$${income}`}</td>
 			<td>{`$${expense}`}</td>
 			<td>{`$${balance}`}</td>
@@ -47,7 +47,7 @@ class ProjectionTable extends React.PureComponent {
 
 	static propTypes = {
 		recurringExpenses: object.isRequired,
-		startingDate: number.isRequired,
+		startingDate: object.isRequired,
 		startingCash: number.isRequired,
 	}
 
@@ -62,7 +62,7 @@ class ProjectionTable extends React.PureComponent {
 		const rows = [];
 		for (let i = 0; i < 60; i++) {
 			rows.push({
-				date: addDays(startingDate, i),
+				date: startingDate.clone().add(i, 'd'),
 				income: 0,
 				expense: 0,
 				balance,
@@ -86,7 +86,7 @@ class ProjectionTable extends React.PureComponent {
 				<SubTitle>Cashflow:</SubTitle>
 				<label>Starting date: </label>
 				<br />
-				<DatePicker value={moment(startingDate)} onChange={this.handleStartingDateChange} />
+				<DatePicker value={startingDate} onChange={this.handleStartingDateChange} />
 				<table>
 					<thead>
 						<tr>
