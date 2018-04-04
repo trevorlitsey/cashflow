@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-	entry: './src/router.js',
+	entry: path.resolve(__dirname, 'src', 'entry.js'),
 	output: {
 		path: path.resolve(__dirname, 'dist'),
 		filename: 'bundle.js',
@@ -14,6 +14,7 @@ module.exports = {
 		compress: true,
 		port: 8080,
 		hot: true,
+		inline: true,
 	},
 	plugins: [
 		new HtmlWebpackPlugin({

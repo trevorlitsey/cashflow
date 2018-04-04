@@ -2,7 +2,6 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import moment from 'moment';
 
-
 import Index from './Index';
 
 describe('Index', () => {
@@ -72,8 +71,9 @@ describe('Index', () => {
 
 		// add one to some
 		instance.addOneTimeExpense(newOneTimeExpense2);
-		console.log(instance.state.oneTimeExpenses);
-		expect(Object.keys(instance.state.oneTimeExpenses).length).toEqual(2);
+		setTimeout(() => {
+			expect(Object.keys(instance.state.oneTimeExpenses).length).toEqual(2);
+		}, 10) // ugh i know will fix later...
 
 	})
 

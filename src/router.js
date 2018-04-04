@@ -1,12 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 import './styles';
 
 import Index from './pages/Index';
 
-const Root = () => (
+const Router = () => (
 	<BrowserRouter>
 		<Switch>
 			<Route path="/" component={Index} />
@@ -14,6 +13,4 @@ const Root = () => (
 	</BrowserRouter>
 )
 
-document.body.innerHTML += `<div id="root"></div>`
-
-ReactDOM.render(<Root />, document.getElementById('root'));
+export default Router;
