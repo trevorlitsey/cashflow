@@ -6,9 +6,6 @@ import moment from 'moment';
 
 import { SubSubTitle } from '../styles/components';
 
-// ---- TODO ----
-// Add expense amount duh
-
 const Container = styled.div`
 
 	margin-top: 20px;
@@ -85,13 +82,13 @@ class NewRecurringExpenseForm extends React.Component {
 
 		return (
 			<Container>
-				<SubSubTitle>Add recurring expense:</SubSubTitle>
+				<SubSubTitle>Add recurring income/expense:</SubSubTitle>
 				<form onSubmit={this.handleSubmit}>
 					<label htmlFor="name">Name:</label>
-					<Input onChange={this.handleNameChange} value={name} placeholder="Name of income or expense ..." required />
+					<Input onChange={this.handleNameChange} value={name} placeholder="Name of income/expense ..." required />
 					<label htmlFor="name">Start date:</label>
 					<DatePicker onChange={this.handleDateChange} value={startDate} placeholder="Start date" required />
-					<label htmlFor="name">Amount:</label>
+					<label htmlFor="name">Amount (+/-):</label>
 					<InputNumber
 						value={amount}
 						formatter={value => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
@@ -108,7 +105,7 @@ class NewRecurringExpenseForm extends React.Component {
 							<Select.Option value="months">Month(s)</Select.Option>
 						</Select>
 					</IntervalSelect>
-					<Button htmlType="submit">Add recurring expense</Button>
+					<Button htmlType="submit">submit</Button>
 				</form>
 			</Container>
 		)

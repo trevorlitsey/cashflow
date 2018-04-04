@@ -6,7 +6,7 @@ import moment from 'moment';
 import Index from './Index';
 
 describe('Index', () => {
-	it('should add new recurring', () => {
+	it('should add new recurring expense', () => {
 		const instance = shallow(<Index testing={true} />).instance();
 
 		const newRecurringExpense = {
@@ -51,6 +51,32 @@ describe('Index', () => {
 
 	})
 
+	it('should add new one-time expense', () => {
+		const instance = shallow(<Index testing={true} />).instance();
+
+		const newOneTimeExpense1 = {
+			date: moment(9876542356),
+			name: 'oh ya???',
+			amount: 400,
+		}
+
+		const newOneTimeExpense2 = {
+			date: moment(5678909876),
+			name: 'oh ya!!!',
+			amount: 400,
+		}
+
+		// add one to none
+		instance.addOneTimeExpense(newOneTimeExpense1);
+		expect(Object.keys(instance.state.oneTimeExpenses).length).toEqual(1);
+
+		// add one to some
+		instance.addOneTimeExpense(newOneTimeExpense2);
+		console.log(instance.state.oneTimeExpenses);
+		expect(Object.keys(instance.state.oneTimeExpenses).length).toEqual(2);
+
+	})
+
 	it('should update starting date', () => {
 		const instance = shallow(<Index testing={true} />).instance();
 
@@ -59,6 +85,16 @@ describe('Index', () => {
 
 		expect(instance.state.startingDate).toEqual(newStartingDate);
 	})
+
+	it('should default to today is starting date is exd out', () => {
+		const instance = shallow(<Index testing={true} />).instance();
+
+		// TODO
+
+		// expect(instance.state.startingDate).toEqual(newStartingDate);
+	})
+
+
 
 	it('should update ending date', () => {
 		const instance = shallow(<Index testing={true} />).instance();

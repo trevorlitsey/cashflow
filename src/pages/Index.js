@@ -16,6 +16,7 @@ const ExpensesWrapper = styled.div`
 	min-height: 94vh;
 	border-top: 8px solid HSLA(209, 100%, 60%, 1.00);
 	padding: 50px;
+
 	@media (min-width: 1000px) {
 		width: 100%;
 		display: grid;
@@ -25,8 +26,15 @@ const ExpensesWrapper = styled.div`
 	}
 `
 
-// ----- TODO -----
-// place moment object at top of tree
+const Divider = styled.div`
+	height: 10px;
+	margin: 30px 0;
+	border-bottom: 1px solid HSLA(220, 8%, 92%, 1.00);
+
+	@media (min-width: 1000px) {
+		display: none;
+	}
+`
 
 class Index extends React.PureComponent {
 
@@ -39,16 +47,27 @@ class Index extends React.PureComponent {
 		endingDate: moment().add(30, 'd'),
 		startingCash: 0,
 		recurringExpenses: {},
+		oneTimeExpenses: {},
 	}
 
 	addRecurringExpense = (newRecurringExpense) => {
 		const recurringExpenses = { ...this.state.recurringExpenses };
-		const id = Date.now();
-		recurringExpenses[Date.now()] = {
+		const id = newRecurringExpense.id || Date.now();
+		recurringExpenses[id] = {
 			id,
 			...newRecurringExpense,
 		}
 		this.setState({ recurringExpenses });
+	}
+
+	addOneTimeExpense = (newOneTimeExpense) => {
+		const oneTimeExpenses = { ...this.state.oneTimeExpenses };
+		const id = newOneTimeExpense.id || Date.now();
+		oneTimeExpenses[id] = {
+			id,
+			...newOneTimeExpense,
+		}
+		this.setState({ oneTimeExpenses });
 	}
 
 	deleteRecurringExpense = (id) => {
@@ -58,6 +77,7 @@ class Index extends React.PureComponent {
 	}
 
 	updateStartingDate = (newDate) => {
+		if (!newDate) newDate = moment();
 		this.setState({ startingDate: newDate })
 	}
 
@@ -103,8 +123,20 @@ class Index extends React.PureComponent {
 		return (
 			<MasterWrapper>
 				<ExpensesWrapper>
-					<RecurringExpenses recurringExpenses={recurringExpenses} addRecurringExpense={this.addRecurringExpense} deleteRecurringExpense={this.deleteRecurringExpense} />
-					<ProjectionTable recurringExpenses={recurringExpenses} startingDate={startingDate} startingCash={startingCash} />
+					<RecurringExpenses
+						recurringExpenses={recurringExpenses}
+						addRecurringExpense={this.addRecurringExpense}
+						deleteRecurringExpense={this.deleteRecurringExpense}
+					/>
+					<Divider />
+					<ProjectionTable
+						recurringExpenses={recurringExpenses}
+						startingDate={startingDate}
+						startingCash={startingCash}
+						updateStartingDate={this.updateStartingDate}
+						updateStartingCash={this.updateStartingCash}
+						addOneTimeExpense={this.addOneTimeExpense}
+					/>
 				</ExpensesWrapper>
 				<Footer />
 			</MasterWrapper>

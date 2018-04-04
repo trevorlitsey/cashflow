@@ -1,0 +1,215 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RecurringExpenses should render without crashing 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <RecurringExpenses
+    addOneTimeExpense={[Function]}
+    addRecurringExpense={[Function]}
+    deleteRecurringExpense={[Function]}
+    recurringExpenses={
+      Object {
+        "one": Object {
+          "frequency": 2,
+          "interval": "days",
+          "name": "an expenses",
+          "startDate": 1522698884359,
+        },
+        "two": Object {
+          "frequency": 1,
+          "interval": "weeks",
+          "name": "an expenses",
+          "startDate": 1522698884359,
+        },
+      }
+    }
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <styled.h3>
+          Recurring Income/Expenses:
+        </styled.h3>,
+        <RecurringExpenseTable
+          deleteRecurringExpense={[Function]}
+          recurringExpenses={
+            Object {
+              "one": Object {
+                "frequency": 2,
+                "interval": "days",
+                "name": "an expenses",
+                "startDate": 1522698884359,
+              },
+              "two": Object {
+                "frequency": 1,
+                "interval": "weeks",
+                "name": "an expenses",
+                "startDate": 1522698884359,
+              },
+            }
+          }
+        />,
+        <NewRecurringExpenseForm
+          addRecurringExpense={[Function]}
+        />,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": "Recurring Income/Expenses:",
+        },
+        "ref": null,
+        "rendered": "Recurring Income/Expenses:",
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "deleteRecurringExpense": [Function],
+          "recurringExpenses": Object {
+            "one": Object {
+              "frequency": 2,
+              "interval": "days",
+              "name": "an expenses",
+              "startDate": 1522698884359,
+            },
+            "two": Object {
+              "frequency": 1,
+              "interval": "weeks",
+              "name": "an expenses",
+              "startDate": 1522698884359,
+            },
+          },
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "addRecurringExpense": [Function],
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <styled.h3>
+            Recurring Income/Expenses:
+          </styled.h3>,
+          <RecurringExpenseTable
+            deleteRecurringExpense={[Function]}
+            recurringExpenses={
+              Object {
+                "one": Object {
+                  "frequency": 2,
+                  "interval": "days",
+                  "name": "an expenses",
+                  "startDate": 1522698884359,
+                },
+                "two": Object {
+                  "frequency": 1,
+                  "interval": "weeks",
+                  "name": "an expenses",
+                  "startDate": 1522698884359,
+                },
+              }
+            }
+          />,
+          <NewRecurringExpenseForm
+            addRecurringExpense={[Function]}
+          />,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": "Recurring Income/Expenses:",
+          },
+          "ref": null,
+          "rendered": "Recurring Income/Expenses:",
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "deleteRecurringExpense": [Function],
+            "recurringExpenses": Object {
+              "one": Object {
+                "frequency": 2,
+                "interval": "days",
+                "name": "an expenses",
+                "startDate": 1522698884359,
+              },
+              "two": Object {
+                "frequency": 1,
+                "interval": "weeks",
+                "name": "an expenses",
+                "startDate": 1522698884359,
+              },
+            },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "addRecurringExpense": [Function],
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;

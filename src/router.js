@@ -5,7 +5,6 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import './styles';
 
 import Index from './pages/Index';
-import NotFound from './pages/NotFound';
 
 const Root = () => (
 	<BrowserRouter>
@@ -14,5 +13,7 @@ const Root = () => (
 		</Switch>
 	</BrowserRouter>
 )
+
+document.body.innerHTML += `<div id="root"></div>`
 
 ReactDOM.render(<Root />, document.getElementById('root'));

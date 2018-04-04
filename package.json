@@ -7,7 +7,8 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cover": "jest --coverage",
-    "start:dev": "webpack-dev-server --hot"
+    "start:dev": "webpack-dev-server",
+    "build": "webpack"
   },
   "jest": {
     "setupTestFrameworkScriptFile": "<rootDir>/testConfig.js"
@@ -43,10 +44,11 @@
     "css-loader": "^0.28.11",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
+    "html-webpack-plugin": "^3.2.0",
     "jest": "^22.4.3",
     "less": "^3.0.1",
     "less-loader": "^4.1.0",
-    "react-testing-library": "^1.9.3",
+    "react-testing-library": "^1.9.4",
     "style-loader": "^0.20.3",
     "typescript-styled-plugin": "^0.6.0",
     "webpack": "^4.4.1",

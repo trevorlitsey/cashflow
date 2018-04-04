@@ -1,6 +1,7 @@
 import React from 'react';
 import { object, func } from 'prop-types';
 import styled from 'styled-components';
+
 import { SubTitle } from '../styles/components';
 
 import RecurringExpenseTable from './RecurringExpenseTable';
@@ -16,11 +17,11 @@ class RecurringExpenses extends React.PureComponent {
 
 	render() {
 
-		const { recurringExpenses, addRecurringExpense, deleteRecurringExpense } = this.props;
+		const { recurringExpenses, addRecurringExpense, deleteRecurringExpense, addOneTimeExpense } = this.props;
 
 		return (
 			<div>
-				<SubTitle>Recurring Expenses:</SubTitle>
+				<SubTitle>Recurring Income/Expenses:</SubTitle>
 				<RecurringExpenseTable recurringExpenses={recurringExpenses} deleteRecurringExpense={deleteRecurringExpense} />
 				<NewRecurringExpenseForm addRecurringExpense={addRecurringExpense} />
 			</div>

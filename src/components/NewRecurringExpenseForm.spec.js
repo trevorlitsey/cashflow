@@ -35,6 +35,15 @@ describe('NewRecurringExpenseForm', () => {
 		expect(instance.state.startDate).toEqual(newDate);
 	})
 
+	it('should update amount', () => {
+		const instance = renderNewRecurringExpenseForm().instance();
+
+		const newAmount = 500;
+		instance.handleAmountChange(newAmount);
+
+		expect(instance.state.amount).toEqual(newAmount);
+	})
+
 	it('should update frequency', () => {
 		const instance = renderNewRecurringExpenseForm().instance();
 
