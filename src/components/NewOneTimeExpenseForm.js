@@ -24,7 +24,7 @@ const DisplayBlock = styled.div`
 
 const blankExpense = {
 	name: '',
-	startDate: moment(),
+	startDate: moment().valueOf(),
 	amount: 100,
 }
 
@@ -72,7 +72,7 @@ class NewOneTimeExpenseForm extends React.Component {
 			<Container>
 				<SubSubTitle>New one-time income/expense:</SubSubTitle>
 				<form onSubmit={this.handleSubmit}>
-					<DatePicker onChange={this.handleDateChange} value={startDate} placeholder="Start date" required />
+					<DatePicker onChange={this.handleDateChange} value={moment(startDate)} placeholder="Start date" required />
 					<Input onChange={this.handleNameChange} value={name} placeholder="Name" required />
 					<DisplayBlock>
 						<InputNumber

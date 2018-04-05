@@ -7,10 +7,8 @@ import moment from 'moment';
 import currencyFormatter from 'currency-formatter';
 
 import { convertObjToArr } from '../helpers';
-// TODO!
-// import mergeExpensesForProjectionTable from './helpers/mergeExpensesForProjectionTable';
-
 import { SubTitle } from '../styles/components';
+import mergeExpensesForProjectionTable from './helpers/mergeExpensesForProjectionTable';
 
 import NewOneTimeExpenseForm from './NewOneTimeExpenseForm';
 
@@ -47,19 +45,20 @@ const Controls = styled.div`
 `
 
 // ------- TODO --------
-// add input to change starting cash
+// add input to change ending date
+// add ability to x out one-time expense ('delete one-time expense' on hover?)
 
 const Row = (props) => {
 
-	const { date, name, amount, balance } = props;
+	const { date, name, amount, balance, isRecurring } = props;
 
 	return (
 		<tr>
-			<td>{date.format('LL')}</td>
+			<td>{moment(date).format('LL')}</td>
 			<td>{name}</td>
 			<td>{currencyFormatter.format(amount, { code: 'USD', precision: 0 })}</td>
 			<td>{currencyFormatter.format(balance, { code: 'USD', precision: 0 })}</td>
-			<td>x</td>
+			<td>{!isRecurring ? 'x' : ''}</td>
 		</tr>
 	)
 }
@@ -67,8 +66,10 @@ const Row = (props) => {
 class ProjectionTable extends React.PureComponent {
 
 	static propTypes = {
-		recurringExpenses: object.isRequired,
+		recurringExpenses: object.isRequired, // TODO, make shape
+		oneTimeExpenses: object.isRequired, // TODO, make shape
 		startingDate: object.isRequired,
+		endingDate: object.isRequired,
 		startingCash: number.isRequired,
 		updateStartingDate: func.isRequired,
 		updateStartingCash: func.isRequired,
@@ -80,18 +81,17 @@ class ProjectionTable extends React.PureComponent {
 	}
 
 	static getDerivedStateFromProps = (nextProps, prevState) => {
-		const { startingDate, startingCash } = nextProps;
+		const { startingDate, endingDate, recurringExpenses, oneTimeExpenses, startingCash } = nextProps;
+
+		const rows = mergeExpensesForProjectionTable(startingDate, endingDate, recurringExpenses, oneTimeExpenses)
+
+		// insert balance
 		let balance = startingCash;
-		const rows = [];
-		for (let i = 0; i < 60; i++) {
-			const amount = i;
-			rows.push({
-				date: startingDate.clone().add(i, 'd'),
-				name: 'a name',
-				amount,
-				balance: balance += amount,
-			})
-		}
+		rows.forEach(row => {
+			balance += row.amount;
+			row.balance = balance;
+		})
+
 		return { rows };
 	}
 
@@ -129,7 +129,6 @@ class ProjectionTable extends React.PureComponent {
 						/>
 					</div>
 				</Controls>
-				<NewOneTimeExpenseForm addOneTimeExpense={addOneTimeExpense} />
 				<table>
 					<thead>
 						<tr>
@@ -141,9 +140,11 @@ class ProjectionTable extends React.PureComponent {
 						</tr>
 					</thead>
 					<tbody>
-						{rows.map(row => <Row key={row.date} {...row} />)}
+						{rows.map(row => <Row key={row.id + row.date} {...row} />)}
 					</tbody>
 				</table>
+				<br />
+				<NewOneTimeExpenseForm addOneTimeExpense={addOneTimeExpense} />
 			</Container>
 		)
 	}

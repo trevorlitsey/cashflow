@@ -12,9 +12,11 @@ const mergeExpensesForProjectionTable = (startDate, endDate, recurringExpenses, 
 
 		while (recurringExpenseDate < endDate) {
 			const expenseToAdd = {
+				id: key,
 				date: recurringExpenseDate.valueOf(),
 				name,
 				amount,
+				isRecurring: true,
 			}
 			expensesForTable.push(expenseToAdd)
 			recurringExpenseDate.add(frequency, interval);
@@ -25,6 +27,7 @@ const mergeExpensesForProjectionTable = (startDate, endDate, recurringExpenses, 
 	Object.keys(oneTimeExpenses).forEach(key => {
 		const { startDate, name, amount } = oneTimeExpenses[key];
 		const expenseToAdd = {
+			id: key,
 			date: startDate.valueOf(),
 			name,
 			amount,

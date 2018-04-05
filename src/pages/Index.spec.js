@@ -99,7 +99,7 @@ describe('Index', () => {
 	it('should update ending date', () => {
 		const instance = shallow(<Index testing={true} />).instance();
 
-		const newEndingDate = 234567890;
+		const newEndingDate = moment(234567890);
 		instance.updateEndingDate(newEndingDate);
 
 		expect(instance.state.endingDate).toEqual(newEndingDate);

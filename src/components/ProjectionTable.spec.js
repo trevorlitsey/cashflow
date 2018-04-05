@@ -4,6 +4,7 @@ import moment from 'moment';
 import currencyFormatter from 'currency-formatter';
 
 import sampleRecurringExpenses from '../data/sampleRecurringExpenses';
+import sampleOneTimeExpenses from '../data/sampleOneTimeExpenses';
 
 import ProjectionTable from './ProjectionTable';
 
@@ -31,7 +32,9 @@ describe('ProjectionTable', () => {
 function renderProjectionTable(props = {}) {
 	const propsToUser = {
 		recurringExpenses: sampleRecurringExpenses,
-		startingDate: moment(9876543),
+		oneTimeExpenses: sampleOneTimeExpenses,
+		startingDate: moment(1522901995930), // April 4, 2018
+		endingDate: moment(1528172492320), // June 4, 2018
 		startingCash: 100,
 		updateStartingDate: () => { },
 		updateStartingCash: () => { },

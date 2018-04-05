@@ -34,44 +34,58 @@ const oneTimeExpenses = {
 
 const expectedMerged = [
 	{
+		id: 'two',
 		name: 'check this out',
 		date: 1523506795930, // 1 week (April 11)
 		amount: 400,
+		isRecurring: true,
 	},
 	{
+		id: 'three',
 		name: 'ya!',
 		date: 1523679595930, // 9 days (April 13)
 		amount: 600,
 	},
 	{
+		id: 'one',
 		name: 'ya!',
 		date: 1524111595930, // 2 weeks (April 18)
 		amount: 100,
+		isRecurring: true,
 	},
 	{
+		id: 'four',
 		name: 'check this out',
 		date: 1524629995930, // 20 days (April 24)
 		amount: 700,
 	},
 	{
+		id: 'two',
 		name: 'check this out',
 		date: 1524716395930, // 1 week + 2 weeks (April 25)
 		amount: 400,
+		isRecurring: true,
 	},
 	{
+		id: 'two',
 		name: 'check this out',
 		date: 1525925995930, // 1 week + 4 weeks (May 9)
 		amount: 400,
+		isRecurring: true,
 	},
 	{
+		id: 'one',
 		name: 'ya!',
 		date: 1526703595930, // 1 week + 1 month (May 11)
 		amount: 100,
+		isRecurring: true,
 	},
 	{
+		id: 'two',
 		name: 'check this out',
 		date: 1527135595930, // 1 week + 6 weeks (May 23)
 		amount: 400,
+		isRecurring: true,
 	},
 ]
 
@@ -83,11 +97,6 @@ describe('mergeExpensesForProjectionTable', () => {
 		const endDate = moment(1528172492320) // June 4, 2018
 
 		const merged = mergeExpensesForProjectionTable(startDate, endDate, recurringExpenses, oneTimeExpenses);
-
-		merged.forEach(date => {
-			console.log(moment(date.date).format('LL'));
-
-		})
 
 		expect(merged).toEqual(expectedMerged);
 	})

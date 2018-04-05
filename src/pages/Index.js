@@ -36,6 +36,9 @@ const Divider = styled.div`
 	}
 `
 
+const startingDate = moment();
+const endingDate = startingDate.add(2, 'm');
+
 class Index extends React.PureComponent {
 
 	static propTypes = {
@@ -43,8 +46,8 @@ class Index extends React.PureComponent {
 	}
 
 	state = {
-		startingDate: moment(),
-		endingDate: moment().add(30, 'd'),
+		startingDate,
+		endingDate,
 		startingCash: 0,
 		recurringExpenses: {},
 		oneTimeExpenses: {},
@@ -98,6 +101,7 @@ class Index extends React.PureComponent {
 			this.setState({
 				...stateFromStorage,
 				startingDate: moment(stateFromStorage.startingDate), // covert to moment obj
+				endingDate: moment(stateFromStorage.endingDate), // covert to moment obj
 			})
 		}
 	}
@@ -108,6 +112,7 @@ class Index extends React.PureComponent {
 		const stateToStorage = {
 			...this.state,
 			startingDate: this.state.startingDate.valueOf(),
+			endingDate: this.state.endingDate.valueOf(),
 		}
 
 		localStorage.setItem(
@@ -118,7 +123,7 @@ class Index extends React.PureComponent {
 
 	render() {
 
-		const { recurringExpenses, startingDate, startingCash } = this.state;
+		const { recurringExpenses, oneTimeExpenses, startingDate, endingDate, startingCash } = this.state;
 
 		return (
 			<MasterWrapper>
@@ -131,7 +136,9 @@ class Index extends React.PureComponent {
 					<Divider />
 					<ProjectionTable
 						recurringExpenses={recurringExpenses}
+						oneTimeExpenses={oneTimeExpenses}
 						startingDate={startingDate}
+						endingDate={endingDate}
 						startingCash={startingCash}
 						updateStartingDate={this.updateStartingDate}
 						updateStartingCash={this.updateStartingCash}
