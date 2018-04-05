@@ -1,43 +1,95 @@
-import mergeExpensesForProjectionTable from './mergeExpensesForProjectionTable';
+import moment from 'moment';
 
-const oneTimeExpenses = {
-	three: {
-		name: 'ya!',
-		startDate: 1522698884359,
-		name: 'an expenses',
-	},
-	four: {
-		name: 'check this out',
-		startDate: 1522698884359,
-		name: 'an expenses',
-	}
-}
+import mergeExpensesForProjectionTable from './mergeExpensesForProjectionTable';
 
 const recurringExpenses = {
 	one: {
+		startDate: 1524111595930, // 2 weeks
 		name: 'ya!',
-		startDate: 987628949876,
-		name: 'an expenses',
-		frequency: 2,
-		interval: 'days',
+		amount: 100,
+		frequency: 1,
+		interval: 'months',
 	},
 	two: {
+		startDate: 1523506795930, // 1 week
 		name: 'check this out',
-		startDate: 9852384982345,
-		name: 'an expenses',
-		frequency: 1,
+		amount: 400,
+		frequency: 2,
 		interval: 'weeks',
 	}
 }
 
-const merged = {
-	...oneTimeExpenses
+const oneTimeExpenses = {
+	three: {
+		name: 'ya!',
+		startDate: 1523679595930, // 9 days
+		amount: 600,
+	},
+	four: {
+		name: 'check this out',
+		startDate: 1524629995930, // 20 days
+		amount: 700,
+	}
 }
+
+const expectedMerged = [
+	{
+		name: 'check this out',
+		date: 1523506795930, // 1 week (April 11)
+		amount: 400,
+	},
+	{
+		name: 'ya!',
+		date: 1523679595930, // 9 days (April 13)
+		amount: 600,
+	},
+	{
+		name: 'ya!',
+		date: 1524111595930, // 2 weeks (April 18)
+		amount: 100,
+	},
+	{
+		name: 'check this out',
+		date: 1524629995930, // 20 days (April 24)
+		amount: 700,
+	},
+	{
+		name: 'check this out',
+		date: 1524716395930, // 1 week + 2 weeks (April 25)
+		amount: 400,
+	},
+	{
+		name: 'check this out',
+		date: 1525925995930, // 1 week + 4 weeks (May 9)
+		amount: 400,
+	},
+	{
+		name: 'ya!',
+		date: 1526703595930, // 1 week + 1 month (May 11)
+		amount: 100,
+	},
+	{
+		name: 'check this out',
+		date: 1527135595930, // 1 week + 6 weeks (May 23)
+		amount: 400,
+	},
+]
 
 describe('mergeExpensesForProjectionTable', () => {
 
 	it('should return a nice array for our table', () => {
 		// TODO
+		const startDate = moment(1522901995930) // April 4, 2018
+		const endDate = moment(1528172492320) // June 4, 2018
+
+		const merged = mergeExpensesForProjectionTable(startDate, endDate, recurringExpenses, oneTimeExpenses);
+
+		merged.forEach(date => {
+			console.log(moment(date.date).format('LL'));
+
+		})
+
+		expect(merged).toEqual(expectedMerged);
 	})
 
 })

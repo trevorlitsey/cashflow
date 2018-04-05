@@ -70,10 +70,10 @@ describe('Index', () => {
 		expect(Object.keys(instance.state.oneTimeExpenses).length).toEqual(1);
 
 		// add one to some
-		instance.addOneTimeExpense(newOneTimeExpense2);
 		setTimeout(() => {
+			instance.addOneTimeExpense(newOneTimeExpense2);
 			expect(Object.keys(instance.state.oneTimeExpenses).length).toEqual(2);
-		}, 10) // ugh i know will fix later...
+		}, 10) // to make sure id's are not the same
 
 	})
 

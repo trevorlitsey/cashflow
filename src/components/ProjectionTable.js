@@ -7,6 +7,8 @@ import moment from 'moment';
 import currencyFormatter from 'currency-formatter';
 
 import { convertObjToArr } from '../helpers';
+// TODO!
+// import mergeExpensesForProjectionTable from './helpers/mergeExpensesForProjectionTable';
 
 import { SubTitle } from '../styles/components';
 
