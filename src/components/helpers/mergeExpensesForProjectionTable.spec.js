@@ -91,8 +91,9 @@ const expectedMerged = [
 
 describe('mergeExpensesForProjectionTable', () => {
 
+	// TODO, check if array contains only dates within specified range
+
 	it('should return a nice array for our table', () => {
-		// TODO
 		const startDate = moment(1522901995930) // April 4, 2018
 		const endDate = moment(1528172492320) // June 4, 2018
 

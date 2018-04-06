@@ -10,22 +10,25 @@ import ProjectionTable from './ProjectionTable';
 
 describe('ProjectionTable', () => {
 
-	it('should handleStartingDateChange without error', () => {
+	it('should handleRangeChange without error', () => {
 		const instance = renderProjectionTable().instance();
 
-		const newDate = moment(34567890);
+		const newStartingDate = moment(34567890);
+		const newEndingDate = newStartingDate.add(2, 'm');
+		instance.handleRangeChange([newStartingDate, newEndingDate]);
 
-		expect(instance.handleStartingDateChange(newDate)).toBeTruthy()
+		expect(instance.props.updateStartingDate.mock.calls.length).toBe(1)
+		expect(instance.props.updateEndingDate.mock.calls.length).toBe(1)
 	})
 
 	it('should handleStartingCashChange without error', () => {
 		const instance = renderProjectionTable().instance();
 
 		const newCash = 999;
+		instance.handleStartingCashChange(newCash)
 
-		expect(instance.handleStartingCashChange(newCash)).toBeTruthy()
+		expect(instance.props.updateStartingCash.mock.calls.length).toBe(1)
 	})
-
 
 })
 
@@ -36,8 +39,9 @@ function renderProjectionTable(props = {}) {
 		startingDate: moment(1522901995930), // April 4, 2018
 		endingDate: moment(1528172492320), // June 4, 2018
 		startingCash: 100,
-		updateStartingDate: () => { },
-		updateStartingCash: () => { },
+		updateStartingDate: jest.fn(),
+		updateEndingDate: jest.fn(),
+		updateStartingCash: jest.fn(),
 		addOneTimeExpense: () => { },
 		...props,
 	}

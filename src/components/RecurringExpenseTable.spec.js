@@ -8,12 +8,15 @@ import RecurringExpenseTable from './RecurringExpenseTable';
 describe('RecurringExpenseTable', () => {
 
 	it('should handleRecurringExpenseDelete without error', () => {
+		const instance = renderRecurringExpenseTable().instance();
+
 		const event = {
 			preventDefault: () => { },
 		}
-		const id = 567876
-		const instance = renderRecurringExpenseTable().instance();
-		expect(instance.handleRecurringExpenseDelete(event, id)).toEqual(true);
+		const id = 567876;
+		instance.handleRecurringExpenseDelete(event, id);
+
+		expect(instance.props.deleteRecurringExpense.mock.calls.length).toBe(1);
 	})
 
 })
@@ -21,7 +24,7 @@ describe('RecurringExpenseTable', () => {
 function renderRecurringExpenseTable(props = {}) {
 	const propsToUser = {
 		recurringExpenses: sampleRecurringExpenses,
-		deleteRecurringExpense: () => { },
+		deleteRecurringExpense: jest.fn(),
 	}
 	return shallow(<RecurringExpenseTable {...propsToUser} />)
 }

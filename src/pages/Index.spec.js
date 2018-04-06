@@ -86,12 +86,20 @@ describe('Index', () => {
 		expect(instance.state.startingDate).toEqual(newStartingDate);
 	})
 
-	it('should default to today is starting date is exd out', () => {
+	it('should default to today if starting date is exd out', () => {
 		const instance = shallow(<Index testing={true} />).instance();
 
-		// TODO
+		instance.updateStartingDate(); // no arg provided
 
-		// expect(instance.state.startingDate).toEqual(newStartingDate);
+		expect(instance.state.startingDate.format('LL')).toEqual(moment().format('LL'));
+	})
+
+	it('should default to two months from today if ending date is exd out', () => {
+		const instance = shallow(<Index testing={true} />).instance();
+
+		instance.updateEndingDate(); // no arg provided
+
+		expect(instance.state.endingDate.format('LL')).toEqual(moment().add(2, 'M').format('LL'));
 	})
 
 

@@ -29,8 +29,8 @@ describe('NewRecurringExpenseForm', () => {
 	it('should update startingDate', () => {
 		const instance = renderNewRecurringExpenseForm().instance();
 
-		const newDate = 1522704470525;
-		instance.handleDateChange(moment(newDate));
+		const newDate = moment(1522704470525);
+		instance.handleDateChange(newDate);
 
 		expect(instance.state.startDate).toEqual(newDate);
 	})
@@ -62,6 +62,10 @@ describe('NewRecurringExpenseForm', () => {
 		expect(instance.state.interval).toEqual(newInterval);
 	})
 
+	xit('should call addRecurringExpense on submit', () => {
+		// TODO
+	})
+
 	it('should clear form on submit', () => {
 		const instance = renderNewRecurringExpenseForm().instance();
 
@@ -74,7 +78,6 @@ describe('NewRecurringExpenseForm', () => {
 		expect(instance.state.amount).toEqual(blankExpense.amount);
 		expect(instance.state.frequency).toEqual(blankExpense.frequency);
 		expect(instance.state.interval).toEqual(blankExpense.interval);
-
 	})
 
 })

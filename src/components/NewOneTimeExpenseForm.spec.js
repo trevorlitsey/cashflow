@@ -31,6 +31,18 @@ describe('NewOneTimeExpenseForm', () => {
 		expect(instance.state.startDate).toEqual(newDate);
 	})
 
+	xit('should handle amount change', () => {
+		// TODO
+	})
+
+	xit('should call addOneTimeExpense on submit', () => {
+		// TODO
+	})
+
+	xit('should clear form on submit', () => {
+		// TODO
+	})
+
 })
 
 function renderOneTimeExpenseForm(props = {}) {

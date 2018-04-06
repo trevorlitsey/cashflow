@@ -36,8 +36,7 @@ const Divider = styled.div`
 	}
 `
 
-const startingDate = moment();
-const endingDate = startingDate.add(2, 'm');
+// TODO: delete one time expenses when they expire?
 
 class Index extends React.PureComponent {
 
@@ -46,8 +45,8 @@ class Index extends React.PureComponent {
 	}
 
 	state = {
-		startingDate,
-		endingDate,
+		startingDate: moment(),
+		endingDate: moment().add(2, 'm'),
 		startingCash: 0,
 		recurringExpenses: {},
 		oneTimeExpenses: {},
@@ -79,12 +78,15 @@ class Index extends React.PureComponent {
 		this.setState({ recurringExpenses })
 	}
 
-	updateStartingDate = (newDate) => {
-		if (!newDate) newDate = moment();
+	deleteOneTimeExpense = (id) => {
+		// TODO
+	}
+
+	updateStartingDate = (newDate = moment()) => {
 		this.setState({ startingDate: newDate })
 	}
 
-	updateEndingDate = (newDate) => {
+	updateEndingDate = (newDate = moment().add(2, 'M')) => {
 		this.setState({ endingDate: newDate })
 	}
 
@@ -141,6 +143,7 @@ class Index extends React.PureComponent {
 						endingDate={endingDate}
 						startingCash={startingCash}
 						updateStartingDate={this.updateStartingDate}
+						updateEndingDate={this.updateEndingDate}
 						updateStartingCash={this.updateStartingCash}
 						addOneTimeExpense={this.addOneTimeExpense}
 					/>

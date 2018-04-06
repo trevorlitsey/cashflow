@@ -47,7 +47,7 @@ class NewRecurringExpenseForm extends React.Component {
 	}
 
 	handleDateChange = (e) => {
-		this.setState({ startDate: e.valueOf() });
+		this.setState({ startDate: e });
 	}
 
 	handleAmountChange = (e) => {

@@ -1,7 +1,6 @@
 import React from 'react';
 import { object, number, func } from 'prop-types';
 import styled from 'styled-components';
-import { format, addDays } from 'date-fns';
 import { DatePicker, InputNumber } from 'antd';
 import moment from 'moment';
 import currencyFormatter from 'currency-formatter';
@@ -11,6 +10,8 @@ import { SubTitle } from '../styles/components';
 import mergeExpensesForProjectionTable from './helpers/mergeExpensesForProjectionTable';
 
 import NewOneTimeExpenseForm from './NewOneTimeExpenseForm';
+
+const { RangePicker } = DatePicker;
 
 const Container = styled.div`
 	width: 100%;
@@ -72,6 +73,7 @@ class ProjectionTable extends React.PureComponent {
 		endingDate: object.isRequired,
 		startingCash: number.isRequired,
 		updateStartingDate: func.isRequired,
+		updateEndingDate: func.isRequired,
 		updateStartingCash: func.isRequired,
 		addOneTimeExpense: func.isRequired,
 	}
@@ -95,28 +97,28 @@ class ProjectionTable extends React.PureComponent {
 		return { rows };
 	}
 
-	handleStartingDateChange = (e) => {
-		this.props.updateStartingDate(e)
-		return true;
+	handleRangeChange = (newDatesArr) => {
+		const [newStartingDate, newEndingDate] = newDatesArr;
+		this.props.updateStartingDate(newStartingDate)
+		this.props.updateEndingDate(newEndingDate)
 	}
 
 	handleStartingCashChange = (e) => {
 		this.props.updateStartingCash(e);
-		return true;
 	}
 
 	render() {
 
 		const { rows } = this.state;
-		const { startingDate, startingCash, addOneTimeExpense } = this.props;
+		const { startingDate, endingDate, startingCash, addOneTimeExpense } = this.props;
 
 		return (
 			<Container>
 				<SubTitle>Cashflow:</SubTitle>
 				<Controls>
 					<div>
-						<label>Starting date: </label>
-						<DatePicker value={startingDate} onChange={this.handleStartingDateChange} />
+						<label>Projection range: </label>
+						<RangePicker value={[startingDate, endingDate]} onChange={this.handleRangeChange} />
 					</div>
 					<div>
 						<label>Starting cash: </label>

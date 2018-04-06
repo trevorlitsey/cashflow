@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-const mergeExpensesForProjectionTable = (startDate, endDate, recurringExpenses, oneTimeExpenses) => {
+const mergeExpensesForProjectionTable = (startingRangeDate, endingRangeDate, recurringExpenses, oneTimeExpenses) => {
 
 	const expensesForTable = [];
 
@@ -10,15 +10,18 @@ const mergeExpensesForProjectionTable = (startDate, endDate, recurringExpenses, 
 
 		const recurringExpenseDate = moment(startDate);
 
-		while (recurringExpenseDate < endDate) {
-			const expenseToAdd = {
-				id: key,
-				date: recurringExpenseDate.valueOf(),
-				name,
-				amount,
-				isRecurring: true,
+		while (recurringExpenseDate <= endingRangeDate) {
+			if (recurringExpenseDate >= startingRangeDate) {
+				// ignore if we're not in the specified user range
+				const expenseToAdd = {
+					id: key,
+					date: recurringExpenseDate.valueOf(),
+					name,
+					amount,
+					isRecurring: true,
+				}
+				expensesForTable.push(expenseToAdd)
 			}
-			expensesForTable.push(expenseToAdd)
 			recurringExpenseDate.add(frequency, interval);
 		}
 	})
@@ -26,13 +29,15 @@ const mergeExpensesForProjectionTable = (startDate, endDate, recurringExpenses, 
 	// insert oneTime expenses into array
 	Object.keys(oneTimeExpenses).forEach(key => {
 		const { startDate, name, amount } = oneTimeExpenses[key];
-		const expenseToAdd = {
-			id: key,
-			date: startDate.valueOf(),
-			name,
-			amount,
+		if (startDate >= startingRangeDate && startDate <= endingRangeDate) {
+			const expenseToAdd = {
+				id: key,
+				date: startDate.valueOf(),
+				name,
+				amount,
+			}
+			expensesForTable.push(expenseToAdd)
 		}
-		expensesForTable.push(expenseToAdd)
 	})
 
 	// sort array by date
