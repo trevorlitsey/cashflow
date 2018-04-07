@@ -6,7 +6,7 @@ module.exports = {
 	entry: path.resolve(__dirname, 'src', 'entry.js'),
 	output: {
 		path: path.resolve(__dirname, 'dist'),
-		filename: 'bundle.js',
+		filename: '[hash].bundle.js',
 	},
 	mode: 'development',
 	devServer: {

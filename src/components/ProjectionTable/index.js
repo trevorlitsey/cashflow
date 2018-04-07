@@ -1,7 +1,7 @@
 import React from 'react';
 import { object, number, func } from 'prop-types';
 import styled from 'styled-components';
-import { DatePicker, InputNumber } from 'antd';
+import { DatePicker, InputNumber, Tooltip } from 'antd';
 import moment from 'moment';
 import currencyFormatter from 'currency-formatter';
 
@@ -42,7 +42,10 @@ const Controls = styled.div`
 		display: block;
 		margin: 10px;
 	}
+`
 
+const SpanWithPointer = styled.span`
+	cursor: pointer;
 `
 
 // ------- TODO --------
@@ -53,13 +56,15 @@ const Row = (props) => {
 
 	const { date, name, amount, balance, isRecurring } = props;
 
+	const xOutToolTip = <Tooltip placement="left" title="delete income/expense"><SpanWithPointer>x</SpanWithPointer></Tooltip>
+
 	return (
 		<tr>
 			<td>{moment(date).format('LL')}</td>
 			<td>{name}</td>
 			<td>{currencyFormatter.format(amount, { code: 'USD', precision: 0 })}</td>
 			<td>{currencyFormatter.format(balance, { code: 'USD', precision: 0 })}</td>
-			<td>{!isRecurring ? 'x' : ''}</td>
+			<td>{!isRecurring ? xOutToolTip : ''}</td>
 		</tr>
 	)
 }

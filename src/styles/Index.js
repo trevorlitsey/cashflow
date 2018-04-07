@@ -7,5 +7,6 @@ import List from 'antd/lib/list/style/css';
 import Button from 'antd/lib/button/style/css';
 import message from 'antd/lib/message/style/css';
 import Popconfirm from 'antd/lib/popconfirm/style/css';
+import Tooltip from 'antd/lib/tooltip/style/css';
 
 import './styles.css';
