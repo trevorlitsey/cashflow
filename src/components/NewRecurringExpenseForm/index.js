@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { message, Form, Input, InputNumber, DatePicker, Select, Icon, Button } from 'antd';
 import moment from 'moment';
 
-import { SubSubTitle } from '../styles/components';
+import { SubSubTitle } from '../../styles/components';
 
 const Container = styled.div`
 

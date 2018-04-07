@@ -2,10 +2,10 @@ import React from 'react';
 import { object, func } from 'prop-types';
 import styled from 'styled-components';
 
-import { SubTitle } from '../styles/components';
+import { SubTitle } from '../../styles/components';
 
-import RecurringExpenseTable from './RecurringExpenseTable';
-import NewRecurringExpenseForm from './NewRecurringExpenseForm';
+import RecurringExpenseTable from '../RecurringExpenseTable';
+import NewRecurringExpenseForm from '../NewRecurringExpenseForm';
 
 class RecurringExpenses extends React.PureComponent {
 

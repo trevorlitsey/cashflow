@@ -5,11 +5,11 @@ import { DatePicker, InputNumber } from 'antd';
 import moment from 'moment';
 import currencyFormatter from 'currency-formatter';
 
-import { convertObjToArr } from '../helpers';
-import { SubTitle } from '../styles/components';
+import { convertObjToArr } from '../../helpers';
+import { SubTitle } from '../../styles/components';
 import mergeExpensesForProjectionTable from './helpers/mergeExpensesForProjectionTable';
 
-import NewOneTimeExpenseForm from './NewOneTimeExpenseForm';
+import NewOneTimeExpenseForm from '../NewOneTimeExpenseForm';
 
 const { RangePicker } = DatePicker;
 

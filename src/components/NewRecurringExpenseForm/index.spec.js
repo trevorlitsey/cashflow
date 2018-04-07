@@ -2,10 +2,10 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import moment from 'moment';
 
-import NewRecurringExpenseForm from './NewRecurringExpenseForm';
+import NewRecurringExpenseForm from './index';
 
-import { default as sampleExpense } from '../data/sampleRecurringExpenses';
-import blankExpense from '../data/blankExpense';
+import { default as sampleExpense } from '../../data/sampleRecurringExpenses';
+import blankExpense from '../../data/blankExpense';
 
 const event = {
 	target: {

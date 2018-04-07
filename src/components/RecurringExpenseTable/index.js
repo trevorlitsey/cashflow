@@ -4,7 +4,7 @@ import { format } from 'date-fns';
 import { List, Avatar, Popconfirm, message } from 'antd';
 import currencyFormatter from 'currency-formatter';
 
-import { convertObjToArr } from '../helpers';
+import { convertObjToArr } from '../../helpers';
 
 class RecurringExpenseTable extends React.Component {
 

@@ -5,11 +5,12 @@ import moment from 'moment';
 import Index from './Index';
 
 describe('Index', () => {
+
 	it('should add new recurring expense', () => {
 		const instance = shallow(<Index testing={true} />).instance();
 
 		const newRecurringExpense = {
-			date: '',
+			startDate: '',
 			name: '',
 			repeatFrequency: 2,
 			repeatInterval: 'weeks',
@@ -41,13 +42,14 @@ describe('Index', () => {
 			}
 		})
 
+		const id = 'one';
+
 		// just to make sure it made it in there...
-		expect(Object.keys(instance.state.recurringExpenses).length).toEqual(1);
+		expect(instance.state.recurringExpenses[id]).toEqual(recurringExpense);
 
 		// g'bye
-		instance.deleteRecurringExpense('one');
-		expect(Object.keys(instance.state.recurringExpenses).length).toEqual(0);
-
+		instance.deleteRecurringExpense(id);
+		expect(instance.state.recurringExpenses[id]).toBeUndefined();
 	})
 
 	it('should add new one-time expense', () => {
@@ -74,6 +76,37 @@ describe('Index', () => {
 			instance.addOneTimeExpense(newOneTimeExpense2);
 			expect(Object.keys(instance.state.oneTimeExpenses).length).toEqual(2);
 		}, 10) // to make sure id's are not the same
+
+	})
+
+	it('should delete one-time expense of given id', () => {
+		const instance = shallow(<Index testing={true} />).instance();
+
+		const oneTimeExpense = {
+			id: 23456789,
+			date: moment(234567890),
+			name: 'oh ya',
+			amount: 200,
+		}
+
+		instance.setState({
+			oneTimeExpenses: {
+				one: oneTimeExpense
+			}
+		})
+
+		const id = 'one';
+
+		// just to make sure it made it in there...
+		expect(instance.state.oneTimeExpenses[id]).toEqual(oneTimeExpense);
+
+		// g'bye
+		instance.deleteOneTimeExpense(id);
+		expect(instance.state.oneTimeExpenses[id]).toBeUndefined();
+	})
+
+	xit('should delete old one-time expenses on startup', () => {
+		// TODO
 
 	})
 

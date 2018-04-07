@@ -3,10 +3,10 @@ import { shallow } from 'enzyme';
 import moment from 'moment';
 import currencyFormatter from 'currency-formatter';
 
-import sampleRecurringExpenses from '../data/sampleRecurringExpenses';
-import sampleOneTimeExpenses from '../data/sampleOneTimeExpenses';
+import sampleRecurringExpenses from '../../data/sampleRecurringExpenses';
+import sampleOneTimeExpenses from '../../data/sampleOneTimeExpenses';
 
-import ProjectionTable from './ProjectionTable';
+import ProjectionTable from './index';
 
 describe('ProjectionTable', () => {
 
@@ -14,7 +14,7 @@ describe('ProjectionTable', () => {
 		const instance = renderProjectionTable().instance();
 
 		const newStartingDate = moment(34567890);
-		const newEndingDate = newStartingDate.add(2, 'm');
+		const newEndingDate = newStartingDate.add(2, 'M');
 		instance.handleRangeChange([newStartingDate, newEndingDate]);
 
 		expect(instance.props.updateStartingDate.mock.calls.length).toBe(1)

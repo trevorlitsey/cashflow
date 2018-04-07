@@ -3,9 +3,11 @@ import { bool } from 'prop-types';
 import styled from 'styled-components';
 import moment from 'moment';
 
-import RecurringExpenses from '../components/RecurringExpenses';
-import ProjectionTable from '../components/ProjectionTable';
-import Footer from '../components/Footer';
+import RecurringExpenses from '../../components/RecurringExpenses';
+import ProjectionTable from '../../components/ProjectionTable';
+import Footer from '../../components/Footer';
+
+import { trimOldOneTimeExpenses } from './helpers';
 
 const MasterWrapper = styled.div`
 	display: grid;
@@ -35,8 +37,6 @@ const Divider = styled.div`
 		display: none;
 	}
 `
-
-// TODO: delete one time expenses when they expire?
 
 class Index extends React.PureComponent {
 
@@ -79,7 +79,9 @@ class Index extends React.PureComponent {
 	}
 
 	deleteOneTimeExpense = (id) => {
-		// TODO
+		const oneTimeExpenses = { ...this.state.oneTimeExpenses };
+		delete oneTimeExpenses[id];
+		this.setState({ oneTimeExpenses })
 	}
 
 	updateStartingDate = (newDate = moment()) => {
@@ -99,6 +101,9 @@ class Index extends React.PureComponent {
 		const localStorageRef = localStorage.getItem('cashflow');
 		if (localStorageRef) {
 			const stateFromStorage = JSON.parse(localStorageRef);
+
+			// delete old one-time expenses
+			stateFromStorage.oneTimeExpenses = trimOldOneTimeExpenses({ ...stateFromStorage.oneTimeExpenses });
 
 			this.setState({
 				...stateFromStorage,

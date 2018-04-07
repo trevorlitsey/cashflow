@@ -1,9 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import sampleRecurringExpenses from '../data/sampleRecurringExpenses';
+import sampleRecurringExpenses from '../../data/sampleRecurringExpenses';
 
-import RecurringExpenseTable from './RecurringExpenseTable';
+import RecurringExpenseTable from './index';
 
 describe('RecurringExpenseTable', () => {
 
