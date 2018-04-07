@@ -151,6 +151,7 @@ class Index extends React.PureComponent {
 						updateEndingDate={this.updateEndingDate}
 						updateStartingCash={this.updateStartingCash}
 						addOneTimeExpense={this.addOneTimeExpense}
+						deleteOneTimeExpense={this.deleteOneTimeExpense}
 					/>
 				</ExpensesWrapper>
 				<Footer />

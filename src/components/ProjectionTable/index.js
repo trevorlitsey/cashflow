@@ -1,7 +1,7 @@
 import React from 'react';
 import { object, number, func } from 'prop-types';
 import styled from 'styled-components';
-import { DatePicker, InputNumber, Tooltip } from 'antd';
+import { DatePicker, InputNumber, Tooltip, message } from 'antd';
 import moment from 'moment';
 import currencyFormatter from 'currency-formatter';
 
@@ -49,14 +49,14 @@ const SpanWithPointer = styled.span`
 `
 
 // ------- TODO --------
-// add input to change ending date
 // add ability to x out one-time expense ('delete one-time expense' on hover?)
+// toggle decimal points 
 
 const Row = (props) => {
 
-	const { date, name, amount, balance, isRecurring } = props;
+	const { date, name, amount, balance, isRecurring, id, handleOneTimeExpenseDelete } = props;
 
-	const xOutToolTip = <Tooltip placement="left" title="delete income/expense"><SpanWithPointer>x</SpanWithPointer></Tooltip>
+	const xOutToolTip = <Tooltip data-test={date + amount} onClick={() => handleOneTimeExpenseDelete(id)} placement="left" title="delete income/expense"><SpanWithPointer>x</SpanWithPointer></Tooltip>
 
 	return (
 		<tr>
@@ -81,6 +81,7 @@ class ProjectionTable extends React.PureComponent {
 		updateEndingDate: func.isRequired,
 		updateStartingCash: func.isRequired,
 		addOneTimeExpense: func.isRequired,
+		deleteOneTimeExpense: func.isRequired,
 	}
 
 	state = {
@@ -110,6 +111,11 @@ class ProjectionTable extends React.PureComponent {
 
 	handleStartingCashChange = (e) => {
 		this.props.updateStartingCash(e);
+	}
+
+	handleOneTimeExpenseDelete = (id) => {
+		this.props.deleteOneTimeExpense(id);
+		return message.success('income/expense deleted')
 	}
 
 	render() {
@@ -147,7 +153,7 @@ class ProjectionTable extends React.PureComponent {
 						</tr>
 					</thead>
 					<tbody>
-						{rows.map(row => <Row key={row.id + row.date} {...row} />)}
+						{rows.map(row => <Row key={row.id + row.date} {...row} handleOneTimeExpenseDelete={this.handleOneTimeExpenseDelete} />)}
 					</tbody>
 				</table>
 				<br />

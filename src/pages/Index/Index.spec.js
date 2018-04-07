@@ -105,11 +105,6 @@ describe('Index', () => {
 		expect(instance.state.oneTimeExpenses[id]).toBeUndefined();
 	})
 
-	xit('should delete old one-time expenses on startup', () => {
-		// TODO
-
-	})
-
 	it('should update starting date', () => {
 		const instance = shallow(<Index testing={true} />).instance();
 

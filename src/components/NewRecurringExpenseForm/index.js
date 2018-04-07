@@ -6,9 +6,14 @@ import moment from 'moment';
 
 import { SubSubTitle } from '../../styles/components';
 
+import { formatter, parser } from '../shared/helpers';
+
 const Container = styled.div`
 
+	padding: 30px;
 	margin-top: 20px;
+	border: 1px solid HSLA(220, 8%, 92%, 1.00);
+	border-radius: 10px;
 
 	& > form {
 		display: grid;
@@ -88,7 +93,7 @@ class NewRecurringExpenseForm extends React.Component {
 		// all good
 		this.props.addRecurringExpense({ startDate, name, amount, frequency, interval })
 		this.setState({ ...blankExpense });
-		return message.success('recurring expenses added');
+		return message.success('recurring income/expenses added');
 	}
 
 	render() {
@@ -106,8 +111,8 @@ class NewRecurringExpenseForm extends React.Component {
 					<label htmlFor="name">Amount (+/-):</label>
 					<InputNumber
 						value={amount}
-						formatter={value => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-						parser={value => value.replace(/\$\s?|(,*)/g, '')}
+						formatter={formatter}
+						parser={parser}
 						onChange={this.handleAmountChange}
 						required
 					/>

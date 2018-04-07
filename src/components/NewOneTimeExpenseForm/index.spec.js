@@ -39,6 +39,12 @@ describe('NewOneTimeExpenseForm', () => {
 		instance.handleAmountChange(newAmount);
 
 		expect(instance.state.amount).toEqual(newAmount);
+
+		// w float
+		const anotherNewAmount = 10.01;
+		instance.handleAmountChange(anotherNewAmount);
+
+		expect(instance.state.amount).toEqual(anotherNewAmount);
 	})
 
 	it('should not call addOneTimeExpense when values are missing', () => {

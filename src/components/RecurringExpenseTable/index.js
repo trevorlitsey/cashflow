@@ -13,11 +13,9 @@ class RecurringExpenseTable extends React.Component {
 		deleteRecurringExpense: func.isRequired,
 	}
 
-	handleRecurringExpenseDelete = (e, id) => {
-		e.preventDefault();
+	handleRecurringExpenseDelete = (id) => {
 		this.props.deleteRecurringExpense(id)
 		message.success('recurring income/expense deleted');
-		return true;
 	}
 
 	render() {
@@ -29,12 +27,14 @@ class RecurringExpenseTable extends React.Component {
 				itemLayout="horizontal"
 				dataSource={convertObjToArr(recurringExpenses) || []}
 				renderItem={item => (
-					<List.Item actions={[
-						<a>edit</a>,
-						<Popconfirm title="Are you sure delete this expense?" onConfirm={(e) => this.handleRecurringExpenseDelete(e, item.id)} okText="Yes" cancelText="No">
-							<a>delete</a>
-						</Popconfirm>
-					]}>
+					<List.Item
+						data-test="list-item"
+						actions={[
+							<a>edit</a>,
+							<Popconfirm title="Are you sure delete this expense?" onConfirm={() => this.handleRecurringExpenseDelete(item.id)} okText="Yes" cancelText="No">
+								<a>delete</a>
+							</Popconfirm>
+						]}>
 						<List.Item.Meta
 							avatar={<Avatar icon="calendar" />}
 							title={`${item.name} (${currencyFormatter.format(item.amount, { code: 'USD', precision: 0 })})`}

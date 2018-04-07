@@ -3,6 +3,13 @@ import moment from 'moment';
 import mergeExpensesForProjectionTable from './mergeExpensesForProjectionTable';
 
 const recurringExpenses = {
+	oldRecurring: {
+		name: 'an old date that should skip first iteration',
+		startDate: 1522627200000, // April 1
+		amount: 5000,
+		frequency: 1,
+		interval: 'months',
+	},
 	one: {
 		startDate: 1524111595930, // 2 weeks
 		name: 'ya!',
@@ -20,6 +27,11 @@ const recurringExpenses = {
 }
 
 const oneTimeExpenses = {
+	oldOneTimer: {
+		name: 'an old date that should be deleted',
+		startDate: 1522627200000, // April 1
+		amount: 5000,
+	},
 	three: {
 		name: 'ya!',
 		startDate: 1523679595930, // 9 days
@@ -67,6 +79,13 @@ const expectedMerged = [
 		isRecurring: true,
 	},
 	{
+		id: 'oldRecurring',
+		name: 'an old date that should skip first iteration',
+		date: 1525219200000, // May 1
+		amount: 5000,
+		isRecurring: true,
+	},
+	{
 		id: 'two',
 		name: 'check this out',
 		date: 1525925995930, // 1 week + 4 weeks (May 9)
@@ -85,6 +104,13 @@ const expectedMerged = [
 		name: 'check this out',
 		date: 1527135595930, // 1 week + 6 weeks (May 23)
 		amount: 400,
+		isRecurring: true,
+	},
+	{
+		id: 'oldRecurring',
+		name: 'an old date that should skip first iteration',
+		date: 1527897600000, // June 1
+		amount: 5000,
 		isRecurring: true,
 	},
 ]

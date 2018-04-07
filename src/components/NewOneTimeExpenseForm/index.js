@@ -6,9 +6,14 @@ import moment from 'moment';
 
 import { SubSubTitle } from '../../styles/components';
 
+import { formatter, parser } from '../shared/helpers';
+
 const Container = styled.div`
 
+	padding: 30px;
 	margin-top: 10px;
+	border: 1px solid HSLA(220, 8%, 92%, 1.00);
+	border-radius: 10px;
 
 	& > form {
 		display: grid;
@@ -61,7 +66,7 @@ class NewOneTimeExpenseForm extends React.Component {
 		// all good
 		this.props.addOneTimeExpense({ startDate, name, amount })
 		this.setState({ ...blankExpense });
-		return message.success('recurring expenses added');
+		return message.success('one-time income/expense added');
 	}
 
 	render() {
@@ -77,8 +82,8 @@ class NewOneTimeExpenseForm extends React.Component {
 					<DisplayBlock>
 						<InputNumber
 							value={amount}
-							formatter={value => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-							parser={value => value.replace(/\$\s?|(,*)/g, '')}
+							formatter={formatter}
+							parser={parser}
 							onChange={this.handleAmountChange}
 							required
 						/>

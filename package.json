@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_ENV=test jest",
-    "test:watch": "NODE_ENV=test jest --watch",
-    "test:cover": "NODE_ENV=test jest --coverage",
+    "test": "NODE_ENV=production jest",
+    "test:watch": "NODE_ENV=production jest --watch",
+    "test:cover": "NODE_ENV=production jest --coverage",
     "start:dev": "webpack-dev-server",
     "build": "webpack"
   },

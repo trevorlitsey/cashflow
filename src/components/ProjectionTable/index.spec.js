@@ -10,7 +10,7 @@ import ProjectionTable from './index';
 
 describe('ProjectionTable', () => {
 
-	it('should handleRangeChange without error', () => {
+	it('should handleRangeChange and call updateStartingDate and updateEndingDate', () => {
 		const instance = renderProjectionTable().instance();
 
 		const newStartingDate = moment(34567890);
@@ -21,13 +21,22 @@ describe('ProjectionTable', () => {
 		expect(instance.props.updateEndingDate.mock.calls.length).toBe(1)
 	})
 
-	it('should handleStartingCashChange without error', () => {
+	it('should handleStartingCashChange and call updateStartingCash', () => {
 		const instance = renderProjectionTable().instance();
 
 		const newCash = 999;
 		instance.handleStartingCashChange(newCash)
 
 		expect(instance.props.updateStartingCash.mock.calls.length).toBe(1)
+	})
+
+	it('should handleOneTimeExpenseDeleteand call deleteOneTimeExpense', () => {
+		const instance = renderProjectionTable().instance();
+
+		const id = 98754345678
+		instance.handleOneTimeExpenseDelete(id);
+
+		expect(instance.props.deleteOneTimeExpense.mock.calls.length).toBe(1)
 	})
 
 })
@@ -43,6 +52,7 @@ function renderProjectionTable(props = {}) {
 		updateEndingDate: jest.fn(),
 		updateStartingCash: jest.fn(),
 		addOneTimeExpense: () => { },
+		deleteOneTimeExpense: jest.fn(),
 		...props,
 	}
 
