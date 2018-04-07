@@ -10,10 +10,25 @@ const Container = styled.div`
 
 	margin-top: 20px;
 
+	& > form {
+		display: grid;
+		grid-template-columns: 1fr 3fr;
+	}
+
+	& > form > button {
+		grid-column: 1 / -1;
+	}
+
 	& > form > * {
 		display: block;
 		margin-bottom: 10px;
 	}
+`
+
+const Grid = styled.div`
+	display: grid;
+	grid-template-columns: 1fr 1fr
+
 `
 
 const IntervalSelect = styled.div`

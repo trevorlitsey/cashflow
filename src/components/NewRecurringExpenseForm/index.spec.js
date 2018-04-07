@@ -62,8 +62,50 @@ describe('NewRecurringExpenseForm', () => {
 		expect(instance.state.interval).toEqual(newInterval);
 	})
 
-	xit('should call addRecurringExpense on submit', () => {
-		// TODO
+	it('should NOT call addRecurringExpense on submit if one or more values are not submitted', () => {
+		const instance = renderNewRecurringExpenseForm().instance();
+
+		// no name (all other values provided by default)
+		instance.handleSubmit(event);
+		expect(instance.props.addRecurringExpense.mock.calls.length).toBe(0);
+
+		// no startDate
+		instance.setState({
+			startDate: null,
+		});
+		instance.handleSubmit(event);
+		expect(instance.props.addRecurringExpense.mock.calls.length).toBe(0);
+
+		// no amount
+		instance.setState({
+			startDate: 9098765487654,
+			amount: 0,
+		});
+		instance.handleSubmit(event);
+		expect(instance.props.addRecurringExpense.mock.calls.length).toBe(0);
+
+		// no frequency
+		instance.setState({
+			amount: 9098765487654,
+			frequency: 0,
+		});
+		instance.handleSubmit(event);
+		expect(instance.props.addRecurringExpense.mock.calls.length).toBe(0);
+	})
+
+	it('should call addRecurringExpense on submit', () => {
+		const instance = renderNewRecurringExpenseForm().instance();
+
+		instance.setState({
+			name: 'a name',
+			startDate: 9876543,
+			amount: 500,
+			frequency: 4,
+			interval: 'weeks',
+		});
+		instance.handleSubmit(event);
+
+		expect(instance.props.addRecurringExpense.mock.calls.length).toBe(1);
 	})
 
 	it('should clear form on submit', () => {
@@ -84,7 +126,7 @@ describe('NewRecurringExpenseForm', () => {
 
 function renderNewRecurringExpenseForm(props = {}) {
 	const propsToUser = {
-		addRecurringExpense: () => { },
+		addRecurringExpense: jest.fn(),
 		...props,
 	}
 	return shallow(<NewRecurringExpenseForm {...propsToUser} />)

@@ -1,29 +1,27 @@
+import moment from 'moment'
 import { trimOldOneTimeExpenses } from './helpers';
 
 it('trimOldOneTimeExpenses should trim expenses with start dates less than today', () => {
-
-	const idToDelete = 'six'
+	const oldIdToDelete = 'six'
 
 	const oneTimeExpenses = {
-		one: {
+		[oldIdToDelete]: {
 			name: 'yayya!!!',
-			startDate: 1523089061622, // April 7
+			startDate: moment().subtract(1, 'day'), // minus one day
 			amount: -110000
 		},
-		[idToDelete]: {
+		two: {
 			name: 'check this out',
-			startDate: 1234565432,
+			startDate: moment().add(1, 'day'), // plus one day
 			amount: 11,
 		}
 	}
 
-	const today = 1523060261622; // April 6, 2018
-	const trimmedExpenses = trimOldOneTimeExpenses({ ...oneTimeExpenses }, today);
+	const trimmedExpenses = trimOldOneTimeExpenses({ ...oneTimeExpenses });
 
 	// one less than before
 	expect(Object.keys(trimmedExpenses).length).toEqual(Object.keys(oneTimeExpenses).length - 1);
 
 	// should be gone
-	expect(trimmedExpenses[idToDelete]).toBeUndefined();
-
+	expect(trimmedExpenses[oldIdToDelete]).toBeUndefined();
 });

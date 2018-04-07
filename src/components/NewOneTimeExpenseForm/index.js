@@ -70,7 +70,7 @@ class NewOneTimeExpenseForm extends React.Component {
 
 		return (
 			<Container>
-				<SubSubTitle>New one-time income/expense:</SubSubTitle>
+				<SubSubTitle>Add one-time income/expense:</SubSubTitle>
 				<form onSubmit={this.handleSubmit}>
 					<DatePicker onChange={this.handleDateChange} value={moment(startDate)} placeholder="Start date" required />
 					<Input onChange={this.handleNameChange} value={name} placeholder="Name" required />

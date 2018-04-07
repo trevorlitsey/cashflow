@@ -11,15 +11,17 @@ ShallowWrapper {
     recurringExpenses={
       Object {
         "one": Object {
+          "amount": 200,
           "frequency": 2,
           "interval": "days",
-          "name": "an expenses",
+          "name": "ya!",
           "startDate": 987628949876,
         },
         "two": Object {
+          "amount": 200,
           "frequency": 1,
           "interval": "weeks",
-          "name": "an expenses",
+          "name": "check this out",
           "startDate": 9852384982345,
         },
       }
@@ -46,15 +48,17 @@ ShallowWrapper {
           recurringExpenses={
             Object {
               "one": Object {
+                "amount": 200,
                 "frequency": 2,
                 "interval": "days",
-                "name": "an expenses",
+                "name": "ya!",
                 "startDate": 987628949876,
               },
               "two": Object {
+                "amount": 200,
                 "frequency": 1,
                 "interval": "weeks",
-                "name": "an expenses",
+                "name": "check this out",
                 "startDate": 9852384982345,
               },
             }
@@ -86,15 +90,17 @@ ShallowWrapper {
           "deleteRecurringExpense": [Function],
           "recurringExpenses": Object {
             "one": Object {
+              "amount": 200,
               "frequency": 2,
               "interval": "days",
-              "name": "an expenses",
+              "name": "ya!",
               "startDate": 987628949876,
             },
             "two": Object {
+              "amount": 200,
               "frequency": 1,
               "interval": "weeks",
-              "name": "an expenses",
+              "name": "check this out",
               "startDate": 9852384982345,
             },
           },
@@ -132,15 +138,17 @@ ShallowWrapper {
             recurringExpenses={
               Object {
                 "one": Object {
+                  "amount": 200,
                   "frequency": 2,
                   "interval": "days",
-                  "name": "an expenses",
+                  "name": "ya!",
                   "startDate": 987628949876,
                 },
                 "two": Object {
+                  "amount": 200,
                   "frequency": 1,
                   "interval": "weeks",
-                  "name": "an expenses",
+                  "name": "check this out",
                   "startDate": 9852384982345,
                 },
               }
@@ -172,15 +180,17 @@ ShallowWrapper {
             "deleteRecurringExpense": [Function],
             "recurringExpenses": Object {
               "one": Object {
+                "amount": 200,
                 "frequency": 2,
                 "interval": "days",
-                "name": "an expenses",
+                "name": "ya!",
                 "startDate": 987628949876,
               },
               "two": Object {
+                "amount": 200,
                 "frequency": 1,
                 "interval": "weeks",
-                "name": "an expenses",
+                "name": "check this out",
                 "startDate": 9852384982345,
               },
             },
