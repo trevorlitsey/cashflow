@@ -1,15 +1,12 @@
 import React from 'react';
 import { bool } from 'prop-types';
-import styled from 'styled-components';
 import moment from 'moment';
 
 import { RecurringExpenses, ProjectionTable, Footer } from '../../components';
 import { MasterWrapper, ExpensesWrapper, Divider } from './StyledComponents';
+import { Title } from '../../styles/SharedComponents';
 
 import { trimOldOneTimeExpenses } from './helpers';
-
-
-
 
 class Index extends React.PureComponent {
 
@@ -107,6 +104,7 @@ class Index extends React.PureComponent {
 
 		return (
 			<MasterWrapper>
+				<Title>CashflowCal.net</Title>
 				<ExpensesWrapper>
 					<RecurringExpenses
 						recurringExpenses={recurringExpenses}

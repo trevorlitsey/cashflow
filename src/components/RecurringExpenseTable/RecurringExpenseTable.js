@@ -3,13 +3,13 @@ import { object, func } from 'prop-types'
 import { format } from 'date-fns';
 import { Popconfirm, message, Tooltip } from 'antd';
 import currencyFormatter from 'currency-formatter';
-import styled from 'styled-components';
 
 import { UnOrderedList } from './StyledComponents';
 
 import { convertObjToArr } from '../../helpers';
 
 // -------- TODO ---------
+// - add 'none yet'
 // - allow edit
 
 class RecurringExpenseTable extends React.Component {
@@ -48,7 +48,6 @@ class RecurringExpenseTable extends React.Component {
 									</div>
 								</li>
 							)
-
 						})}
 				</UnOrderedList>
 			</div>

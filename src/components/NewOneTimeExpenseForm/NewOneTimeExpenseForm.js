@@ -1,31 +1,12 @@
 import React from 'react';
 import { func } from 'prop-types';
-import styled from 'styled-components';
 import { message, Form, Input, InputNumber, DatePicker, Select, Icon, Button } from 'antd';
 import moment from 'moment';
 
+import { Container, DisplayBlock } from './StyledComponents';
 import { SubSubTitle } from '../../styles/SharedComponents';
 
 import { formatter, parser } from '../shared/helpers';
-
-const Container = styled.div`
-
-	padding: 30px;
-	margin-top: 10px;
-	border: 1px solid HSLA(220, 8%, 92%, 1.00);
-	border-radius: 10px;
-
-	& > form {
-		display: grid;
-		grid-template-columns: 2fr 3fr 1fr 2fr;
-		grid-gap: 4px;
-		margin-bottom: 10px;
-	}
-`
-
-const DisplayBlock = styled.div`
-	display: block;
-`
 
 const blankExpense = {
 	name: '',

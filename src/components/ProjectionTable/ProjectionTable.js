@@ -1,25 +1,25 @@
 import React from 'react';
-import { object, number, func } from 'prop-types';
-import styled from 'styled-components';
+import { object, number, string, func } from 'prop-types';
 import { DatePicker, InputNumber, Tooltip, message } from 'antd';
 import moment from 'moment';
 import currencyFormatter from 'currency-formatter';
 
-import { convertObjToArr } from '../../helpers';
 import { SubTitle, SpanWithPointer } from '../../styles/SharedComponents';
 import { Container, Controls } from './StyledComponents';
 
-import mergeExpensesForProjectionTable from './helpers/mergeExpensesForProjectionTable';
-
 import NewOneTimeExpenseForm from '../NewOneTimeExpenseForm/NewOneTimeExpenseForm';
+
+import { convertObjToArr } from '../../helpers';
+import { formatter, parser } from '../shared/helpers';
+import mergeExpensesForProjectionTable from './helpers/mergeExpensesForProjectionTable';
 
 const { RangePicker } = DatePicker;
 
 // ------- TODO --------
-// add ability to x out one-time expense ('delete one-time expense' on hover?)
 // toggle decimal points 
 // option to display all dates
 // integrate formatter/parser
+// TODO, move row into own component
 
 const Row = (props) => {
 
@@ -45,7 +45,7 @@ class ProjectionTable extends React.PureComponent {
 		oneTimeExpenses: object.isRequired, // TODO, make shape
 		startingDate: object.isRequired,
 		endingDate: object.isRequired,
-		startingCash: number.isRequired,
+		startingCash: number.isRequired || string.isRequired, // TODO
 		updateStartingDate: func.isRequired,
 		updateEndingDate: func.isRequired,
 		updateStartingCash: func.isRequired,
@@ -124,8 +124,8 @@ class ProjectionTable extends React.PureComponent {
 						<label>Starting cash: </label>
 						<InputNumber
 							value={startingCash}
-							formatter={value => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-							parser={value => value.replace(/\$\s?|(,*)/g, '')}
+							formatter={formatter}
+							parser={parser}
 							onChange={this.handleStartingCashChange}
 							required
 						/>

@@ -7,7 +7,6 @@ export const MasterWrapper = styled.div`
 
 export const ExpensesWrapper = styled.div`
 	min-height: 94vh;
-	border-top: 8px solid HSLA(209, 100%, 60%, 1.00);
 	padding: 50px;
 
 	@media (min-width: 1000px) {

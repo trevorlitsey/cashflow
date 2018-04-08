@@ -1,6 +1,5 @@
 import React from 'react';
 import { object, func } from 'prop-types';
-import styled from 'styled-components';
 
 import { SubTitle } from '../../styles/SharedComponents';
 
