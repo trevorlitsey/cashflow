@@ -8,7 +8,7 @@
     "test:watch": "NODE_ENV=production jest --watch",
     "test:cover": "NODE_ENV=production jest --coverage",
     "start:dev": "webpack-dev-server",
-    "build": "webpack"
+    "build": "NODE_ENV=production webpack"
   },
   "jest": {
     "setupTestFrameworkScriptFile": "<rootDir>/testConfig.js"
