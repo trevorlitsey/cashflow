@@ -58,23 +58,22 @@ ShallowWrapper {
           <div
             className="right"
           >
-            <Popconfirm
-              cancelText="No"
-              okText="Yes"
-              okType="primary"
-              onConfirm={[Function]}
-              placement="top"
-              prefixCls="ant-popover"
-              title="Are you sure you want to delete this expense?"
-              transitionName="zoom-big"
-              trigger="click"
+            <Tooltip
+              arrowPointAtCenter={false}
+              autoAdjustOverflow={true}
+              data-test="delete"
+              mouseEnterDelay={0.1}
+              mouseLeaveDelay={0.1}
+              onClick={[Function]}
+              placement="left"
+              prefixCls="ant-tooltip"
+              title="delete recurring income/expense"
+              transitionName="zoom-big-fast"
             >
-              <span
-                data-test="delete"
-              >
+              <span>
                 x
               </span>
-            </Popconfirm>
+            </Tooltip>
           </div>
         </li>
         <li>
@@ -95,23 +94,22 @@ ShallowWrapper {
           <div
             className="right"
           >
-            <Popconfirm
-              cancelText="No"
-              okText="Yes"
-              okType="primary"
-              onConfirm={[Function]}
-              placement="top"
-              prefixCls="ant-popover"
-              title="Are you sure you want to delete this expense?"
-              transitionName="zoom-big"
-              trigger="click"
+            <Tooltip
+              arrowPointAtCenter={false}
+              autoAdjustOverflow={true}
+              data-test="delete"
+              mouseEnterDelay={0.1}
+              mouseLeaveDelay={0.1}
+              onClick={[Function]}
+              placement="left"
+              prefixCls="ant-tooltip"
+              title="delete recurring income/expense"
+              transitionName="zoom-big-fast"
             >
-              <span
-                data-test="delete"
-              >
+              <span>
                 x
               </span>
-            </Popconfirm>
+            </Tooltip>
           </div>
         </li>
       </styled.ul>,
@@ -141,23 +139,22 @@ ShallowWrapper {
             <div
               className="right"
             >
-              <Popconfirm
-                cancelText="No"
-                okText="Yes"
-                okType="primary"
-                onConfirm={[Function]}
-                placement="top"
-                prefixCls="ant-popover"
-                title="Are you sure you want to delete this expense?"
-                transitionName="zoom-big"
-                trigger="click"
+              <Tooltip
+                arrowPointAtCenter={false}
+                autoAdjustOverflow={true}
+                data-test="delete"
+                mouseEnterDelay={0.1}
+                mouseLeaveDelay={0.1}
+                onClick={[Function]}
+                placement="left"
+                prefixCls="ant-tooltip"
+                title="delete recurring income/expense"
+                transitionName="zoom-big-fast"
               >
-                <span
-                  data-test="delete"
-                >
+                <span>
                   x
                 </span>
-              </Popconfirm>
+              </Tooltip>
             </div>
           </li>,
           <li>
@@ -178,23 +175,22 @@ ShallowWrapper {
             <div
               className="right"
             >
-              <Popconfirm
-                cancelText="No"
-                okText="Yes"
-                okType="primary"
-                onConfirm={[Function]}
-                placement="top"
-                prefixCls="ant-popover"
-                title="Are you sure you want to delete this expense?"
-                transitionName="zoom-big"
-                trigger="click"
+              <Tooltip
+                arrowPointAtCenter={false}
+                autoAdjustOverflow={true}
+                data-test="delete"
+                mouseEnterDelay={0.1}
+                mouseLeaveDelay={0.1}
+                onClick={[Function]}
+                placement="left"
+                prefixCls="ant-tooltip"
+                title="delete recurring income/expense"
+                transitionName="zoom-big-fast"
               >
-                <span
-                  data-test="delete"
-                >
+                <span>
                   x
                 </span>
-              </Popconfirm>
+              </Tooltip>
             </div>
           </li>,
         ],
@@ -224,23 +220,22 @@ ShallowWrapper {
               <div
                 className="right"
               >
-                <Popconfirm
-                  cancelText="No"
-                  okText="Yes"
-                  okType="primary"
-                  onConfirm={[Function]}
-                  placement="top"
-                  prefixCls="ant-popover"
-                  title="Are you sure you want to delete this expense?"
-                  transitionName="zoom-big"
-                  trigger="click"
+                <Tooltip
+                  arrowPointAtCenter={false}
+                  autoAdjustOverflow={true}
+                  data-test="delete"
+                  mouseEnterDelay={0.1}
+                  mouseLeaveDelay={0.1}
+                  onClick={[Function]}
+                  placement="left"
+                  prefixCls="ant-tooltip"
+                  title="delete recurring income/expense"
+                  transitionName="zoom-big-fast"
                 >
-                  <span
-                    data-test="delete"
-                  >
+                  <span>
                     x
                   </span>
-                </Popconfirm>
+                </Tooltip>
               </div>,
             ],
           },
@@ -299,23 +294,22 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "host",
               "props": Object {
-                "children": <Popconfirm
-                  cancelText="No"
-                  okText="Yes"
-                  okType="primary"
-                  onConfirm={[Function]}
-                  placement="top"
-                  prefixCls="ant-popover"
-                  title="Are you sure you want to delete this expense?"
-                  transitionName="zoom-big"
-                  trigger="click"
+                "children": <Tooltip
+                  arrowPointAtCenter={false}
+                  autoAdjustOverflow={true}
+                  data-test="delete"
+                  mouseEnterDelay={0.1}
+                  mouseLeaveDelay={0.1}
+                  onClick={[Function]}
+                  placement="left"
+                  prefixCls="ant-tooltip"
+                  title="delete recurring income/expense"
+                  transitionName="zoom-big-fast"
                 >
-                  <span
-                    data-test="delete"
-                  >
+                  <span>
                     x
                   </span>
-                </Popconfirm>,
+                </Tooltip>,
                 "className": "right",
               },
               "ref": null,
@@ -324,20 +318,19 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "cancelText": "No",
-                  "children": <span
-                    data-test="delete"
-                  >
+                  "arrowPointAtCenter": false,
+                  "autoAdjustOverflow": true,
+                  "children": <span>
                     x
                   </span>,
-                  "okText": "Yes",
-                  "okType": "primary",
-                  "onConfirm": [Function],
-                  "placement": "top",
-                  "prefixCls": "ant-popover",
-                  "title": "Are you sure you want to delete this expense?",
-                  "transitionName": "zoom-big",
-                  "trigger": "click",
+                  "data-test": "delete",
+                  "mouseEnterDelay": 0.1,
+                  "mouseLeaveDelay": 0.1,
+                  "onClick": [Function],
+                  "placement": "left",
+                  "prefixCls": "ant-tooltip",
+                  "title": "delete recurring income/expense",
+                  "transitionName": "zoom-big-fast",
                 },
                 "ref": null,
                 "rendered": Object {
@@ -346,7 +339,6 @@ ShallowWrapper {
                   "nodeType": "host",
                   "props": Object {
                     "children": "x",
-                    "data-test": "delete",
                   },
                   "ref": null,
                   "rendered": "x",
@@ -382,23 +374,22 @@ ShallowWrapper {
               <div
                 className="right"
               >
-                <Popconfirm
-                  cancelText="No"
-                  okText="Yes"
-                  okType="primary"
-                  onConfirm={[Function]}
-                  placement="top"
-                  prefixCls="ant-popover"
-                  title="Are you sure you want to delete this expense?"
-                  transitionName="zoom-big"
-                  trigger="click"
+                <Tooltip
+                  arrowPointAtCenter={false}
+                  autoAdjustOverflow={true}
+                  data-test="delete"
+                  mouseEnterDelay={0.1}
+                  mouseLeaveDelay={0.1}
+                  onClick={[Function]}
+                  placement="left"
+                  prefixCls="ant-tooltip"
+                  title="delete recurring income/expense"
+                  transitionName="zoom-big-fast"
                 >
-                  <span
-                    data-test="delete"
-                  >
+                  <span>
                     x
                   </span>
-                </Popconfirm>
+                </Tooltip>
               </div>,
             ],
           },
@@ -457,23 +448,22 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "host",
               "props": Object {
-                "children": <Popconfirm
-                  cancelText="No"
-                  okText="Yes"
-                  okType="primary"
-                  onConfirm={[Function]}
-                  placement="top"
-                  prefixCls="ant-popover"
-                  title="Are you sure you want to delete this expense?"
-                  transitionName="zoom-big"
-                  trigger="click"
+                "children": <Tooltip
+                  arrowPointAtCenter={false}
+                  autoAdjustOverflow={true}
+                  data-test="delete"
+                  mouseEnterDelay={0.1}
+                  mouseLeaveDelay={0.1}
+                  onClick={[Function]}
+                  placement="left"
+                  prefixCls="ant-tooltip"
+                  title="delete recurring income/expense"
+                  transitionName="zoom-big-fast"
                 >
-                  <span
-                    data-test="delete"
-                  >
+                  <span>
                     x
                   </span>
-                </Popconfirm>,
+                </Tooltip>,
                 "className": "right",
               },
               "ref": null,
@@ -482,20 +472,19 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "cancelText": "No",
-                  "children": <span
-                    data-test="delete"
-                  >
+                  "arrowPointAtCenter": false,
+                  "autoAdjustOverflow": true,
+                  "children": <span>
                     x
                   </span>,
-                  "okText": "Yes",
-                  "okType": "primary",
-                  "onConfirm": [Function],
-                  "placement": "top",
-                  "prefixCls": "ant-popover",
-                  "title": "Are you sure you want to delete this expense?",
-                  "transitionName": "zoom-big",
-                  "trigger": "click",
+                  "data-test": "delete",
+                  "mouseEnterDelay": 0.1,
+                  "mouseLeaveDelay": 0.1,
+                  "onClick": [Function],
+                  "placement": "left",
+                  "prefixCls": "ant-tooltip",
+                  "title": "delete recurring income/expense",
+                  "transitionName": "zoom-big-fast",
                 },
                 "ref": null,
                 "rendered": Object {
@@ -504,7 +493,6 @@ ShallowWrapper {
                   "nodeType": "host",
                   "props": Object {
                     "children": "x",
-                    "data-test": "delete",
                   },
                   "ref": null,
                   "rendered": "x",
@@ -547,23 +535,22 @@ ShallowWrapper {
             <div
               className="right"
             >
-              <Popconfirm
-                cancelText="No"
-                okText="Yes"
-                okType="primary"
-                onConfirm={[Function]}
-                placement="top"
-                prefixCls="ant-popover"
-                title="Are you sure you want to delete this expense?"
-                transitionName="zoom-big"
-                trigger="click"
+              <Tooltip
+                arrowPointAtCenter={false}
+                autoAdjustOverflow={true}
+                data-test="delete"
+                mouseEnterDelay={0.1}
+                mouseLeaveDelay={0.1}
+                onClick={[Function]}
+                placement="left"
+                prefixCls="ant-tooltip"
+                title="delete recurring income/expense"
+                transitionName="zoom-big-fast"
               >
-                <span
-                  data-test="delete"
-                >
+                <span>
                   x
                 </span>
-              </Popconfirm>
+              </Tooltip>
             </div>
           </li>
           <li>
@@ -584,23 +571,22 @@ ShallowWrapper {
             <div
               className="right"
             >
-              <Popconfirm
-                cancelText="No"
-                okText="Yes"
-                okType="primary"
-                onConfirm={[Function]}
-                placement="top"
-                prefixCls="ant-popover"
-                title="Are you sure you want to delete this expense?"
-                transitionName="zoom-big"
-                trigger="click"
+              <Tooltip
+                arrowPointAtCenter={false}
+                autoAdjustOverflow={true}
+                data-test="delete"
+                mouseEnterDelay={0.1}
+                mouseLeaveDelay={0.1}
+                onClick={[Function]}
+                placement="left"
+                prefixCls="ant-tooltip"
+                title="delete recurring income/expense"
+                transitionName="zoom-big-fast"
               >
-                <span
-                  data-test="delete"
-                >
+                <span>
                   x
                 </span>
-              </Popconfirm>
+              </Tooltip>
             </div>
           </li>
         </styled.ul>,
@@ -630,23 +616,22 @@ ShallowWrapper {
               <div
                 className="right"
               >
-                <Popconfirm
-                  cancelText="No"
-                  okText="Yes"
-                  okType="primary"
-                  onConfirm={[Function]}
-                  placement="top"
-                  prefixCls="ant-popover"
-                  title="Are you sure you want to delete this expense?"
-                  transitionName="zoom-big"
-                  trigger="click"
+                <Tooltip
+                  arrowPointAtCenter={false}
+                  autoAdjustOverflow={true}
+                  data-test="delete"
+                  mouseEnterDelay={0.1}
+                  mouseLeaveDelay={0.1}
+                  onClick={[Function]}
+                  placement="left"
+                  prefixCls="ant-tooltip"
+                  title="delete recurring income/expense"
+                  transitionName="zoom-big-fast"
                 >
-                  <span
-                    data-test="delete"
-                  >
+                  <span>
                     x
                   </span>
-                </Popconfirm>
+                </Tooltip>
               </div>
             </li>,
             <li>
@@ -667,23 +652,22 @@ ShallowWrapper {
               <div
                 className="right"
               >
-                <Popconfirm
-                  cancelText="No"
-                  okText="Yes"
-                  okType="primary"
-                  onConfirm={[Function]}
-                  placement="top"
-                  prefixCls="ant-popover"
-                  title="Are you sure you want to delete this expense?"
-                  transitionName="zoom-big"
-                  trigger="click"
+                <Tooltip
+                  arrowPointAtCenter={false}
+                  autoAdjustOverflow={true}
+                  data-test="delete"
+                  mouseEnterDelay={0.1}
+                  mouseLeaveDelay={0.1}
+                  onClick={[Function]}
+                  placement="left"
+                  prefixCls="ant-tooltip"
+                  title="delete recurring income/expense"
+                  transitionName="zoom-big-fast"
                 >
-                  <span
-                    data-test="delete"
-                  >
+                  <span>
                     x
                   </span>
-                </Popconfirm>
+                </Tooltip>
               </div>
             </li>,
           ],
@@ -713,23 +697,22 @@ ShallowWrapper {
                 <div
                   className="right"
                 >
-                  <Popconfirm
-                    cancelText="No"
-                    okText="Yes"
-                    okType="primary"
-                    onConfirm={[Function]}
-                    placement="top"
-                    prefixCls="ant-popover"
-                    title="Are you sure you want to delete this expense?"
-                    transitionName="zoom-big"
-                    trigger="click"
+                  <Tooltip
+                    arrowPointAtCenter={false}
+                    autoAdjustOverflow={true}
+                    data-test="delete"
+                    mouseEnterDelay={0.1}
+                    mouseLeaveDelay={0.1}
+                    onClick={[Function]}
+                    placement="left"
+                    prefixCls="ant-tooltip"
+                    title="delete recurring income/expense"
+                    transitionName="zoom-big-fast"
                   >
-                    <span
-                      data-test="delete"
-                    >
+                    <span>
                       x
                     </span>
-                  </Popconfirm>
+                  </Tooltip>
                 </div>,
               ],
             },
@@ -788,23 +771,22 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "host",
                 "props": Object {
-                  "children": <Popconfirm
-                    cancelText="No"
-                    okText="Yes"
-                    okType="primary"
-                    onConfirm={[Function]}
-                    placement="top"
-                    prefixCls="ant-popover"
-                    title="Are you sure you want to delete this expense?"
-                    transitionName="zoom-big"
-                    trigger="click"
+                  "children": <Tooltip
+                    arrowPointAtCenter={false}
+                    autoAdjustOverflow={true}
+                    data-test="delete"
+                    mouseEnterDelay={0.1}
+                    mouseLeaveDelay={0.1}
+                    onClick={[Function]}
+                    placement="left"
+                    prefixCls="ant-tooltip"
+                    title="delete recurring income/expense"
+                    transitionName="zoom-big-fast"
                   >
-                    <span
-                      data-test="delete"
-                    >
+                    <span>
                       x
                     </span>
-                  </Popconfirm>,
+                  </Tooltip>,
                   "className": "right",
                 },
                 "ref": null,
@@ -813,20 +795,19 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "class",
                   "props": Object {
-                    "cancelText": "No",
-                    "children": <span
-                      data-test="delete"
-                    >
+                    "arrowPointAtCenter": false,
+                    "autoAdjustOverflow": true,
+                    "children": <span>
                       x
                     </span>,
-                    "okText": "Yes",
-                    "okType": "primary",
-                    "onConfirm": [Function],
-                    "placement": "top",
-                    "prefixCls": "ant-popover",
-                    "title": "Are you sure you want to delete this expense?",
-                    "transitionName": "zoom-big",
-                    "trigger": "click",
+                    "data-test": "delete",
+                    "mouseEnterDelay": 0.1,
+                    "mouseLeaveDelay": 0.1,
+                    "onClick": [Function],
+                    "placement": "left",
+                    "prefixCls": "ant-tooltip",
+                    "title": "delete recurring income/expense",
+                    "transitionName": "zoom-big-fast",
                   },
                   "ref": null,
                   "rendered": Object {
@@ -835,7 +816,6 @@ ShallowWrapper {
                     "nodeType": "host",
                     "props": Object {
                       "children": "x",
-                      "data-test": "delete",
                     },
                     "ref": null,
                     "rendered": "x",
@@ -871,23 +851,22 @@ ShallowWrapper {
                 <div
                   className="right"
                 >
-                  <Popconfirm
-                    cancelText="No"
-                    okText="Yes"
-                    okType="primary"
-                    onConfirm={[Function]}
-                    placement="top"
-                    prefixCls="ant-popover"
-                    title="Are you sure you want to delete this expense?"
-                    transitionName="zoom-big"
-                    trigger="click"
+                  <Tooltip
+                    arrowPointAtCenter={false}
+                    autoAdjustOverflow={true}
+                    data-test="delete"
+                    mouseEnterDelay={0.1}
+                    mouseLeaveDelay={0.1}
+                    onClick={[Function]}
+                    placement="left"
+                    prefixCls="ant-tooltip"
+                    title="delete recurring income/expense"
+                    transitionName="zoom-big-fast"
                   >
-                    <span
-                      data-test="delete"
-                    >
+                    <span>
                       x
                     </span>
-                  </Popconfirm>
+                  </Tooltip>
                 </div>,
               ],
             },
@@ -946,23 +925,22 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "host",
                 "props": Object {
-                  "children": <Popconfirm
-                    cancelText="No"
-                    okText="Yes"
-                    okType="primary"
-                    onConfirm={[Function]}
-                    placement="top"
-                    prefixCls="ant-popover"
-                    title="Are you sure you want to delete this expense?"
-                    transitionName="zoom-big"
-                    trigger="click"
+                  "children": <Tooltip
+                    arrowPointAtCenter={false}
+                    autoAdjustOverflow={true}
+                    data-test="delete"
+                    mouseEnterDelay={0.1}
+                    mouseLeaveDelay={0.1}
+                    onClick={[Function]}
+                    placement="left"
+                    prefixCls="ant-tooltip"
+                    title="delete recurring income/expense"
+                    transitionName="zoom-big-fast"
                   >
-                    <span
-                      data-test="delete"
-                    >
+                    <span>
                       x
                     </span>
-                  </Popconfirm>,
+                  </Tooltip>,
                   "className": "right",
                 },
                 "ref": null,
@@ -971,20 +949,19 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "class",
                   "props": Object {
-                    "cancelText": "No",
-                    "children": <span
-                      data-test="delete"
-                    >
+                    "arrowPointAtCenter": false,
+                    "autoAdjustOverflow": true,
+                    "children": <span>
                       x
                     </span>,
-                    "okText": "Yes",
-                    "okType": "primary",
-                    "onConfirm": [Function],
-                    "placement": "top",
-                    "prefixCls": "ant-popover",
-                    "title": "Are you sure you want to delete this expense?",
-                    "transitionName": "zoom-big",
-                    "trigger": "click",
+                    "data-test": "delete",
+                    "mouseEnterDelay": 0.1,
+                    "mouseLeaveDelay": 0.1,
+                    "onClick": [Function],
+                    "placement": "left",
+                    "prefixCls": "ant-tooltip",
+                    "title": "delete recurring income/expense",
+                    "transitionName": "zoom-big-fast",
                   },
                   "ref": null,
                   "rendered": Object {
@@ -993,7 +970,6 @@ ShallowWrapper {
                     "nodeType": "host",
                     "props": Object {
                       "children": "x",
-                      "data-test": "delete",
                     },
                     "ref": null,
                     "rendered": "x",

@@ -11,3 +11,7 @@ export const SubTitle = styled.h3`
 
 export const SubSubTitle = styled.h3`
 `
+
+export const SpanWithPointer = styled.span`
+	cursor: pointer;
+`

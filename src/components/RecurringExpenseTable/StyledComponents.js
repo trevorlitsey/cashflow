@@ -25,7 +25,11 @@ export const UnOrderedList = styled.ul`
 		display: flex;
 		align-items: center;
 		justify-content: flex-end;
-		color: HSLA(220, 8%, 92%, 1.00);
+
+		& > span {
+			cursor: pointer;
+			color: HSLA(220,0%,70%,1.00);
+		}
 	}
 
 	.title {

@@ -2,7 +2,7 @@ import React from 'react';
 import { object, func } from 'prop-types';
 import styled from 'styled-components';
 
-import { SubTitle } from '../../styles/components';
+import { SubTitle } from '../../styles/SharedComponents';
 
 import RecurringExpenseTable from '../RecurringExpenseTable/RecurringExpenseTable';
 import NewRecurringExpenseForm from '../NewRecurringExpenseForm/NewRecurringExpenseForm';

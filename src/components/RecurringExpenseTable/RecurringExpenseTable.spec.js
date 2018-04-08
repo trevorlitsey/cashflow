@@ -39,10 +39,9 @@ describe('RecurringExpenseTable', () => {
 		const wrapper = fullRenderRecurringExpenseTable({ recurringExpenses });
 		const spy = jest.spyOn(wrapper.instance(), 'handleRecurringExpenseDelete');
 		wrapper.update();
-		wrapper.find('[data-test="delete"]').simulate('click');
-		const button = wrapper.find('.ant-btn-primary').simulate('click')
+		wrapper.find('[data-test="delete"]').forEach(button => button.simulate('click'));
 
-		expect(spy).toHaveBeenCalled();
+		expect(spy).toHaveBeenCalledTimes(3);
 	})
 
 })

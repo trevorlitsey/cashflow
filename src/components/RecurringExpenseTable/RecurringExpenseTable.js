@@ -1,7 +1,7 @@
 import React from 'react';
 import { object, func } from 'prop-types'
 import { format } from 'date-fns';
-import { Popconfirm, message } from 'antd';
+import { Popconfirm, message, Tooltip } from 'antd';
 import currencyFormatter from 'currency-formatter';
 import styled from 'styled-components';
 
@@ -44,9 +44,7 @@ class RecurringExpenseTable extends React.Component {
 										<p className="subtitle">{`every ${frequency} ${interval} starting on ${format(startDate, 'MMMM D, YYYY')}`}</p>
 									</div>
 									<div className="right">
-										<Popconfirm title="Are you sure you want to delete this expense?" onConfirm={() => this.handleRecurringExpenseDelete(id)} okText="Yes" cancelText="No">
-											<span data-test="delete">x</span>
-										</Popconfirm>
+										<Tooltip data-test="delete" onClick={() => this.handleRecurringExpenseDelete(id)} placement="left" title="delete recurring income/expense"><span>x</span></Tooltip>
 									</div>
 								</li>
 							)
@@ -57,7 +55,5 @@ class RecurringExpenseTable extends React.Component {
 		)
 	}
 }
-
-
 
 export default RecurringExpenseTable;
