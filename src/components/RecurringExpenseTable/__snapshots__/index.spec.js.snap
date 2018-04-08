@@ -67,11 +67,13 @@ ShallowWrapper {
               onConfirm={[Function]}
               placement="top"
               prefixCls="ant-popover"
-              title="Are you sure delete this expense?"
+              title="Are you sure you want to delete this expense?"
               transitionName="zoom-big"
               trigger="click"
             >
-              <a>
+              <a
+                data-test="delete"
+              >
                 delete
               </a>
             </Popconfirm>
@@ -106,11 +108,13 @@ ShallowWrapper {
               onConfirm={[Function]}
               placement="top"
               prefixCls="ant-popover"
-              title="Are you sure delete this expense?"
+              title="Are you sure you want to delete this expense?"
               transitionName="zoom-big"
               trigger="click"
             >
-              <a>
+              <a
+                data-test="delete"
+              >
                 delete
               </a>
             </Popconfirm>
@@ -154,11 +158,13 @@ ShallowWrapper {
                 onConfirm={[Function]}
                 placement="top"
                 prefixCls="ant-popover"
-                title="Are you sure delete this expense?"
+                title="Are you sure you want to delete this expense?"
                 transitionName="zoom-big"
                 trigger="click"
               >
-                <a>
+                <a
+                  data-test="delete"
+                >
                   delete
                 </a>
               </Popconfirm>
@@ -193,11 +199,13 @@ ShallowWrapper {
                 onConfirm={[Function]}
                 placement="top"
                 prefixCls="ant-popover"
-                title="Are you sure delete this expense?"
+                title="Are you sure you want to delete this expense?"
                 transitionName="zoom-big"
                 trigger="click"
               >
-                <a>
+                <a
+                  data-test="delete"
+                >
                   delete
                 </a>
               </Popconfirm>
@@ -209,7 +217,7 @@ ShallowWrapper {
       "rendered": Array [
         Object {
           "instance": null,
-          "key": undefined,
+          "key": "one",
           "nodeType": "host",
           "props": Object {
             "children": Array [
@@ -241,11 +249,13 @@ ShallowWrapper {
                   onConfirm={[Function]}
                   placement="top"
                   prefixCls="ant-popover"
-                  title="Are you sure delete this expense?"
+                  title="Are you sure you want to delete this expense?"
                   transitionName="zoom-big"
                   trigger="click"
                 >
-                  <a>
+                  <a
+                    data-test="delete"
+                  >
                     delete
                   </a>
                 </Popconfirm>
@@ -319,11 +329,13 @@ ShallowWrapper {
                     onConfirm={[Function]}
                     placement="top"
                     prefixCls="ant-popover"
-                    title="Are you sure delete this expense?"
+                    title="Are you sure you want to delete this expense?"
                     transitionName="zoom-big"
                     trigger="click"
                   >
-                    <a>
+                    <a
+                      data-test="delete"
+                    >
                       delete
                     </a>
                   </Popconfirm>,
@@ -350,7 +362,9 @@ ShallowWrapper {
                   "nodeType": "class",
                   "props": Object {
                     "cancelText": "No",
-                    "children": <a>
+                    "children": <a
+                      data-test="delete"
+                    >
                       delete
                     </a>,
                     "okText": "Yes",
@@ -358,7 +372,7 @@ ShallowWrapper {
                     "onConfirm": [Function],
                     "placement": "top",
                     "prefixCls": "ant-popover",
-                    "title": "Are you sure delete this expense?",
+                    "title": "Are you sure you want to delete this expense?",
                     "transitionName": "zoom-big",
                     "trigger": "click",
                   },
@@ -369,6 +383,7 @@ ShallowWrapper {
                     "nodeType": "host",
                     "props": Object {
                       "children": "delete",
+                      "data-test": "delete",
                     },
                     "ref": null,
                     "rendered": "delete",
@@ -384,7 +399,7 @@ ShallowWrapper {
         },
         Object {
           "instance": null,
-          "key": undefined,
+          "key": "two",
           "nodeType": "host",
           "props": Object {
             "children": Array [
@@ -416,11 +431,13 @@ ShallowWrapper {
                   onConfirm={[Function]}
                   placement="top"
                   prefixCls="ant-popover"
-                  title="Are you sure delete this expense?"
+                  title="Are you sure you want to delete this expense?"
                   transitionName="zoom-big"
                   trigger="click"
                 >
-                  <a>
+                  <a
+                    data-test="delete"
+                  >
                     delete
                   </a>
                 </Popconfirm>
@@ -494,11 +511,13 @@ ShallowWrapper {
                     onConfirm={[Function]}
                     placement="top"
                     prefixCls="ant-popover"
-                    title="Are you sure delete this expense?"
+                    title="Are you sure you want to delete this expense?"
                     transitionName="zoom-big"
                     trigger="click"
                   >
-                    <a>
+                    <a
+                      data-test="delete"
+                    >
                       delete
                     </a>
                   </Popconfirm>,
@@ -525,7 +544,9 @@ ShallowWrapper {
                   "nodeType": "class",
                   "props": Object {
                     "cancelText": "No",
-                    "children": <a>
+                    "children": <a
+                      data-test="delete"
+                    >
                       delete
                     </a>,
                     "okText": "Yes",
@@ -533,7 +554,7 @@ ShallowWrapper {
                     "onConfirm": [Function],
                     "placement": "top",
                     "prefixCls": "ant-popover",
-                    "title": "Are you sure delete this expense?",
+                    "title": "Are you sure you want to delete this expense?",
                     "transitionName": "zoom-big",
                     "trigger": "click",
                   },
@@ -544,6 +565,7 @@ ShallowWrapper {
                     "nodeType": "host",
                     "props": Object {
                       "children": "delete",
+                      "data-test": "delete",
                     },
                     "ref": null,
                     "rendered": "delete",
@@ -598,11 +620,13 @@ ShallowWrapper {
                 onConfirm={[Function]}
                 placement="top"
                 prefixCls="ant-popover"
-                title="Are you sure delete this expense?"
+                title="Are you sure you want to delete this expense?"
                 transitionName="zoom-big"
                 trigger="click"
               >
-                <a>
+                <a
+                  data-test="delete"
+                >
                   delete
                 </a>
               </Popconfirm>
@@ -637,11 +661,13 @@ ShallowWrapper {
                 onConfirm={[Function]}
                 placement="top"
                 prefixCls="ant-popover"
-                title="Are you sure delete this expense?"
+                title="Are you sure you want to delete this expense?"
                 transitionName="zoom-big"
                 trigger="click"
               >
-                <a>
+                <a
+                  data-test="delete"
+                >
                   delete
                 </a>
               </Popconfirm>
@@ -685,11 +711,13 @@ ShallowWrapper {
                   onConfirm={[Function]}
                   placement="top"
                   prefixCls="ant-popover"
-                  title="Are you sure delete this expense?"
+                  title="Are you sure you want to delete this expense?"
                   transitionName="zoom-big"
                   trigger="click"
                 >
-                  <a>
+                  <a
+                    data-test="delete"
+                  >
                     delete
                   </a>
                 </Popconfirm>
@@ -724,11 +752,13 @@ ShallowWrapper {
                   onConfirm={[Function]}
                   placement="top"
                   prefixCls="ant-popover"
-                  title="Are you sure delete this expense?"
+                  title="Are you sure you want to delete this expense?"
                   transitionName="zoom-big"
                   trigger="click"
                 >
-                  <a>
+                  <a
+                    data-test="delete"
+                  >
                     delete
                   </a>
                 </Popconfirm>
@@ -740,7 +770,7 @@ ShallowWrapper {
         "rendered": Array [
           Object {
             "instance": null,
-            "key": undefined,
+            "key": "one",
             "nodeType": "host",
             "props": Object {
               "children": Array [
@@ -772,11 +802,13 @@ ShallowWrapper {
                     onConfirm={[Function]}
                     placement="top"
                     prefixCls="ant-popover"
-                    title="Are you sure delete this expense?"
+                    title="Are you sure you want to delete this expense?"
                     transitionName="zoom-big"
                     trigger="click"
                   >
-                    <a>
+                    <a
+                      data-test="delete"
+                    >
                       delete
                     </a>
                   </Popconfirm>
@@ -850,11 +882,13 @@ ShallowWrapper {
                       onConfirm={[Function]}
                       placement="top"
                       prefixCls="ant-popover"
-                      title="Are you sure delete this expense?"
+                      title="Are you sure you want to delete this expense?"
                       transitionName="zoom-big"
                       trigger="click"
                     >
-                      <a>
+                      <a
+                        data-test="delete"
+                      >
                         delete
                       </a>
                     </Popconfirm>,
@@ -881,7 +915,9 @@ ShallowWrapper {
                     "nodeType": "class",
                     "props": Object {
                       "cancelText": "No",
-                      "children": <a>
+                      "children": <a
+                        data-test="delete"
+                      >
                         delete
                       </a>,
                       "okText": "Yes",
@@ -889,7 +925,7 @@ ShallowWrapper {
                       "onConfirm": [Function],
                       "placement": "top",
                       "prefixCls": "ant-popover",
-                      "title": "Are you sure delete this expense?",
+                      "title": "Are you sure you want to delete this expense?",
                       "transitionName": "zoom-big",
                       "trigger": "click",
                     },
@@ -900,6 +936,7 @@ ShallowWrapper {
                       "nodeType": "host",
                       "props": Object {
                         "children": "delete",
+                        "data-test": "delete",
                       },
                       "ref": null,
                       "rendered": "delete",
@@ -915,7 +952,7 @@ ShallowWrapper {
           },
           Object {
             "instance": null,
-            "key": undefined,
+            "key": "two",
             "nodeType": "host",
             "props": Object {
               "children": Array [
@@ -947,11 +984,13 @@ ShallowWrapper {
                     onConfirm={[Function]}
                     placement="top"
                     prefixCls="ant-popover"
-                    title="Are you sure delete this expense?"
+                    title="Are you sure you want to delete this expense?"
                     transitionName="zoom-big"
                     trigger="click"
                   >
-                    <a>
+                    <a
+                      data-test="delete"
+                    >
                       delete
                     </a>
                   </Popconfirm>
@@ -1025,11 +1064,13 @@ ShallowWrapper {
                       onConfirm={[Function]}
                       placement="top"
                       prefixCls="ant-popover"
-                      title="Are you sure delete this expense?"
+                      title="Are you sure you want to delete this expense?"
                       transitionName="zoom-big"
                       trigger="click"
                     >
-                      <a>
+                      <a
+                        data-test="delete"
+                      >
                         delete
                       </a>
                     </Popconfirm>,
@@ -1056,7 +1097,9 @@ ShallowWrapper {
                     "nodeType": "class",
                     "props": Object {
                       "cancelText": "No",
-                      "children": <a>
+                      "children": <a
+                        data-test="delete"
+                      >
                         delete
                       </a>,
                       "okText": "Yes",
@@ -1064,7 +1107,7 @@ ShallowWrapper {
                       "onConfirm": [Function],
                       "placement": "top",
                       "prefixCls": "ant-popover",
-                      "title": "Are you sure delete this expense?",
+                      "title": "Are you sure you want to delete this expense?",
                       "transitionName": "zoom-big",
                       "trigger": "click",
                     },
@@ -1075,6 +1118,7 @@ ShallowWrapper {
                       "nodeType": "host",
                       "props": Object {
                         "children": "delete",
+                        "data-test": "delete",
                       },
                       "ref": null,
                       "rendered": "delete",

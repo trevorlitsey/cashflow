@@ -25,6 +25,26 @@ describe('RecurringExpenseTable', () => {
 		expect(instance.props.deleteRecurringExpense.mock.calls.length).toBe(1);
 	})
 
+	it('should call handleRecurringExpenseDelete on Popconfirm click', () => {
+		const recurringExpenses = {
+			one: {
+				name: 'yo',
+				startDate: 23456789,
+				amount: 100,
+				frequency: 2,
+				interval: 'weeks',
+			}
+		}
+
+		const wrapper = fullRenderRecurringExpenseTable({ recurringExpenses });
+		const spy = jest.spyOn(wrapper.instance(), 'handleRecurringExpenseDelete');
+		wrapper.update();
+		wrapper.find('[data-test="delete"]').simulate('click');
+		const button = wrapper.find('.ant-btn-primary').simulate('click')
+
+		expect(spy).toHaveBeenCalled();
+	})
+
 })
 
 function shallowRenderRecurringExpenseTable(props = {}) {

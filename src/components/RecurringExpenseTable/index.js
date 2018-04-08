@@ -77,8 +77,8 @@ class RecurringExpenseTable extends React.Component {
 								<div className="right">
 									<a>edit</a>
 									|
-									<Popconfirm title="Are you sure delete this expense?" onConfirm={() => this.handleRecurringExpenseDelete(key)} okText="Yes" cancelText="No">
-										<a>delete</a>
+									<Popconfirm title="Are you sure you want to delete this expense?" onConfirm={() => this.handleRecurringExpenseDelete(key)} okText="Yes" cancelText="No">
+										<a data-test="delete">delete</a>
 									</Popconfirm>
 								</div>
 							</li>
