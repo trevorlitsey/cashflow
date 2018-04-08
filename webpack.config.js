@@ -1,13 +1,12 @@
 const path = require('path');
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
 	entry: path.resolve(__dirname, 'src', 'entry.js'),
 	output: {
 		path: path.resolve(__dirname, 'dist'),
-		filename: '[hash].bundle.js',
+		filename: 'bundle.js',
 	},
 	mode: process.env.NODE_ENV || 'development',
 	devServer: {
@@ -18,9 +17,6 @@ module.exports = {
 		inline: true,
 	},
 	plugins: [
-		new HtmlWebpackPlugin({
-			title: 'Cashflow'
-		}),
 		new webpack.NamedModulesPlugin(),
 		new webpack.HotModuleReplacementPlugin(),
 		new UglifyJsPlugin({
