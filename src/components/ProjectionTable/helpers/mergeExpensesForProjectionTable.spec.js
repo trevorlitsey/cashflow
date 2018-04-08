@@ -46,6 +46,11 @@ const oneTimeExpenses = {
 
 const expectedMerged = [
 	{
+		id: 0,
+		name: '(starting balance)',
+		date: 1522901995930,
+	},
+	{
 		id: 'two',
 		name: 'check this out',
 		date: 1523506795930, // 1 week (April 11)

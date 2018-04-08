@@ -4,6 +4,13 @@ const mergeExpensesForProjectionTable = (startingRangeDate, endingRangeDate, rec
 
 	const expensesForTable = [];
 
+	// insert first row w/ starting cash/starting date
+	expensesForTable.push({
+		id: 0,
+		name: '(starting balance)',
+		date: startingRangeDate.valueOf(),
+	})
+
 	// insert recurring expenses into expensesForTable array
 	Object.keys(recurringExpenses).forEach(key => {
 		const { startDate, name, amount, frequency, interval } = recurringExpenses[key];

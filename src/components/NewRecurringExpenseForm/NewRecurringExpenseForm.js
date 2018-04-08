@@ -46,10 +46,10 @@ const IntervalSelect = styled.div`
 
 const blankExpense = {
 	name: '',
-	startDate: moment(),
+	startDate: Date.now(),
 	amount: 100,
-	frequency: 2,
-	interval: 'days',
+	frequency: 1,
+	interval: 'months',
 }
 
 class NewRecurringExpenseForm extends React.Component {
@@ -67,7 +67,7 @@ class NewRecurringExpenseForm extends React.Component {
 	}
 
 	handleDateChange = (e) => {
-		this.setState({ startDate: e });
+		this.setState({ startDate: e.valueOf() });
 	}
 
 	handleAmountChange = (e) => {
@@ -107,7 +107,7 @@ class NewRecurringExpenseForm extends React.Component {
 					<label htmlFor="name">Name:</label>
 					<Input onChange={this.handleNameChange} value={name} placeholder="Name of income/expense ..." required />
 					<label htmlFor="name">Start date:</label>
-					<DatePicker onChange={this.handleDateChange} value={startDate} placeholder="Start date" required />
+					<DatePicker onChange={this.handleDateChange} value={moment(startDate)} placeholder="Start date" required />
 					<label htmlFor="name">Amount (+/-):</label>
 					<InputNumber
 						value={amount}

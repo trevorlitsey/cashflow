@@ -3,7 +3,7 @@ import { shallow, mount } from 'enzyme';
 
 import sampleRecurringExpenses from '../../data/sampleRecurringExpenses';
 
-import RecurringExpenseTable from './index';
+import RecurringExpenseTable from './RecurringExpenseTable';
 
 describe('RecurringExpenseTable', () => {
 

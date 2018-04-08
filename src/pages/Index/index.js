@@ -3,9 +3,7 @@ import { bool } from 'prop-types';
 import styled from 'styled-components';
 import moment from 'moment';
 
-import RecurringExpenses from '../../components/RecurringExpenses';
-import ProjectionTable from '../../components/ProjectionTable';
-import Footer from '../../components/Footer';
+import { RecurringExpenses, ProjectionTable, Footer } from '../../components';
 
 import { trimOldOneTimeExpenses } from './helpers';
 
@@ -85,7 +83,7 @@ class Index extends React.PureComponent {
 	}
 
 	updateStartingDate = (newDate = moment()) => {
-		this.setState({ startingDate: newDate })
+		this.setState({ startingDate: newDate.hour(0).minute(0) })
 	}
 
 	updateEndingDate = (newDate = moment().add(2, 'M')) => {

@@ -4,8 +4,8 @@ const blankExpense = {
 	name: '',
 	startDate: moment(),
 	amount: 100,
-	frequency: 2,
-	interval: 'days',
+	frequency: 1,
+	interval: 'months',
 };
 
 export default blankExpense;

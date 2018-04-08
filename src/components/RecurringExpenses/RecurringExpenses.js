@@ -4,8 +4,8 @@ import styled from 'styled-components';
 
 import { SubTitle } from '../../styles/components';
 
-import RecurringExpenseTable from '../RecurringExpenseTable';
-import NewRecurringExpenseForm from '../NewRecurringExpenseForm';
+import RecurringExpenseTable from '../RecurringExpenseTable/RecurringExpenseTable';
+import NewRecurringExpenseForm from '../NewRecurringExpenseForm/NewRecurringExpenseForm';
 
 class RecurringExpenses extends React.PureComponent {
 

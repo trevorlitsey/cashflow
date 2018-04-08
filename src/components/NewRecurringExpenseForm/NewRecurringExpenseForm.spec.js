@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import moment from 'moment';
 
-import NewRecurringExpenseForm from './index';
+import NewRecurringExpenseForm from './NewRecurringExpenseForm';
 
 import { default as sampleExpense } from '../../data/sampleRecurringExpenses';
 import blankExpense from '../../data/blankExpense';
@@ -15,6 +15,15 @@ const event = {
 }
 
 describe('NewRecurringExpenseForm', () => {
+
+
+	it('should render all expenses given', () => {
+		// TODO
+	})
+
+	it('should render expenses in ascending order of startDate', () => {
+		// TODO
+	})
 
 	it('should update name', () => {
 		const instance = renderNewRecurringExpenseForm().instance();
@@ -29,8 +38,8 @@ describe('NewRecurringExpenseForm', () => {
 	it('should update startingDate', () => {
 		const instance = renderNewRecurringExpenseForm().instance();
 
-		const newDate = moment(1522704470525);
-		instance.handleDateChange(newDate);
+		const newDate = 1522704470525;
+		instance.handleDateChange(moment(newDate));
 
 		expect(instance.state.startDate).toEqual(newDate);
 	})
@@ -116,7 +125,7 @@ describe('NewRecurringExpenseForm', () => {
 		instance.handleSubmit(event);
 
 		expect(instance.state.name).toEqual(blankExpense.name);
-		expect(instance.state.startDate.format('LL')).toEqual(blankExpense.startDate.format('LL'));
+		expect(moment(instance.state.startDate).format('LL')).toEqual(moment().format('LL'));
 		expect(instance.state.amount).toEqual(blankExpense.amount);
 		expect(instance.state.frequency).toEqual(blankExpense.frequency);
 		expect(instance.state.interval).toEqual(blankExpense.interval);

@@ -6,7 +6,7 @@ import currencyFormatter from 'currency-formatter';
 import sampleRecurringExpenses from '../../data/sampleRecurringExpenses';
 import sampleOneTimeExpenses from '../../data/sampleOneTimeExpenses';
 
-import ProjectionTable from './index';
+import ProjectionTable from './ProjectionTable';
 
 describe('ProjectionTable', () => {
 

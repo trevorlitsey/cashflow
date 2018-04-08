@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import moment from 'moment';
 
-import NewOneTimeExpenseForm from './index';
+import NewOneTimeExpenseForm from './NewOneTimeExpenseForm';
 
 const event = {
 	target: {

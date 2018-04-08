@@ -9,7 +9,7 @@ import { convertObjToArr } from '../../helpers';
 import { SubTitle } from '../../styles/components';
 import mergeExpensesForProjectionTable from './helpers/mergeExpensesForProjectionTable';
 
-import NewOneTimeExpenseForm from '../NewOneTimeExpenseForm';
+import NewOneTimeExpenseForm from '../NewOneTimeExpenseForm/NewOneTimeExpenseForm';
 
 const { RangePicker } = DatePicker;
 
@@ -52,6 +52,7 @@ const SpanWithPointer = styled.span`
 // add ability to x out one-time expense ('delete one-time expense' on hover?)
 // toggle decimal points 
 // option to display all dates
+// integrate formatter/parser
 
 const Row = (props) => {
 
@@ -63,7 +64,7 @@ const Row = (props) => {
 		<tr>
 			<td>{moment(date).format('LL')}</td>
 			<td>{name}</td>
-			<td>{currencyFormatter.format(amount, { code: 'USD', precision: 0 })}</td>
+			<td>{amount && currencyFormatter.format(amount, { code: 'USD', precision: 0 })}</td>
 			<td>{currencyFormatter.format(balance, { code: 'USD', precision: 0 })}</td>
 			<td>{!isRecurring ? xOutToolTip : ''}</td>
 		</tr>
@@ -97,7 +98,9 @@ class ProjectionTable extends React.PureComponent {
 		// insert balance
 		let balance = startingCash;
 		rows.forEach(row => {
-			balance += row.amount;
+			if (row.amount) {
+				balance += row.amount;
+			}
 			row.balance = balance;
 		})
 
@@ -124,6 +127,24 @@ class ProjectionTable extends React.PureComponent {
 		const { rows } = this.state;
 		const { startingDate, endingDate, startingCash, addOneTimeExpense } = this.props;
 
+		const Head = (
+			<thead>
+				<tr>
+					<th>Date</th>
+					<th>Income/Expense</th>
+					<th>Amount</th>
+					<th>Balance</th>
+					<th></th>
+				</tr>
+			</thead>
+		)
+
+		const Body = (
+			<tbody>
+				{rows.map(row => <Row key={row.id + row.date} {...row} handleOneTimeExpenseDelete={this.handleOneTimeExpenseDelete} />)}
+			</tbody>
+		)
+
 		return (
 			<Container>
 				<SubTitle>Cashflow:</SubTitle>
@@ -144,18 +165,8 @@ class ProjectionTable extends React.PureComponent {
 					</div>
 				</Controls>
 				<table>
-					<thead>
-						<tr>
-							<th>Date</th>
-							<th>Income/Expense</th>
-							<th>Amount</th>
-							<th>Balance</th>
-							<th></th>
-						</tr>
-					</thead>
-					<tbody>
-						{rows.map(row => <Row key={row.id + row.date} {...row} handleOneTimeExpenseDelete={this.handleOneTimeExpenseDelete} />)}
-					</tbody>
+					{Head}
+					{Body}
 				</table>
 				<br />
 				<NewOneTimeExpenseForm addOneTimeExpense={addOneTimeExpense} />
