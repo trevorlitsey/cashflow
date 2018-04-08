@@ -69,7 +69,7 @@ class RecurringExpenseTable extends React.Component {
 						const { name, amount, startDate, frequency, interval } = values;
 
 						return (
-							<li>
+							<li key={key}>
 								<div className="left">
 									<p className="title">{`${name} (${currencyFormatter.format(amount, { code: 'USD', precision: 0 })})`}</p>
 									<p className="subtitle">{`every ${frequency} ${interval} starting on ${format(startDate, 'MMMM D, YYYY')}`}</p>
@@ -77,7 +77,7 @@ class RecurringExpenseTable extends React.Component {
 								<div className="right">
 									<a>edit</a>
 									|
-									<Popconfirm title="Are you sure delete this expense?" onConfirm={() => this.handleRecurringExpenseDelete(item.id)} okText="Yes" cancelText="No">
+									<Popconfirm title="Are you sure delete this expense?" onConfirm={() => this.handleRecurringExpenseDelete(key)} okText="Yes" cancelText="No">
 										<a>delete</a>
 									</Popconfirm>
 								</div>
