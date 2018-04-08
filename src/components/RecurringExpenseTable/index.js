@@ -1,10 +1,49 @@
 import React from 'react';
 import { object, func } from 'prop-types'
 import { format } from 'date-fns';
-import { List, Avatar, Popconfirm, message } from 'antd';
+import { Popconfirm, message } from 'antd';
 import currencyFormatter from 'currency-formatter';
+import styled from 'styled-components';
 
 import { convertObjToArr } from '../../helpers';
+
+const UnOrderedList = styled.ul`
+	
+	padding: 0;
+	display: block;
+	
+	li {
+		margin: 10px 0;
+		padding: 0 10px 10px;
+		display: grid;
+		grid-template-columns: 4fr 1fr;
+		border-bottom: 1px solid HSLA(220, 8%, 92%, 1.00);
+	}
+
+	p {
+		margin: 5px;
+	}
+
+	a {
+		margin: 0 4px;
+	}
+
+	.right {
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		color: HSLA(220, 8%, 92%, 1.00);
+	}
+
+	.title {
+		font-weight: 600;
+	}
+
+`
+
+// -------- TODO ---------
+// - sort recurring expenses
+// - allow edit
 
 class RecurringExpenseTable extends React.Component {
 
@@ -23,26 +62,31 @@ class RecurringExpenseTable extends React.Component {
 		const { recurringExpenses, deleteRecurringExpense } = this.props
 
 		return (
-			<List
-				itemLayout="horizontal"
-				dataSource={convertObjToArr(recurringExpenses) || []}
-				renderItem={item => (
-					<List.Item
-						data-test="list-item"
-						actions={[
-							<a>edit</a>,
-							<Popconfirm title="Are you sure delete this expense?" onConfirm={() => this.handleRecurringExpenseDelete(item.id)} okText="Yes" cancelText="No">
-								<a>delete</a>
-							</Popconfirm>
-						]}>
-						<List.Item.Meta
-							avatar={<Avatar icon="calendar" />}
-							title={`${item.name} (${currencyFormatter.format(item.amount, { code: 'USD', precision: 0 })})`}
-							description={`every ${item.frequency} ${item.interval} starting on ${format(item.startDate, 'MMMM D, YYYY')}`}
-						/>
-					</List.Item>
-				)}
-			/>
+			<div>
+				<UnOrderedList>
+					{Object.entries(recurringExpenses).map(([key, values]) => {
+
+						const { name, amount, startDate, frequency, interval } = values;
+
+						return (
+							<li>
+								<div className="left">
+									<p className="title">{`${name} (${currencyFormatter.format(amount, { code: 'USD', precision: 0 })})`}</p>
+									<p className="subtitle">{`every ${frequency} ${interval} starting on ${format(startDate, 'MMMM D, YYYY')}`}</p>
+								</div>
+								<div className="right">
+									<a>edit</a>
+									|
+									<Popconfirm title="Are you sure delete this expense?" onConfirm={() => this.handleRecurringExpenseDelete(item.id)} okText="Yes" cancelText="No">
+										<a>delete</a>
+									</Popconfirm>
+								</div>
+							</li>
+						)
+
+					})}
+				</UnOrderedList>
+			</div>
 		)
 	}
 }
