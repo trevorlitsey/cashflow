@@ -51,6 +51,7 @@ const SpanWithPointer = styled.span`
 // ------- TODO --------
 // add ability to x out one-time expense ('delete one-time expense' on hover?)
 // toggle decimal points 
+// option to display all dates
 
 const Row = (props) => {
 
