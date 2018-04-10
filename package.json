@@ -8,7 +8,9 @@
     "test:watch": "NODE_ENV=production jest --watch",
     "test:cover": "NODE_ENV=production jest --coverage",
     "start:dev": "webpack-dev-server",
-    "build": "NODE_ENV=production webpack"
+    "build": "NODE_ENV=production webpack",
+    "build:watch": "NODE_ENV=development webpack --watch",
+    "serve": "browser-sync start --server --files '**/*.css, **/*.html, **/*.js, !node_modules/**/*' --directory --port 7777 --browser 'Google Chrome'"
   },
   "jest": {
     "setupTestFrameworkScriptFile": "<rootDir>/testConfig.js"

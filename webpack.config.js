@@ -10,7 +10,7 @@ module.exports = {
 	},
 	mode: process.env.NODE_ENV || 'development',
 	devServer: {
-		contentBase: path.join(__dirname, 'dist'),
+		contentBase: path.join(__dirname, 'docs'),
 		compress: true,
 		port: 8080,
 		hot: true,

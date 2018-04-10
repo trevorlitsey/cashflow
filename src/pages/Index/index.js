@@ -8,6 +8,9 @@ import { Title } from '../../styles/SharedComponents';
 
 import { trimOldOneTimeExpenses } from './helpers';
 
+// ---- TODO ----
+// - mobile friendly!
+
 class Index extends React.PureComponent {
 
 	static propTypes = {
