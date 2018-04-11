@@ -19,7 +19,7 @@ const { RangePicker } = DatePicker;
 // toggle decimal points 
 // option to display all dates
 // integrate formatter/parser
-// TODO, move row into own component
+// break this down into smaller components
 
 const Row = (props) => {
 

@@ -29,4 +29,16 @@ export const Controls = styled.div`
 		display: block;
 		margin: 10px;
 	}
+
+	@media (max-width: 500px) {
+		display: grid;
+
+		& > * {
+			display: grid;
+			grid-template-columns: 1fr 3fr;
+			margin: 10px;
+		}
+
+	}
+
 `

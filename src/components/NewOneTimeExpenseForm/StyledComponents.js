@@ -13,6 +13,32 @@ export const Container = styled.div`
 		grid-gap: 4px;
 		margin-bottom: 10px;
 	}
+
+	& > form > label {
+		display: none;
+	}
+	
+	@media (max-width: 500px) {
+		& > form {
+			display: grid;
+			grid-template-columns: 1fr 4fr;
+			margin-bottom: 10px;
+		}
+
+		& > form > label {
+			display: block;
+		}
+
+		& > form > button {
+			grid-column: 1 / -1;
+		}
+
+		& > form > * {
+			margin-bottom: 10px;
+		}
+
+	}
+
 `
 
 export const DisplayBlock = styled.div`

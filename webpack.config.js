@@ -1,12 +1,18 @@
 const path = require('path');
 const webpack = require('webpack');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
 	entry: path.resolve(__dirname, 'src', 'entry.js'),
 	output: {
 		path: path.resolve(__dirname, 'docs'),
 		filename: 'bundle.js',
+	},
+	optimization: {
+		splitChunks: {
+			chunks: "all"
+		}
 	},
 	mode: process.env.NODE_ENV || 'development',
 	devServer: {
@@ -17,11 +23,17 @@ module.exports = {
 		inline: true,
 	},
 	plugins: [
-		new webpack.NamedModulesPlugin(),
 		new webpack.HotModuleReplacementPlugin(),
-		new UglifyJsPlugin({
-			exclude: 'node_modules/',
-			sourceMap: true
+		new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+		new HtmlWebpackPlugin({
+			template: './templates/index.html',
+			title: 'CashflowCalc.net',
+			// meta: {
+			// 	name: 'viewport',
+			// 	content: 'width=device-width, initial-scale=1.0',
+			// 	httpEquiv: 'X-UA-Compatible',
+			// 	content: 'ie=edge',
+			// },
 		}),
 	],
 	module: {
