@@ -1,4 +1,4 @@
-# cashflow
+# cashflow-calc
 
 A single-page application for hashing out a quick cashflow projection.
 
