@@ -1,8 +1,8 @@
 {
-  "name": "cashflow",
+  "name": "cashflow-calc",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "single-page app for hashing out a quick cashflow projection",
+  "main": ".src/entry.js",
   "scripts": {
     "test": "NODE_ENV=production jest",
     "test:watch": "NODE_ENV=production jest --watch",
