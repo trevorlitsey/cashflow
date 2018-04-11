@@ -28,12 +28,6 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			template: './templates/index.html',
 			title: 'CashflowCalc.net',
-			// meta: {
-			// 	name: 'viewport',
-			// 	content: 'width=device-width, initial-scale=1.0',
-			// 	httpEquiv: 'X-UA-Compatible',
-			// 	content: 'ie=edge',
-			// },
 		}),
 	],
 	module: {
