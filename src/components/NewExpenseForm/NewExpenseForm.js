@@ -49,7 +49,7 @@ class NewRecurringExpenseForm extends React.Component {
 		}
 		this.props.addExpense(newExpense)
 		this.setState({ ...reset });
-		return message.success('recurring income/expenses added');
+		return message.success('income/expenses added');
 	}
 
 	render() {
