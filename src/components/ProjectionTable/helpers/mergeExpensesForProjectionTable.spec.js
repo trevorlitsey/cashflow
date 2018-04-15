@@ -2,7 +2,7 @@ import moment from 'moment';
 
 import mergeExpensesForProjectionTable from './mergeExpensesForProjectionTable';
 
-const recurringExpenses = {
+const expenses = {
 	oldRecurring: {
 		name: 'an old date that should skip first iteration',
 		startDate: 1522627200000, // April 1
@@ -23,10 +23,7 @@ const recurringExpenses = {
 		amount: 400,
 		frequency: 2,
 		interval: 'weeks',
-	}
-}
-
-const oneTimeExpenses = {
+	},
 	oldOneTimer: {
 		name: 'an old date that should be deleted',
 		startDate: 1522627200000, // April 1
@@ -128,7 +125,7 @@ describe('mergeExpensesForProjectionTable', () => {
 		const startDate = moment(1522901995930) // April 4, 2018
 		const endDate = moment(1528172492320) // June 4, 2018
 
-		const merged = mergeExpensesForProjectionTable(startDate, endDate, recurringExpenses, oneTimeExpenses);
+		const merged = mergeExpensesForProjectionTable(startDate, endDate, expenses);
 
 		expect(merged).toEqual(expectedMerged);
 	})

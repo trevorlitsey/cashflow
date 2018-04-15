@@ -1,17 +1,16 @@
 import React from 'react';
-import { object, number, string, func } from 'prop-types';
-import { DatePicker, InputNumber, Tooltip, message } from 'antd';
+import { oneOfType, shape, object, number, string, func } from 'prop-types';
+import { DatePicker, InputNumber, message } from 'antd';
 import moment from 'moment';
-import currencyFormatter from 'currency-formatter';
 
-import { SubTitle, SpanWithPointer } from '../../styles/SharedComponents';
+import { SubTitle } from '../../styles/SharedComponents';
 import { Container, Controls } from './StyledComponents';
-
-import NewOneTimeExpenseForm from '../NewOneTimeExpenseForm/NewOneTimeExpenseForm';
 
 import { convertObjToArr } from '../../helpers';
 import { formatter, parser } from '../shared/helpers';
 import mergeExpensesForProjectionTable from './helpers/mergeExpensesForProjectionTable';
+
+import Row from './Row';
 
 const { RangePicker } = DatePicker;
 
@@ -21,36 +20,31 @@ const { RangePicker } = DatePicker;
 // integrate formatter/parser
 // break this down into smaller components
 
-const Row = (props) => {
-
-	const { date, name, amount, balance, isRecurring, id, handleOneTimeExpenseDelete } = props;
-
-	const xOutToolTip = <Tooltip data-test={date + amount} onClick={() => handleOneTimeExpenseDelete(id)} placement="left" title="delete one-time income/expense"><SpanWithPointer>x</SpanWithPointer></Tooltip>
-
-	return (
-		<tr>
-			<td>{moment(date).format('LL')}</td>
-			<td>{name}</td>
-			<td>{amount && currencyFormatter.format(amount, { code: 'USD', precision: 0 })}</td>
-			<td>{currencyFormatter.format(balance, { code: 'USD', precision: 0 })}</td>
-			<td>{!isRecurring ? xOutToolTip : ''}</td>
-		</tr>
-	)
-}
-
 class ProjectionTable extends React.PureComponent {
 
 	static propTypes = {
-		recurringExpenses: object.isRequired, // TODO, make shape
-		oneTimeExpenses: object.isRequired, // TODO, make shape
+		expenses: oneOfType([
+			shape({
+				name: string.isRequired,
+				date: number.isRequired,
+				amount: number.isRequired,
+				frequency: number.isRequired,
+				interval: string.isRequired,
+			}),
+			shape({
+				name: string.isRequired,
+				date: number.isRequired,
+				amount: number.isRequired,
+			}),
+			shape({}),
+		]),
 		startingDate: object.isRequired,
 		endingDate: object.isRequired,
 		startingCash: number.isRequired || string.isRequired, // TODO
 		updateStartingDate: func.isRequired,
 		updateEndingDate: func.isRequired,
 		updateStartingCash: func.isRequired,
-		addOneTimeExpense: func.isRequired,
-		deleteOneTimeExpense: func.isRequired,
+		deleteExpense: func.isRequired,
 	}
 
 	state = {
@@ -58,9 +52,9 @@ class ProjectionTable extends React.PureComponent {
 	}
 
 	static getDerivedStateFromProps = (nextProps, prevState) => {
-		const { startingDate, endingDate, recurringExpenses, oneTimeExpenses, startingCash } = nextProps;
+		const { startingDate, endingDate, expenses, startingCash } = nextProps;
 
-		const rows = mergeExpensesForProjectionTable(startingDate, endingDate, recurringExpenses, oneTimeExpenses)
+		const rows = mergeExpensesForProjectionTable(startingDate, endingDate, expenses)
 
 		// insert balance
 		let balance = startingCash;
@@ -84,8 +78,8 @@ class ProjectionTable extends React.PureComponent {
 		this.props.updateStartingCash(e);
 	}
 
-	handleOneTimeExpenseDelete = (id) => {
-		this.props.deleteOneTimeExpense(id);
+	handleExpenseDelete = (id) => {
+		this.props.deleteExpense(id);
 		return message.success('income/expense deleted')
 	}
 
@@ -108,13 +102,12 @@ class ProjectionTable extends React.PureComponent {
 
 		const Body = (
 			<tbody>
-				{rows.map(row => <Row key={row.id + row.date} {...row} handleOneTimeExpenseDelete={this.handleOneTimeExpenseDelete} />)}
+				{rows.map(row => <Row key={row.id + row.date} {...row} handleOneTimeExpenseDelete={this.handleExpenseDelete} />)}
 			</tbody>
 		)
 
 		return (
 			<Container>
-				<SubTitle>Cashflow:</SubTitle>
 				<Controls>
 					<div>
 						<label>Projection range: </label>
@@ -135,8 +128,6 @@ class ProjectionTable extends React.PureComponent {
 					{Head}
 					{Body}
 				</table>
-				<br />
-				<NewOneTimeExpenseForm addOneTimeExpense={addOneTimeExpense} />
 			</Container>
 		)
 	}

@@ -36,3 +36,8 @@ export const UnOrderedList = styled.ul`
 		font-weight: 600;
 	}
 `
+
+export const NoneYet = styled.p`
+	text-align: center;
+	color: grey;
+`

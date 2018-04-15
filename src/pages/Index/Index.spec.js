@@ -9,100 +9,59 @@ describe('Index', () => {
 	it('should add new recurring expense', () => {
 		const instance = shallow(<Index testing={true} />).instance();
 
-		const newRecurringExpense = {
-			startDate: '',
-			name: '',
+		const id = '2ghus6';
+		const newExpense = {
+			id,
+			name: 'woooo!',
+			startDate: 987654567,
+			amount: 500,
 			repeatFrequency: 2,
 			repeatInterval: 'weeks',
 		}
 
 		// add one to none
-		instance.addRecurringExpense(newRecurringExpense);
-		expect(Object.keys(instance.state.recurringExpenses).length).toEqual(1);
-
-		// add one to some
-		instance.addRecurringExpense(newRecurringExpense);
-		expect(Object.keys(instance.state.recurringExpenses).length).toEqual(2);
-	})
-
-	it('should delete recurring expense of given id', () => {
-		const instance = shallow(<Index testing={true} />).instance();
-
-		const recurringExpense = {
-			id: 23456789,
-			date: moment(234567890),
-			name: 'oh ya',
-			repeatFrequency: 2,
-			repeatInterval: 'weeks',
-		}
-
-		instance.setState({
-			recurringExpenses: {
-				one: recurringExpense
-			}
-		})
-
-		const id = 'one';
-
-		// just to make sure it made it in there...
-		expect(instance.state.recurringExpenses[id]).toEqual(recurringExpense);
-
-		// g'bye
-		instance.deleteRecurringExpense(id);
-		expect(instance.state.recurringExpenses[id]).toBeUndefined();
+		instance.addExpense(newExpense);
+		expect(instance.state.expenses[id]).toEqual(newExpense);
 	})
 
 	it('should add new one-time expense', () => {
 		const instance = shallow(<Index testing={true} />).instance();
 
-		const newOneTimeExpense1 = {
-			date: moment(9876542356),
-			name: 'oh ya???',
-			amount: 400,
-		}
-
-		const newOneTimeExpense2 = {
-			date: moment(5678909876),
-			name: 'oh ya!!!',
-			amount: 400,
+		const id = '2ghus6';
+		const newExpense = {
+			id,
+			name: 'yessss',
+			startDate: 987654567,
+			amount: 500,
 		}
 
 		// add one to none
-		instance.addOneTimeExpense(newOneTimeExpense1);
-		expect(Object.keys(instance.state.oneTimeExpenses).length).toEqual(1);
-
-		// add one to some
-		setTimeout(() => {
-			instance.addOneTimeExpense(newOneTimeExpense2);
-			expect(Object.keys(instance.state.oneTimeExpenses).length).toEqual(2);
-		}, 10) // to make sure id's are not the same
-
+		instance.addExpense(newExpense);
+		expect(instance.state.expenses[id]).toEqual(newExpense);
 	})
 
-	it('should delete one-time expense of given id', () => {
+	it('should delete expense of given id', () => {
 		const instance = shallow(<Index testing={true} />).instance();
 
-		const oneTimeExpense = {
-			id: 23456789,
-			date: moment(234567890),
-			name: 'oh ya',
-			amount: 200,
+		const id = 'expenseOne';
+		const expenseOne = {
+			id,
+			date: moment(87651234564),
+			name: 'expense #1',
+			repeatFrequency: 1,
+			repeatInterval: 'months',
 		}
 
-		instance.setState({
-			oneTimeExpenses: {
-				one: oneTimeExpense
-			}
-		})
+		const expenses = { expenseOne };
 
-		const id = 'one';
+		instance.setState({ expenses });
 
 		// just to make sure it made it in there...
-		expect(instance.state.oneTimeExpenses[id]).toEqual(oneTimeExpense);
+		expect(instance.state.expenses[id]).toEqual(expenseOne);
 
 		// g'bye
-		instance.deleteOneTimeExpense(id);
-		expect(instance.state.oneTimeExpenses[id]).toBeUndefined();
+		instance.deleteExpense(id);
+		expect(instance.state.expenses[id]).toBeUndefined();
 	})
 
 	it('should update starting date', () => {
@@ -129,8 +88,6 @@ describe('Index', () => {
 
 		expect(instance.state.endingDate.format('LL')).toEqual(moment().add(2, 'M').format('LL'));
 	})
-
-
 
 	it('should update ending date', () => {
 		const instance = shallow(<Index testing={true} />).instance();

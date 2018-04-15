@@ -1,15 +1,13 @@
 import React from 'react';
 import { bool } from 'prop-types';
 import moment from 'moment';
+import uniqid from 'uniqid';
 
-import { RecurringExpenses, ProjectionTable, Footer } from '../../components';
+import { RecurringExpenseTable, ProjectionTable, NewExpenseForm, Footer } from '../../components';
 import { MasterWrapper, ExpensesWrapper, Divider } from './StyledComponents';
 import { Title } from '../../styles/SharedComponents';
 
 import { trimOldOneTimeExpenses } from './helpers';
-
-// ---- TODO ----
-// - mobile friendly!
 
 class Index extends React.PureComponent {
 
@@ -19,42 +17,25 @@ class Index extends React.PureComponent {
 
 	state = {
 		startingDate: moment(),
-		endingDate: moment().add(2, 'm'),
+		endingDate: moment().add(2, 'M'), // two month range
 		startingCash: 0,
-		recurringExpenses: {},
-		oneTimeExpenses: {},
+		expenses: {},
 	}
 
-	addRecurringExpense = (newRecurringExpense) => {
-		const recurringExpenses = { ...this.state.recurringExpenses };
-		const id = newRecurringExpense.id || Date.now();
-		recurringExpenses[id] = {
+	addExpense = (newExpense) => {
+		const expenses = { ...this.state.expenses };
+		const id = newExpense.id || uniqid();
+		expenses[id] = {
+			...newExpense,
 			id,
-			...newRecurringExpense,
 		}
-		this.setState({ recurringExpenses });
+		this.setState({ expenses });
 	}
 
-	addOneTimeExpense = (newOneTimeExpense) => {
-		const oneTimeExpenses = { ...this.state.oneTimeExpenses };
-		const id = newOneTimeExpense.id || Date.now();
-		oneTimeExpenses[id] = {
-			id,
-			...newOneTimeExpense,
-		}
-		this.setState({ oneTimeExpenses });
-	}
-
-	deleteRecurringExpense = (id) => {
-		const recurringExpenses = { ...this.state.recurringExpenses };
-		delete recurringExpenses[id];
-		this.setState({ recurringExpenses })
-	}
-
-	deleteOneTimeExpense = (id) => {
-		const oneTimeExpenses = { ...this.state.oneTimeExpenses };
-		delete oneTimeExpenses[id];
-		this.setState({ oneTimeExpenses })
+	deleteExpense = (id) => {
+		const expenses = { ...this.state.expenses };
+		delete expenses[id];
+		this.setState({ expenses })
 	}
 
 	updateStartingDate = (newDate = moment()) => {
@@ -103,30 +84,23 @@ class Index extends React.PureComponent {
 
 	render() {
 
-		const { recurringExpenses, oneTimeExpenses, startingDate, endingDate, startingCash } = this.state;
+		const { expenses, startingDate, endingDate, startingCash } = this.state;
 
 		return (
 			<MasterWrapper>
-				<Title>CashflowCal.net</Title>
+				<Title>cashflow</Title>
 				<ExpensesWrapper>
-					<RecurringExpenses
-						recurringExpenses={recurringExpenses}
-						addRecurringExpense={this.addRecurringExpense}
-						deleteRecurringExpense={this.deleteRecurringExpense}
-					/>
-					<Divider />
 					<ProjectionTable
-						recurringExpenses={recurringExpenses}
-						oneTimeExpenses={oneTimeExpenses}
+						expenses={expenses}
 						startingDate={startingDate}
 						endingDate={endingDate}
 						startingCash={startingCash}
 						updateStartingDate={this.updateStartingDate}
 						updateEndingDate={this.updateEndingDate}
 						updateStartingCash={this.updateStartingCash}
-						addOneTimeExpense={this.addOneTimeExpense}
-						deleteOneTimeExpense={this.deleteOneTimeExpense}
+						deleteExpense={this.deleteExpense}
 					/>
+					<NewExpenseForm addExpense={this.addExpense} />
 				</ExpensesWrapper>
 				<Footer />
 			</MasterWrapper>

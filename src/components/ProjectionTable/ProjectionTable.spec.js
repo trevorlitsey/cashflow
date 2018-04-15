@@ -34,9 +34,9 @@ describe('ProjectionTable', () => {
 		const instance = renderProjectionTable().instance();
 
 		const id = 98754345678
-		instance.handleOneTimeExpenseDelete(id);
+		instance.handleExpenseDelete(id);
 
-		expect(instance.props.deleteOneTimeExpense.mock.calls.length).toBe(1)
+		expect(instance.props.deleteExpense.mock.calls.length).toBe(1)
 	})
 
 })
@@ -44,15 +44,14 @@ describe('ProjectionTable', () => {
 function renderProjectionTable(props = {}) {
 	const propsToUser = {
 		recurringExpenses: sampleRecurringExpenses,
-		oneTimeExpenses: sampleOneTimeExpenses,
+		oneTimeExpenses: sampleOneTimeExpenses, // TODO: swap expenses,
 		startingDate: moment(1522901995930), // April 4, 2018
 		endingDate: moment(1528172492320), // June 4, 2018
 		startingCash: 100,
 		updateStartingDate: jest.fn(),
 		updateEndingDate: jest.fn(),
 		updateStartingCash: jest.fn(),
-		addOneTimeExpense: () => { },
-		deleteOneTimeExpense: jest.fn(),
+		deleteExpense: jest.fn(),
 		...props,
 	}
 

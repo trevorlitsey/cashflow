@@ -1,8 +1,8 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import moment from 'moment';
 
-import NewRecurringExpenseForm from './NewRecurringExpenseForm';
+import NewExpenseForm from './NewExpenseForm';
 
 import { default as sampleExpense } from '../../data/sampleRecurringExpenses';
 import blankExpense from '../../data/blankExpense';
@@ -26,64 +26,68 @@ describe('NewRecurringExpenseForm', () => {
 	})
 
 	it('should update name', () => {
-		const instance = renderNewRecurringExpenseForm().instance();
+		const wrapper = renderNewRecurringExpenseForm();
 
 		const newName = 'a new name'
-		event.target.value = newName;
-		instance.handleNameChange(event)
+		const event = {
+			target: {
+				value: newName,
+			}
+		}
+		wrapper.find('[data-test="name"]').simulate('change', event);
 
-		expect(instance.state.name).toEqual(newName);
+		expect(wrapper.find('[data-test="name"]').props().value).toEqual(newName);
 	})
 
 	it('should update startingDate', () => {
-		const instance = renderNewRecurringExpenseForm().instance();
+		const wrapper = renderNewRecurringExpenseForm();
 
 		const newDate = 1522704470525;
-		instance.handleDateChange(moment(newDate));
+		wrapper.find('[data-test="date"]').simulate('change', newDate)
 
-		expect(instance.state.startDate).toEqual(newDate);
+		expect(wrapper.find('[data-test="date"]').props().value.valueOf()).toEqual(newDate);
 	})
 
 	it('should update amount', () => {
-		const instance = renderNewRecurringExpenseForm().instance();
+		const wrapper = renderNewRecurringExpenseForm();
 
 		const newAmount = 500;
-		instance.handleAmountChange(newAmount);
+		wrapper.find('[data-test="amount"]').simulate('change', newAmount)
 
-		expect(instance.state.amount).toEqual(newAmount);
+		expect(wrapper.find('[data-test="amount"]').props().value).toEqual(newAmount);
 	})
 
 	it('should update frequency', () => {
-		const instance = renderNewRecurringExpenseForm().instance();
+		const wrapper = renderNewRecurringExpenseForm();
 
 		const newFrequency = 5;
-		instance.handleFrequencyChange(newFrequency);
+		wrapper.find('[data-test="frequency"]').simulate('change', newFrequency);
 
-		expect(instance.state.frequency).toEqual(newFrequency);
+		expect(wrapper.find('[data-test="frequency"]').props().value).toEqual(newFrequency);
 	})
 
 	it('should update interval', () => {
-		const instance = renderNewRecurringExpenseForm().instance();
+		const wrapper = renderNewRecurringExpenseForm();
 
-		const newInterval = 'months';
-		instance.handleIntervalChange(newInterval);
+		const newInterval = 'days';
+		wrapper.find('[data-test="interval"]').simulate('change', newInterval);
 
-		expect(instance.state.interval).toEqual(newInterval);
+		expect(wrapper.find('[data-test="interval"]').props().value).toEqual(newInterval);
 	})
 
-	it('should NOT call addRecurringExpense on submit if one or more values are not submitted', () => {
+	it('should NOT call addExpense on submit if one or more values are not submitted', () => {
 		const instance = renderNewRecurringExpenseForm().instance();
 
 		// no name (all other values provided by default)
 		instance.handleSubmit(event);
-		expect(instance.props.addRecurringExpense.mock.calls.length).toBe(0);
+		expect(instance.props.addExpense.mock.calls.length).toBe(0);
 
 		// no startDate
 		instance.setState({
 			startDate: null,
 		});
 		instance.handleSubmit(event);
-		expect(instance.props.addRecurringExpense.mock.calls.length).toBe(0);
+		expect(instance.props.addExpense.mock.calls.length).toBe(0);
 
 		// no amount
 		instance.setState({
@@ -91,7 +95,7 @@ describe('NewRecurringExpenseForm', () => {
 			amount: 0,
 		});
 		instance.handleSubmit(event);
-		expect(instance.props.addRecurringExpense.mock.calls.length).toBe(0);
+		expect(instance.props.addExpense.mock.calls.length).toBe(0);
 
 		// no frequency
 		instance.setState({
@@ -99,10 +103,10 @@ describe('NewRecurringExpenseForm', () => {
 			frequency: 0,
 		});
 		instance.handleSubmit(event);
-		expect(instance.props.addRecurringExpense.mock.calls.length).toBe(0);
+		expect(instance.props.addExpense.mock.calls.length).toBe(0);
 	})
 
-	it('should call addRecurringExpense on submit', () => {
+	it('should call addExpense on submit', () => {
 		const instance = renderNewRecurringExpenseForm().instance();
 
 		instance.setState({
@@ -114,7 +118,7 @@ describe('NewRecurringExpenseForm', () => {
 		});
 		instance.handleSubmit(event);
 
-		expect(instance.props.addRecurringExpense.mock.calls.length).toBe(1);
+		expect(instance.props.addExpense.mock.calls.length).toBe(1);
 	})
 
 	it('should clear form on submit', () => {
@@ -135,8 +139,8 @@ describe('NewRecurringExpenseForm', () => {
 
 function renderNewRecurringExpenseForm(props = {}) {
 	const propsToUser = {
-		addRecurringExpense: jest.fn(),
+		addExpense: jest.fn(),
 		...props,
 	}
-	return shallow(<NewRecurringExpenseForm {...propsToUser} />)
+	return shallow(<NewExpenseForm {...propsToUser} />)
 }

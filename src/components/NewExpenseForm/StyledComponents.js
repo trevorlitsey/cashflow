@@ -20,18 +20,23 @@ export const Container = styled.div`
 		display: block;
 		margin-bottom: 10px;
 	}
+
+	.interval-label {
+		display: ${props => props.isRecurring ? 'block' : 'none'};
+	}
+
+	.interval-select > * {
+		display: ${props => props.isRecurring ? 'inline-block' : 'none'};
+		margin-bottom: 6px;
+		max-width: 100px;
+	}
 `
 
 export const Grid = styled.div`
 	display: grid;
 	grid-template-columns: 1fr 1fr
-
 `
 
-export const IntervalSelect = styled.div`
-	
-	& > * {
-		margin-bottom: 6px;
-		max-width: 100px;
-	}
+export const SwitchContainer = styled.div`
+	width: 100px;
 `

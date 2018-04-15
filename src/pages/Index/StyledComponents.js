@@ -4,6 +4,8 @@ export const MasterWrapper = styled.div`
 	display: grid;
 	grid-auto-flow: row;
 	padding: 0px 20px 20px 20px;
+	max-width: 800px;
+	margin: auto;
 
 	& > h2 {
 		margin-bottom: 20px;
@@ -12,23 +14,4 @@ export const MasterWrapper = styled.div`
 
 export const ExpensesWrapper = styled.div`
 	min-height: 94vh;
-	
-	@media (min-width: 1000px) {
-		padding: 30px;
-		width: 100%;
-		display: grid;
-		grid-template-columns: repeat(2, minmax(400px, 1fr));
-		grid-gap: 40px;
-		max-width: auto;
-	}
-`
-
-export const Divider = styled.div`
-	height: 10px;
-	margin: 30px 0;
-	border-bottom: 1px solid HSLA(220, 8%, 92%, 1.00);
-
-	@media (min-width: 1000px) {
-		display: none;
-	}
 `

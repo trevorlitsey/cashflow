@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
 	width: 100%;
+	margin-bottom: 40px;
 
 	table {
 		width: 100%;
@@ -24,6 +25,7 @@ export const Container = styled.div`
 export const Controls = styled.div`
 
 	display: flex;
+	justify-content: space-around;
 
 	& > * {
 		display: block;

@@ -4,12 +4,12 @@ import { format } from 'date-fns';
 import { Popconfirm, message, Tooltip } from 'antd';
 import currencyFormatter from 'currency-formatter';
 
-import { UnOrderedList } from './StyledComponents';
+import { SubTitle } from '../../styles/SharedComponents';
+import { UnOrderedList, NoneYet } from './StyledComponents';
 
 import { convertObjToArr } from '../../helpers';
 
 // -------- TODO ---------
-// - add 'none yet'
 // - allow edit
 
 class RecurringExpenseTable extends React.Component {
@@ -28,8 +28,18 @@ class RecurringExpenseTable extends React.Component {
 
 		const { recurringExpenses, deleteRecurringExpense } = this.props
 
+		if (Object.keys(recurringExpenses).length === 0) {
+			return (
+				<div>
+					<SubTitle>Recurring Income/Expenses:</SubTitle>
+					<NoneYet>none yet</NoneYet>
+				</div>
+			)
+		}
+
 		return (
 			<div>
+				<SubTitle>Recurring Income/Expenses:</SubTitle>
 				<UnOrderedList>
 					{convertObjToArr(recurringExpenses)
 						.sort((a, b) => a.startDate - b.startDate) // sort asc
