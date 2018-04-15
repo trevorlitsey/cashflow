@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -25,6 +26,7 @@ module.exports = {
 	plugins: [
 		new webpack.HotModuleReplacementPlugin(),
 		new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+		new CleanWebpackPlugin(['docs']),
 		new HtmlWebpackPlugin({
 			template: './templates/index.html',
 			title: 'CashflowCalc.net',
