@@ -7,7 +7,7 @@ module.exports = {
 	entry: path.resolve(__dirname, 'src', 'entry.js'),
 	output: {
 		path: path.resolve(__dirname, 'docs'),
-		filename: 'bundle.js',
+		filename: '[hash].bundle.js',
 	},
 	optimization: {
 		splitChunks: {
