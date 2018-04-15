@@ -10,6 +10,10 @@ export const MasterWrapper = styled.div`
 	& > h2 {
 		margin-bottom: 20px;
 	}
+
+	& > * {
+		max-width: 100%;
+	}
 `
 
 export const ExpensesWrapper = styled.div`

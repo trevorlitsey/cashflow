@@ -8,6 +8,7 @@ export const Container = styled.div`
 	border-radius: 10px;
 
 	& > form {
+		width: 100%;
 		display: grid;
 		grid-template-columns: 1fr 3fr;
 	}

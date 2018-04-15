@@ -1,9 +1,14 @@
 import styled from 'styled-components';
 
+export const Container = styled.div`
+	width: 100%;
+`
+
 export const UnOrderedList = styled.ul`
 	
 	padding: 0;
 	display: block;
+	width: 100%;
 	
 	li {
 		margin: 10px 0;

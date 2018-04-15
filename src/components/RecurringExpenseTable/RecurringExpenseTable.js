@@ -5,7 +5,7 @@ import { Popconfirm, message, Tooltip } from 'antd';
 import currencyFormatter from 'currency-formatter';
 
 import { SubTitle } from '../../styles/SharedComponents';
-import { UnOrderedList, NoneYet } from './StyledComponents';
+import { Container, UnOrderedList, NoneYet } from './StyledComponents';
 
 import { convertObjToArr } from '../../helpers';
 
@@ -38,7 +38,7 @@ class RecurringExpenseTable extends React.Component {
 		}
 
 		return (
-			<div>
+			<Container>
 				<SubTitle>Recurring Income/Expenses:</SubTitle>
 				<UnOrderedList>
 					{convertObjToArr(recurringExpenses)
@@ -60,7 +60,7 @@ class RecurringExpenseTable extends React.Component {
 							)
 						})}
 				</UnOrderedList>
-			</div>
+			</Container>
 		)
 	}
 }

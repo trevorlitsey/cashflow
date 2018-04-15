@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const Title = styled.h2`
 	text-decoration: underline;
 	text-align: center;
+	width: 100%;
 `
 
 export const SubTitle = styled.h3`
