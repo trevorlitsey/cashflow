@@ -88,7 +88,7 @@ class Index extends React.PureComponent {
 
 		return (
 			<MasterWrapper>
-				<Title>cashflow</Title>
+				<Title>cashflow-calc</Title>
 				<ExpensesWrapper>
 					<ProjectionTable
 						expenses={expenses}
