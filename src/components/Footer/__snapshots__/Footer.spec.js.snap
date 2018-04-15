@@ -18,7 +18,21 @@ ShallowWrapper {
     "nodeType": "host",
     "props": Object {
       "children": <styled.p>
-        Expense data stored in local storage
+         
+        <a
+          href="http://www.trevorlitsey.com"
+          target="blank"
+        >
+          trevorlitsey.com
+        </a>
+         | 
+        <a
+          href="https://github.com/trevorlitsey/cashflow-calc"
+          target="blank"
+        >
+          github
+        </a>
+         
       </styled.p>,
     },
     "ref": null,
@@ -27,10 +41,56 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
-        "children": "Expense data stored in local storage",
+        "children": Array [
+          " ",
+          <a
+            href="http://www.trevorlitsey.com"
+            target="blank"
+          >
+            trevorlitsey.com
+          </a>,
+          " | ",
+          <a
+            href="https://github.com/trevorlitsey/cashflow-calc"
+            target="blank"
+          >
+            github
+          </a>,
+          " ",
+        ],
       },
       "ref": null,
-      "rendered": "Expense data stored in local storage",
+      "rendered": Array [
+        " ",
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "trevorlitsey.com",
+            "href": "http://www.trevorlitsey.com",
+            "target": "blank",
+          },
+          "ref": null,
+          "rendered": "trevorlitsey.com",
+          "type": "a",
+        },
+        " | ",
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "github",
+            "href": "https://github.com/trevorlitsey/cashflow-calc",
+            "target": "blank",
+          },
+          "ref": null,
+          "rendered": "github",
+          "type": "a",
+        },
+        " ",
+      ],
       "type": [Function],
     },
     "type": "div",
@@ -42,7 +102,21 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": <styled.p>
-          Expense data stored in local storage
+           
+          <a
+            href="http://www.trevorlitsey.com"
+            target="blank"
+          >
+            trevorlitsey.com
+          </a>
+           | 
+          <a
+            href="https://github.com/trevorlitsey/cashflow-calc"
+            target="blank"
+          >
+            github
+          </a>
+           
         </styled.p>,
       },
       "ref": null,
@@ -51,10 +125,56 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": "Expense data stored in local storage",
+          "children": Array [
+            " ",
+            <a
+              href="http://www.trevorlitsey.com"
+              target="blank"
+            >
+              trevorlitsey.com
+            </a>,
+            " | ",
+            <a
+              href="https://github.com/trevorlitsey/cashflow-calc"
+              target="blank"
+            >
+              github
+            </a>,
+            " ",
+          ],
         },
         "ref": null,
-        "rendered": "Expense data stored in local storage",
+        "rendered": Array [
+          " ",
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "trevorlitsey.com",
+              "href": "http://www.trevorlitsey.com",
+              "target": "blank",
+            },
+            "ref": null,
+            "rendered": "trevorlitsey.com",
+            "type": "a",
+          },
+          " | ",
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "github",
+              "href": "https://github.com/trevorlitsey/cashflow-calc",
+              "target": "blank",
+            },
+            "ref": null,
+            "rendered": "github",
+            "type": "a",
+          },
+          " ",
+        ],
         "type": [Function],
       },
       "type": "div",

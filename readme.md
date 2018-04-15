@@ -15,7 +15,7 @@ npm run start:dev
 npm run test
 ````
 
-### Uses
+### Tech
 * [React](https://reactjs.org/)
 * [styled-components](https://www.styled-components.com/)
 * [Ant Design](https://ant.design/)
