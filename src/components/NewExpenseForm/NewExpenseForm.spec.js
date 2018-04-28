@@ -124,15 +124,22 @@ describe('NewRecurringExpenseForm', () => {
 	it('should clear form on submit', () => {
 		const instance = renderNewRecurringExpenseForm().instance();
 
-		instance.setState(sampleExpense);
+		instance.setState({
+			...sampleExpense,
+			isRecurring: true,
+		});
 
 		instance.handleSubmit(event);
 
-		expect(instance.state.name).toEqual(blankExpense.name);
-		expect(moment(instance.state.startDate).format('LL')).toEqual(moment().format('LL'));
-		expect(instance.state.amount).toEqual(blankExpense.amount);
-		expect(instance.state.frequency).toEqual(blankExpense.frequency);
-		expect(instance.state.interval).toEqual(blankExpense.interval);
+		setTimeout(() => {
+			expect(instance.state.name).toEqual(blankExpense.name);
+			expect(moment(instance.state.startDate).format('LL')).toEqual(moment().format('LL'));
+			expect(instance.state.amount).toEqual(blankExpense.amount);
+			expect(instance.state.frequency).toEqual(blankExpense.frequency);
+			expect(instance.state.interval).toEqual(blankExpense.interval);
+			expect(instance.state.isRecurring).toEqual(false);
+		}, 5) // takes a set to set state back to normal
+
 	})
 
 })

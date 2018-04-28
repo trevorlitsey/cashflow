@@ -47,8 +47,8 @@ class NewRecurringExpenseForm extends React.Component {
 			frequency: isRecurring && frequency,
 			interval: isRecurring && interval,
 		}
-		this.props.addExpense(newExpense)
-		this.setState({ ...reset });
+		this.props.addExpense(newExpense);
+		this.setState(reset);
 		return message.success('income/expenses added');
 	}
 
@@ -88,8 +88,8 @@ class NewRecurringExpenseForm extends React.Component {
 					<label htmlFor="name">Is recurring:</label>
 					<SwitchContainer>
 						<Switch
-							onChange={() => this.setState({ isRecurring: !isRecurring })}
-							value={isRecurring}
+							onChange={(isRecurring) => this.setState({ isRecurring })}
+							checked={isRecurring}
 						/>
 					</SwitchContainer>
 					<label htmlFor="frequency" className="interval-label">Repeat every:</label>

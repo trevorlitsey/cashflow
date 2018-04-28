@@ -26,7 +26,7 @@ module.exports = {
 	plugins: [
 		new webpack.HotModuleReplacementPlugin(),
 		new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-		new CleanWebpackPlugin(['docs']),
+		new CleanWebpackPlugin(['docs/*.js']),
 		new HtmlWebpackPlugin({
 			template: './templates/index.html',
 			title: 'CashflowCalc.net',
