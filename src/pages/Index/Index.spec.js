@@ -64,6 +64,33 @@ describe('Index', () => {
 		expect(instance.state.expenses[id]).toBeUndefined();
 	})
 
+	it('should reset expenses', () => {
+		const instance = shallow(<Index testing={true} />).instance();
+
+		instance.setState({
+			expenses: {
+				one: {
+					date: moment(87651234564),
+					name: 'expense #1',
+					repeatFrequency: 1,
+					repeatInterval: 'months',
+				},
+				two: {
+					date: moment(87651234564),
+					name: 'expense #2',
+					repeatFrequency: 1,
+					repeatInterval: 'months',
+				}
+			}
+		})
+
+		instance.resetExpenses();
+
+		// instance.resetExpenses();
+		expect(instance.state.expenses).toEqual({});
+
+	})
+
 	it('should update starting date', () => {
 		const instance = shallow(<Index testing={true} />).instance();
 

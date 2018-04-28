@@ -8,8 +8,12 @@ export const Container = styled.div`
 		width: 100%;
 	}
 
-	tr {
+	th {
 		border-bottom: 1px solid HSLA(225, 9%, 91%, 1.00);
+	}
+
+	tr:nth-child(even) {
+		background: HSLA(211, 100%, 70%, .08);
 	}
 
 	td:last-child {
@@ -26,6 +30,8 @@ export const Controls = styled.div`
 
 	display: flex;
 	justify-content: space-around;
+	align-items: center;
+	margin-bottom: 10px;
 
 	& > * {
 		display: block;

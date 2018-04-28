@@ -52,6 +52,7 @@ function renderProjectionTable(props = {}) {
 		updateEndingDate: jest.fn(),
 		updateStartingCash: jest.fn(),
 		deleteExpense: jest.fn(),
+		resetExpenses: jest.fn(),
 		...props,
 	}
 

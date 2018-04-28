@@ -1,6 +1,6 @@
 import React from 'react';
 import { oneOfType, shape, object, number, string, func } from 'prop-types';
-import { DatePicker, InputNumber, message } from 'antd';
+import { DatePicker, InputNumber, message, Button, Popconfirm } from 'antd';
 import moment from 'moment';
 
 import { SubTitle } from '../../styles/SharedComponents';
@@ -45,6 +45,7 @@ class ProjectionTable extends React.PureComponent {
 		updateEndingDate: func.isRequired,
 		updateStartingCash: func.isRequired,
 		deleteExpense: func.isRequired,
+		resetExpenses: func.isRequired,
 	}
 
 	state = {
@@ -86,7 +87,7 @@ class ProjectionTable extends React.PureComponent {
 	render() {
 
 		const { rows } = this.state;
-		const { startingDate, endingDate, startingCash, addOneTimeExpense } = this.props;
+		const { startingDate, endingDate, startingCash, addOneTimeExpense, resetExpenses } = this.props;
 
 		const Head = (
 			<thead>
@@ -123,6 +124,9 @@ class ProjectionTable extends React.PureComponent {
 							required
 						/>
 					</div>
+					<Popconfirm title="Delete all expenses?" onConfirm={resetExpenses} okText="Yes" cancelText="Cancel!">
+						<Button data-testId="reset" type="danger">Reset</Button>
+					</Popconfirm>
 				</Controls>
 				<table>
 					{Head}

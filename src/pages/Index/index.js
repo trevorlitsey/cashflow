@@ -3,7 +3,7 @@ import { bool } from 'prop-types';
 import moment from 'moment';
 import uniqid from 'uniqid';
 
-import { RecurringExpenseTable, ProjectionTable, NewExpenseForm, Footer } from '../../components';
+import { ProjectionTable, NewExpenseForm, Footer } from '../../components';
 import { MasterWrapper, ExpensesWrapper, Divider } from './StyledComponents';
 import { Title } from '../../styles/SharedComponents';
 
@@ -36,6 +36,10 @@ class Index extends React.PureComponent {
 		const expenses = { ...this.state.expenses };
 		delete expenses[id];
 		this.setState({ expenses })
+	}
+
+	resetExpenses = () => {
+		this.setState({ expenses: {} });
 	}
 
 	updateStartingDate = (newDate = moment()) => {
@@ -99,6 +103,7 @@ class Index extends React.PureComponent {
 						updateEndingDate={this.updateEndingDate}
 						updateStartingCash={this.updateStartingCash}
 						deleteExpense={this.deleteExpense}
+						resetExpenses={this.resetExpenses}
 					/>
 					<NewExpenseForm addExpense={this.addExpense} />
 				</ExpensesWrapper>
