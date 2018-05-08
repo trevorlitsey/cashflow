@@ -22,6 +22,7 @@ module.exports = {
 		port: 8080,
 		hot: true,
 		inline: true,
+		host: "0.0.0.0",
 	},
 	plugins: [
 		new webpack.HotModuleReplacementPlugin(),
