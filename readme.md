@@ -4,7 +4,6 @@ A single-page application for hashing out a quick cashflow projection.
 
 ## Getting Started
 ```````
-git clone
 npm install
 npm run start:dev
 --> localhost:8080
