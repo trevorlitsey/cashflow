@@ -3,18 +3,21 @@
 A single-page application for hashing out a quick cashflow projection.
 
 ## Getting Started
-```````
+
+```
 npm install
-npm run start:dev
+npm run dev
 --> localhost:8080
-```````
+```
 
 ## Testing
-````
+
+```
 npm run test
-````
+```
 
 ### Tech
+
 * [React](https://reactjs.org/)
 * [styled-components](https://www.styled-components.com/)
 * [Ant Design](https://ant.design/)
