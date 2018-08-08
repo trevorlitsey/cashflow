@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { bool } from 'prop-types';
 import moment from 'moment';
 import uniqid from 'uniqid';
+import { Toggle } from 'react-powerplug';
+import { Button } from 'antd';
 
-import { ProjectionTable, NewExpenseForm, Footer } from '../../components';
+import { ProjectionTable, EditExpenseForm, Footer } from '../../components';
 import { MasterWrapper, ExpensesWrapper, Divider } from './StyledComponents';
 import { Title } from '../../styles/SharedComponents';
 
@@ -102,7 +104,24 @@ class Index extends React.PureComponent {
 						deleteExpense={this.deleteExpense}
 						resetExpenses={this.resetExpenses}
 					/>
-					<NewExpenseForm addExpense={this.addExpense} />
+					<Toggle>
+						{({ on, toggle }) => (
+							<Fragment>
+								<EditExpenseForm
+									on={on}
+									toggle={toggle}
+									addExpense={this.addExpense}
+								/>
+								<Button
+									onClick={toggle}
+									className="full-width"
+									htmlType="submit"
+								>
+									New Expense
+								</Button>
+							</Fragment>
+						)}
+					</Toggle>
 				</ExpensesWrapper>
 				<Footer />
 			</MasterWrapper>

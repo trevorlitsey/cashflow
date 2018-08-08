@@ -1,13 +1,14 @@
 import 'normalize.css/normalize.css';
-import Input from 'antd/lib/input/style/css';
-import InputNumber from 'antd/lib/input-number/style/css';
-import Form from 'antd/lib/form/style/css';
-import DatePicker from 'antd/lib/date-picker/style/css';
-import List from 'antd/lib/list/style/css';
-import Button from 'antd/lib/button/style/css';
-import message from 'antd/lib/message/style/css';
-import Popconfirm from 'antd/lib/popconfirm/style/css';
-import Tooltip from 'antd/lib/tooltip/style/css';
-import Switch from 'antd/lib/switch/style/css';
+import 'antd/lib/input/style/css';
+import 'antd/lib/input-number/style/css';
+import 'antd/lib/form/style/css';
+import 'antd/lib/date-picker/style/css';
+import 'antd/lib/list/style/css';
+import 'antd/lib/button/style/css';
+import 'antd/lib/message/style/css';
+import 'antd/lib/popconfirm/style/css';
+import 'antd/lib/tooltip/style/css';
+import 'antd/lib/switch/style/css';
+import 'antd/lib/modal/style/css';
 
 import './styles.css';

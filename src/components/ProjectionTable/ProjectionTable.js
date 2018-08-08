@@ -147,7 +147,7 @@ class ProjectionTable extends React.PureComponent {
 						okText="Yes"
 						cancelText="Cancel!"
 					>
-						<Button data-testId="reset" type="danger">
+						<Button data-testid="reset" type="danger">
 							Reset
 						</Button>
 					</Popconfirm>

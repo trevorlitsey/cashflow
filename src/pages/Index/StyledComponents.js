@@ -14,6 +14,10 @@ export const MasterWrapper = styled.div`
 	& > * {
 		max-width: 100%;
 	}
+
+	.full-width {
+		width: 100%;
+	}
 `;
 
 export const ExpensesWrapper = styled.div`
