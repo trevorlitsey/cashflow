@@ -10,8 +10,7 @@
     "dev": "webpack-dev-server",
     "build": "NODE_ENV=production webpack",
     "build:watch": "NODE_ENV=development webpack --watch",
-    "serve":
-      "browser-sync start --server --files '**/*.css, **/*.html, **/*.js, !node_modules/**/*' --directory --port 7777 --browser 'Google Chrome'"
+    "serve": "browser-sync start --server --files '**/*.css, **/*.html, **/*.js, !node_modules/**/*' --directory --port 7777 --browser 'Google Chrome'"
   },
   "jest": {
     "setupTestFrameworkScriptFile": "<rootDir>/testConfig.js"
@@ -23,7 +22,6 @@
     "currency-formatter": "^1.4.2",
     "moment": "^2.22.0",
     "normalize.css": "^8.0.0",
-    "prop-types": "^15.6.1",
     "react": "^16.3.0",
     "react-dom": "^16.3.0",
     "react-router-dom": "^4.2.2",
@@ -52,6 +50,7 @@
     "jest": "^22.4.3",
     "less": "^2.7.1",
     "less-loader": "^4.1.0",
+    "prop-types": "^15.6.2",
     "react-testing-library": "^1.9.4",
     "style-loader": "^0.20.3",
     "typescript-styled-plugin": "^0.6.0",

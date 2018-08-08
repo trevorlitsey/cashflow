@@ -9,29 +9,30 @@ export const Container = styled.div`
 	}
 
 	th {
-		border-bottom: 1px solid HSLA(225, 9%, 91%, 1.00);
+		border-bottom: 1px solid HSLA(225, 9%, 91%, 1);
 	}
 
 	tr:nth-child(even) {
-		background: HSLA(211, 100%, 70%, .08);
+		background: HSLA(211, 100%, 70%, 0.08);
 	}
 
 	td:last-child {
 		width: 10px;
-		color: HSLA(220, 0%, 70%, 1.00);
+		color: HSLA(220, 0%, 70%, 1);
 	}
-	
-	th, td {
+
+	th,
+	td {
 		padding: 8px;
 	}
-`
+`;
 
 export const Controls = styled.div`
-
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
 	margin-bottom: 10px;
+	overflow-x: scroll;
 
 	& > * {
 		display: block;
@@ -46,7 +47,9 @@ export const Controls = styled.div`
 			grid-template-columns: 1fr 3fr;
 			margin: 10px;
 		}
-
 	}
+`;
 
-`
+export const TableContainer = styled.div`
+	overflow-x: scroll;
+`;

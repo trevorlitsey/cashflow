@@ -4,7 +4,7 @@ import { DatePicker, InputNumber, message, Button, Popconfirm } from 'antd';
 import moment from 'moment';
 
 import { SubTitle } from '../../styles/SharedComponents';
-import { Container, Controls } from './StyledComponents';
+import { Container, Controls, TableContainer } from './StyledComponents';
 
 import { convertObjToArr } from '../../helpers';
 import { formatter, parser } from '../shared/helpers';
@@ -15,13 +15,12 @@ import Row from './Row';
 const { RangePicker } = DatePicker;
 
 // ------- TODO --------
-// toggle decimal points 
+// toggle decimal points
 // option to display all dates
 // integrate formatter/parser
 // break this down into smaller components
 
 class ProjectionTable extends React.PureComponent {
-
 	static propTypes = {
 		expenses: oneOfType([
 			shape({
@@ -46,16 +45,20 @@ class ProjectionTable extends React.PureComponent {
 		updateStartingCash: func.isRequired,
 		deleteExpense: func.isRequired,
 		resetExpenses: func.isRequired,
-	}
+	};
 
 	state = {
 		rows: [],
-	}
+	};
 
 	static getDerivedStateFromProps = (nextProps, prevState) => {
 		const { startingDate, endingDate, expenses, startingCash } = nextProps;
 
-		const rows = mergeExpensesForProjectionTable(startingDate, endingDate, expenses)
+		const rows = mergeExpensesForProjectionTable(
+			startingDate,
+			endingDate,
+			expenses
+		);
 
 		// insert balance
 		let balance = startingCash;
@@ -64,30 +67,35 @@ class ProjectionTable extends React.PureComponent {
 				balance += row.amount;
 			}
 			row.balance = balance;
-		})
+		});
 
 		return { rows };
-	}
+	};
 
-	handleRangeChange = (newDatesArr) => {
+	handleRangeChange = newDatesArr => {
 		const [newStartingDate, newEndingDate] = newDatesArr;
-		this.props.updateStartingDate(newStartingDate)
-		this.props.updateEndingDate(newEndingDate)
-	}
+		this.props.updateStartingDate(newStartingDate);
+		this.props.updateEndingDate(newEndingDate);
+	};
 
-	handleStartingCashChange = (e) => {
+	handleStartingCashChange = e => {
 		this.props.updateStartingCash(e);
-	}
+	};
 
-	handleExpenseDelete = (id) => {
+	handleExpenseDelete = id => {
 		this.props.deleteExpense(id);
-		return message.success('income/expense deleted')
-	}
+		return message.success('income/expense deleted');
+	};
 
 	render() {
-
 		const { rows } = this.state;
-		const { startingDate, endingDate, startingCash, addOneTimeExpense, resetExpenses } = this.props;
+		const {
+			startingDate,
+			endingDate,
+			startingCash,
+			addOneTimeExpense,
+			resetExpenses,
+		} = this.props;
 
 		const Head = (
 			<thead>
@@ -96,23 +104,32 @@ class ProjectionTable extends React.PureComponent {
 					<th>Income/Expense</th>
 					<th>Amount</th>
 					<th>Balance</th>
-					<th></th>
+					<th />
 				</tr>
 			</thead>
-		)
+		);
 
 		const Body = (
 			<tbody>
-				{rows.map(row => <Row key={row.id + row.date} {...row} handleOneTimeExpenseDelete={this.handleExpenseDelete} />)}
+				{rows.map(row => (
+					<Row
+						key={row.id + row.date}
+						{...row}
+						handleOneTimeExpenseDelete={this.handleExpenseDelete}
+					/>
+				))}
 			</tbody>
-		)
+		);
 
 		return (
 			<Container>
 				<Controls>
 					<div>
 						<label>Projection range: </label>
-						<RangePicker value={[startingDate, endingDate]} onChange={this.handleRangeChange} />
+						<RangePicker
+							value={[startingDate, endingDate]}
+							onChange={this.handleRangeChange}
+						/>
 					</div>
 					<div>
 						<label>Starting cash: </label>
@@ -124,16 +141,25 @@ class ProjectionTable extends React.PureComponent {
 							required
 						/>
 					</div>
-					<Popconfirm title="Delete all expenses?" onConfirm={resetExpenses} okText="Yes" cancelText="Cancel!">
-						<Button data-testId="reset" type="danger">Reset</Button>
+					<Popconfirm
+						title="Delete all expenses?"
+						onConfirm={resetExpenses}
+						okText="Yes"
+						cancelText="Cancel!"
+					>
+						<Button data-testId="reset" type="danger">
+							Reset
+						</Button>
 					</Popconfirm>
 				</Controls>
-				<table>
-					{Head}
-					{Body}
-				</table>
+				<TableContainer>
+					<table>
+						{Head}
+						{Body}
+					</table>
+				</TableContainer>
 			</Container>
-		)
+		);
 	}
 }
 
