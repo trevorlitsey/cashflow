@@ -1,16 +1,20 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import './styles';
 
+import CashFlow from './pages/CashFlow';
 import Index from './pages/Index';
+import NotFound from './pages/NotFound';
 
 const Router = () => (
 	<BrowserRouter>
 		<Switch>
-			<Route path="/" component={Index} />
+			<Route exact path="/" component={Index} />
+			<Route exact path="/:id" component={CashFlow} />
+			<Route component={NotFound} />
 		</Switch>
 	</BrowserRouter>
-)
+);
 
 export default Router;

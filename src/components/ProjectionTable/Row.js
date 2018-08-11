@@ -1,19 +1,24 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Tooltip } from 'antd';
 import moment from 'moment';
 import currencyFormatter from 'currency-formatter';
+import { Toggle } from 'react-powerplug';
+
+import EditExpenseForm from '../EditExpenseForm/EditExpenseForm';
 
 import { SpanWithPointer } from '../../styles/SharedComponents';
 
 const Row = props => {
 	const {
-		date,
 		name,
+		startDate,
+		date,
 		amount,
 		balance,
 		isRecurring,
 		id,
-		handleOneTimeExpenseDelete,
+		deleteExpense,
+		editExpense,
 	} = props;
 
 	// is starting balance
@@ -42,18 +47,38 @@ const Row = props => {
 					{currencyFormatter.format(balance, { code: 'USD', precision: 0 })}
 				</td>
 				<td>
-					<Tooltip
-						data-test={date + amount}
-						onClick={() => handleOneTimeExpenseDelete(id)}
-						placement="left"
-						title={
-							isRecurring
-								? 'edit recurring income/expense'
-								: 'edit one-time income/expense'
-						}
-					>
-						<SpanWithPointer>✎</SpanWithPointer>
-					</Tooltip>
+					<Toggle>
+						{({ on, toggle }) => (
+							<Fragment>
+								<EditExpenseForm
+									expense={{
+										startDate,
+										name,
+										amount,
+										balance,
+										isRecurring,
+										id,
+									}}
+									on={on}
+									toggle={toggle}
+									editExpense={editExpense}
+									deleteExpense={deleteExpense}
+								/>
+								<Tooltip
+									data-test={date + amount}
+									onClick={toggle}
+									placement="left"
+									title={
+										isRecurring
+											? 'edit recurring income/expense'
+											: 'edit one-time income/expense'
+									}
+								>
+									<SpanWithPointer>✎</SpanWithPointer>
+								</Tooltip>
+							</Fragment>
+						)}
+					</Toggle>
 				</td>
 			</tr>
 		);

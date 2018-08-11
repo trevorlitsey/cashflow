@@ -1,5 +1,5 @@
 import React from 'react';
-import { func } from 'prop-types';
+import { shape, func, oneOfType, number, string, bool } from 'prop-types';
 import {
 	message,
 	Form,
@@ -24,26 +24,41 @@ import { SubSubTitle } from '../../styles/SharedComponents';
 
 import { formatter, parser } from '../shared/helpers';
 
-const reset = {
-	name: '',
-	startDate: Date.now(),
-	amount: 100,
-	frequency: 1,
-	interval: 'months',
-	isRecurring: false,
-};
-
-class NewRecurringExpenseForm extends React.Component {
+class EditExpenseForm extends React.PureComponent {
 	static propTypes = {
-		addExpense: func.isRequired,
+		expense: shape({
+			amount: number,
+			frequency: oneOfType([number, bool]),
+			interval: oneOfType([string, bool]),
+			name: string,
+			startDate: number,
+		}),
+		editExpense: func,
+		addExpense: func,
+	};
+
+	initialState = {
+		name: '',
+		startDate: Date.now(),
+		amount: 100,
+		frequency: 1,
+		interval: 'months',
+		isRecurring: false,
+		...this.props.expense,
 	};
 
 	state = {
-		...reset,
+		...this.initialState,
 	};
 
-	handleCancel = () => {
-		// TODO
+	componentDidUpdate = prevProps => {
+		if (this.props.expense && this.props.expense.id) {
+			Object.entries(this.props.expense).map(([key, value]) => {
+				if (prevProps.expense[key] !== value) {
+					this.setState({ [key]: value });
+				}
+			});
+		}
 	};
 
 	handleSubmit = e => {
@@ -72,13 +87,21 @@ class NewRecurringExpenseForm extends React.Component {
 			startDate,
 			name,
 			amount,
-			frequency: isRecurring && frequency,
-			interval: isRecurring && interval,
+			frequency: isRecurring ? frequency : null,
+			interval: isRecurring ? interval : null,
 		};
-		this.props.addExpense(newExpense);
-		this.setState(reset);
+
+		const isEdit = this.props.expense && this.props.expense.id;
+
+		if (isEdit) {
+			this.props.editExpense(this.props.expense.id, newExpense);
+		} else {
+			this.props.addExpense(newExpense);
+		}
+
+		this.setState(this.initialState);
 		this.props.toggle();
-		return message.success('income/expenses added');
+		return message.success('income/expense ' + isEdit ? 'edited' : 'added');
 	};
 
 	render() {
@@ -95,7 +118,9 @@ class NewRecurringExpenseForm extends React.Component {
 
 		return (
 			<Modal
-				title="New Income/Expense"
+				title={`${
+					this.props.expense && this.props.expense.id ? 'Edit' : 'New'
+				} Income/Expense`}
 				visible={on}
 				onCancel={toggle}
 				footer={[
@@ -126,10 +151,10 @@ class NewRecurringExpenseForm extends React.Component {
 							data-test="date"
 							onChange={e =>
 								this.setState({
-									startDate: e.valueOf(),
+									startDate: e ? e.valueOf() : null,
 								})
 							}
-							value={moment(startDate)}
+							value={startDate ? moment(startDate) : null}
 							placeholder="Start date"
 							required
 						/>
@@ -185,4 +210,4 @@ class NewRecurringExpenseForm extends React.Component {
 	}
 }
 
-export default NewRecurringExpenseForm;
+export default EditExpenseForm;

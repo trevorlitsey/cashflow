@@ -14,7 +14,7 @@ const event = {
 	preventDefault: () => {},
 };
 
-describe('NewRecurringExpenseForm', () => {
+describe('<EditExpenseForm />', () => {
 	it('should render all expenses given', () => {
 		// TODO
 	});
@@ -154,9 +154,6 @@ describe('NewRecurringExpenseForm', () => {
 });
 
 function renderNewRecurringExpenseForm(props = {}) {
-	const propsToUser = {
-		addExpense: jest.fn(),
-		...props,
-	};
+	const propsToUser = { toggle: jest.fn(), addExpense: jest.fn(), ...props };
 	return shallow(<EditExpenseForm {...propsToUser} />);
 }

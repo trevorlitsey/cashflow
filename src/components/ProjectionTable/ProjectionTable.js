@@ -25,6 +25,7 @@ class ProjectionTable extends React.PureComponent {
 		expenses: oneOfType([
 			shape({
 				name: string.isRequired,
+				startDate: number.isRequired,
 				date: number.isRequired,
 				amount: number.isRequired,
 				frequency: number.isRequired,
@@ -32,6 +33,7 @@ class ProjectionTable extends React.PureComponent {
 			}),
 			shape({
 				name: string.isRequired,
+				startDate: number.isRequired,
 				date: number.isRequired,
 				amount: number.isRequired,
 			}),
@@ -43,6 +45,7 @@ class ProjectionTable extends React.PureComponent {
 		updateStartingDate: func.isRequired,
 		updateEndingDate: func.isRequired,
 		updateStartingCash: func.isRequired,
+		editExpense: func.isRequired,
 		deleteExpense: func.isRequired,
 		resetExpenses: func.isRequired,
 	};
@@ -82,11 +85,6 @@ class ProjectionTable extends React.PureComponent {
 		this.props.updateStartingCash(e);
 	};
 
-	handleExpenseDelete = id => {
-		this.props.deleteExpense(id);
-		return message.success('income/expense deleted');
-	};
-
 	render() {
 		const { rows } = this.state;
 		const {
@@ -95,6 +93,7 @@ class ProjectionTable extends React.PureComponent {
 			startingCash,
 			addOneTimeExpense,
 			resetExpenses,
+			editExpense,
 		} = this.props;
 
 		const Head = (
@@ -113,9 +112,10 @@ class ProjectionTable extends React.PureComponent {
 			<tbody>
 				{rows.map(row => (
 					<Row
+						editExpense={editExpense}
 						key={row.id + row.date}
 						{...row}
-						handleOneTimeExpenseDelete={this.handleExpenseDelete}
+						deleteExpense={() => this.props.deleteExpense(row.id)}
 					/>
 				))}
 			</tbody>
