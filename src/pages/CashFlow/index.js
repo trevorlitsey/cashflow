@@ -7,7 +7,12 @@ import { message, Button } from 'antd';
 
 import db from '../../db';
 
-import { ProjectionTable, EditExpenseForm, Footer } from '../../components';
+import {
+	ProjectionTable,
+	EditExpenseForm,
+	Footer,
+	Layout,
+} from '../../components';
 import { MasterWrapper, ExpensesWrapper, Divider } from './StyledComponents';
 import { Title } from '../../styles/SharedComponents';
 
@@ -99,42 +104,43 @@ class Index extends React.PureComponent {
 		const { expenses, startingDate, endingDate, startingCash } = this.state;
 
 		return (
-			<MasterWrapper>
-				<Title>cashflow-calc</Title>
-				<ExpensesWrapper>
-					<ProjectionTable
-						expenses={expenses}
-						startingDate={startingDate}
-						endingDate={endingDate}
-						startingCash={startingCash}
-						updateStartingDate={this.updateStartingDate}
-						updateEndingDate={this.updateEndingDate}
-						updateStartingCash={this.updateStartingCash}
-						editExpense={this.editExpense}
-						deleteExpense={this.deleteExpense}
-						resetExpenses={this.resetExpenses}
-					/>
-					<Toggle>
-						{({ on, toggle }) => (
-							<Fragment>
-								<EditExpenseForm
-									on={on}
-									toggle={toggle}
-									addExpense={this.addExpense}
-								/>
-								<Button
-									onClick={toggle}
-									className="full-width"
-									htmlType="submit"
-								>
-									New Expense
-								</Button>
-							</Fragment>
-						)}
-					</Toggle>
-				</ExpensesWrapper>
-				<Footer />
-			</MasterWrapper>
+			<Layout>
+				<MasterWrapper>
+					<ExpensesWrapper>
+						<ProjectionTable
+							expenses={expenses}
+							startingDate={startingDate}
+							endingDate={endingDate}
+							startingCash={startingCash}
+							updateStartingDate={this.updateStartingDate}
+							updateEndingDate={this.updateEndingDate}
+							updateStartingCash={this.updateStartingCash}
+							editExpense={this.editExpense}
+							deleteExpense={this.deleteExpense}
+							resetExpenses={this.resetExpenses}
+						/>
+						<Toggle>
+							{({ on, toggle }) => (
+								<Fragment>
+									<EditExpenseForm
+										on={on}
+										toggle={toggle}
+										addExpense={this.addExpense}
+									/>
+									<Button
+										onClick={toggle}
+										className="full-width"
+										htmlType="submit"
+									>
+										New Expense
+									</Button>
+								</Fragment>
+							)}
+						</Toggle>
+					</ExpensesWrapper>
+					<Footer />
+				</MasterWrapper>
+			</Layout>
 		);
 	}
 }
