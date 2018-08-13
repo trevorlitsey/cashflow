@@ -16,7 +16,8 @@ const mergeExpensesForProjectionTable = (
 
 	// insert recurring expenses into expensesForTable array
 	Object.keys(expenses).forEach(key => {
-		const { startDate, name, amount, frequency, interval } = expenses[key];
+		const expense = expenses[key];
+		const { startDate, name, amount, frequency, interval } = expense;
 
 		if (frequency && interval) {
 			const recurringExpenseDate = moment(startDate);
@@ -24,11 +25,8 @@ const mergeExpensesForProjectionTable = (
 				if (recurringExpenseDate >= startingRangeDate) {
 					// ignore if we're not in the specified user range
 					const expenseToAdd = {
-						id: key,
-						startDate,
+						...expense,
 						date: recurringExpenseDate.valueOf(),
-						name,
-						amount,
 						isRecurring: true,
 					};
 					expensesForTable.push(expenseToAdd);
@@ -39,11 +37,9 @@ const mergeExpensesForProjectionTable = (
 			const { startDate, name, amount } = expenses[key];
 			if (startDate >= startingRangeDate && startDate <= endingRangeDate) {
 				const expenseToAdd = {
-					id: key,
+					...expense,
 					date: startDate.valueOf(),
-					startDate,
-					name,
-					amount,
+					isRecurring: false,
 				};
 				expensesForTable.push(expenseToAdd);
 			}

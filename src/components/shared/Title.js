@@ -15,13 +15,19 @@ const Wrapper = styled.div`
 
 export default class Title extends Component {
 	state = {
-		title: this.props.title || 'Click to edit title',
+		title: this.props.title,
 		isEdit: false,
+	};
+
+	componentDidUpdate = prevProps => {
+		if (prevProps.title !== this.props.title) {
+			this.setState({ title: this.props.title });
+		}
 	};
 
 	handleSubmit = e => {
 		e.preventDefault();
-		this.props.onSubmit({ title: this.state.title });
+		this.props.onSubmit(this.state.title);
 		this.setState({ isEdit: false });
 	};
 
@@ -36,11 +42,11 @@ export default class Title extends Component {
 							value={title}
 							onChange={e => this.setState({ title: e.target.value })}
 						/>
-
-						<Button className="full-width" type="primary">
+						<Button htmlType="submit" className="full-width" type="primary">
 							Save
 						</Button>
 						<Button
+							htmlType="reset"
 							onClick={() => this.setState({ isEdit: false })}
 							className="full-width"
 						>

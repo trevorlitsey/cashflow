@@ -16,6 +16,8 @@ const Row = props => {
 		amount,
 		balance,
 		isRecurring,
+		interval,
+		frequency,
 		id,
 		deleteExpense,
 		editExpense,
@@ -52,6 +54,8 @@ const Row = props => {
 							<Fragment>
 								<EditExpenseForm
 									expense={{
+										interval,
+										frequency,
 										startDate,
 										name,
 										amount,

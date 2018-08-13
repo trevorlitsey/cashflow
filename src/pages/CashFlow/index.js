@@ -3,7 +3,7 @@ import { bool } from 'prop-types';
 import moment from 'moment';
 import uniqid from 'uniqid';
 import { Toggle } from 'react-powerplug';
-import { message, Button } from 'antd';
+import { message, Button, Spin } from 'antd';
 
 import db from '../../db';
 
@@ -24,10 +24,16 @@ class Index extends React.PureComponent {
 	};
 
 	state = {
-		startingDate: moment(),
-		endingDate: moment().add(2, 'M'), // two month range
+		loading: true,
+		startingDate: moment()
+			.hour(0)
+			.minute(0),
+		endingDate: moment()
+			.hour(0)
+			.minute(0)
+			.add(2, 'M'), // two month range
 		startingCash: 0,
-		title: '',
+		title: this.props.match.params.id,
 		expenses: {},
 	};
 
@@ -42,14 +48,22 @@ class Index extends React.PureComponent {
 				startingDate:
 					newState && newState.startingDate
 						? moment(newState.startingDate)
-						: moment(),
+						: moment()
+								.hour(0)
+								.minute(0),
 				endingDate:
 					newState && newState.endingDate
 						? moment(newState.endingDate)
-						: moment().add(2, 'M'),
+						: moment()
+								.hour(0)
+								.minute(0)
+								.add(2, 'M'),
+				loading: false,
 			});
 		});
+	};
 
+	componentDidUpdate = () => {
 		this.logRecentView();
 	};
 
@@ -58,31 +72,34 @@ class Index extends React.PureComponent {
 
 		const budgetId = this.props.match.params.id;
 		const localStorageRef = localStorage.getItem('recentlyViewed');
+
+		let recentlyViewed;
+
 		if (localStorageRef) {
-			const recentlyViewed = JSON.parse(localStorageRef);
+			recentlyViewed = JSON.parse(localStorageRef);
 
 			const alreadyInList = !!recentlyViewed[budgetId];
 
-			if (alreadyInList) {
-				recentlyViewed[budgetId].lastViewed = Date.now();
-			} else {
-				recentlyViewed[budgetId] = {
-					id: budgetId,
-					title: this.state.title,
-					lastViewed: Date.now(),
-				};
+			if (!alreadyInList) {
+				recentlyViewed[budgetId] = {};
 			}
 
-			localStorage.setItem('recentlyViewed', JSON.stringify(recentlyViewed));
+			recentlyViewed[budgetId] = {
+				id: budgetId,
+				title: this.state.title,
+				lastViewed: Date.now(),
+			};
 		} else {
-			const recentlyViewed = {
+			recentlyViewed = {
 				[budgetId]: {
 					lastViewed: Date.now(),
+					title: this.state.title,
 					id: budgetId,
 				},
 			};
-			localStorage.setItem('recentlyViewed', JSON.stringify(recentlyViewed));
 		}
+
+		localStorage.setItem('recentlyViewed', JSON.stringify(recentlyViewed));
 	};
 
 	componentWillUnmount = () => {
@@ -115,7 +132,10 @@ class Index extends React.PureComponent {
 	};
 
 	resetExpenses = () => {
-		db.ref(this.props.match.params.id).update({ expenses: {} });
+		this.setState({ expenses: {} });
+		db.ref(this.props.match.params.id)
+			.child('expenses')
+			.remove();
 	};
 
 	updateStartingDate = (newDate = moment()) => {
@@ -152,7 +172,23 @@ class Index extends React.PureComponent {
 			endingDate,
 			startingCash,
 			title,
+			loading,
 		} = this.state;
+
+		if (loading) {
+			return (
+				<div
+					style={{
+						height: 200,
+						display: 'flex',
+						justifyContent: 'center',
+						alignItems: 'center',
+					}}
+				>
+					<Spin />
+				</div>
+			);
+		}
 
 		return (
 			<Layout>

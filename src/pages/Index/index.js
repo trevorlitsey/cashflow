@@ -1,10 +1,9 @@
 import React from 'react';
 import { Button, List, Icon, Tooltip } from 'antd';
-import uniqid from 'uniqid';
 import { Link } from 'react-router-dom';
 
 import { Layout } from '../../components';
-import { render } from '../../../node_modules/react-testing-library';
+import { getFunName } from './helpers';
 
 export default class Index extends React.PureComponent {
 	state = {
@@ -27,7 +26,6 @@ export default class Index extends React.PureComponent {
 			<Layout>
 				<div
 					style={{
-						padding: 30,
 						maxWidth: 500,
 						margin: 'auto',
 						textAlign: 'center',
@@ -49,7 +47,7 @@ export default class Index extends React.PureComponent {
 									<List.Item.Meta
 										title={
 											<Link to={'/' + item.id}>
-												<a>{item.id}</a>
+												<strong>{item.title}</strong>
 											</Link>
 										}
 										description={
@@ -67,9 +65,9 @@ export default class Index extends React.PureComponent {
 							)}
 						/>
 					) : (
-						<p>nothing here!</p>
+						<i>none yet</i>
 					)}
-					<Link to={'/' + uniqid()}>
+					<Link to={'/' + getFunName()}>
 						<Button
 							type="primary"
 							style={{ width: '100%', margin: '20px auto' }}
