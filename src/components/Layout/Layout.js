@@ -1,11 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Layout, Menu, Breadcrumb } from 'antd';
 
 import Footer from '../Footer/Footer';
 
 export default ({ children }) => {
-	const { Header, Content, Footer } = Layout;
 	return (
 		<div>
 			<Link to="/">

@@ -12,9 +12,9 @@ import {
 	EditExpenseForm,
 	Footer,
 	Layout,
+	Title,
 } from '../../components';
 import { MasterWrapper, ExpensesWrapper, Divider } from './StyledComponents';
-import { Title } from '../../styles/SharedComponents';
 
 import { trimOldOneTimeExpenses } from './helpers';
 
@@ -27,23 +27,62 @@ class Index extends React.PureComponent {
 		startingDate: moment(),
 		endingDate: moment().add(2, 'M'), // two month range
 		startingCash: 0,
+		title: '',
 		expenses: {},
 	};
 
 	componentDidMount = () => {
-		this.ref = db.ref(this.props.match.params.id);
+		const budgetId = this.props.match.params.id;
+
+		this.ref = db.ref(budgetId);
 		this.ref.on('value', snapshot => {
 			const newState = snapshot.val();
 			this.setState({
 				...newState,
-				startingDate: newState.startingDate
-					? moment(newState.startingDate)
-					: moment(),
-				endingDate: newState.endingDate
-					? moment(newState.endingDate)
-					: moment().add(2, 'M'),
+				startingDate:
+					newState && newState.startingDate
+						? moment(newState.startingDate)
+						: moment(),
+				endingDate:
+					newState && newState.endingDate
+						? moment(newState.endingDate)
+						: moment().add(2, 'M'),
 			});
 		});
+
+		this.logRecentView();
+	};
+
+	logRecentView = () => {
+		if (this.props.testing) return;
+
+		const budgetId = this.props.match.params.id;
+		const localStorageRef = localStorage.getItem('recentlyViewed');
+		if (localStorageRef) {
+			const recentlyViewed = JSON.parse(localStorageRef);
+
+			const alreadyInList = !!recentlyViewed[budgetId];
+
+			if (alreadyInList) {
+				recentlyViewed[budgetId].lastViewed = Date.now();
+			} else {
+				recentlyViewed[budgetId] = {
+					id: budgetId,
+					title: this.state.title,
+					lastViewed: Date.now(),
+				};
+			}
+
+			localStorage.setItem('recentlyViewed', JSON.stringify(recentlyViewed));
+		} else {
+			const recentlyViewed = {
+				[budgetId]: {
+					lastViewed: Date.now(),
+					id: budgetId,
+				},
+			};
+			localStorage.setItem('recentlyViewed', JSON.stringify(recentlyViewed));
+		}
 	};
 
 	componentWillUnmount = () => {
@@ -100,12 +139,25 @@ class Index extends React.PureComponent {
 		});
 	};
 
+	updateTitle = title => {
+		db.ref(this.props.match.params.id).update({
+			title,
+		});
+	};
+
 	render() {
-		const { expenses, startingDate, endingDate, startingCash } = this.state;
+		const {
+			expenses,
+			startingDate,
+			endingDate,
+			startingCash,
+			title,
+		} = this.state;
 
 		return (
 			<Layout>
 				<MasterWrapper>
+					<Title title={title} onSubmit={this.updateTitle} />
 					<ExpensesWrapper>
 						<ProjectionTable
 							expenses={expenses}

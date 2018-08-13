@@ -23,3 +23,7 @@ export const MasterWrapper = styled.div`
 export const ExpensesWrapper = styled.div`
 	min-height: 94vh;
 `;
+
+export const Title = styled.h2`
+	text-align: center;
+`;
