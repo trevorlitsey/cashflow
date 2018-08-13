@@ -1,8 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import './styles';
-
 import CashFlow from './pages/CashFlow';
 import Index from './pages/Index';
 import NotFound from './pages/NotFound';
