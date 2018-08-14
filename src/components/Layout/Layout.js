@@ -20,7 +20,6 @@ export default ({ children }) => {
 				</h1>
 			</Link>
 			<div style={{ padding: 10 }}>{children}</div>
-			<Footer />
 		</div>
 	);
 };

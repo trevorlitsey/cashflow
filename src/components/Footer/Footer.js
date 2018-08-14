@@ -16,7 +16,7 @@ const Footer = () => (
 	<div>
 		<P>
 			<a href="https://github.com/trevorlitsey/cashflow-calc" target="blank">
-				github
+				view on github
 			</a>{' '}
 		</P>
 	</div>
