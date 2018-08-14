@@ -138,3 +138,10 @@ describe('Index', () => {
 		expect(instance.state.startingCash).toEqual(newStartingCash);
 	});
 });
+
+function renderPage(props = {}) {
+	const propsToUser = {
+		...props,
+	};
+	return shallow(<Index testing={true} />);
+}

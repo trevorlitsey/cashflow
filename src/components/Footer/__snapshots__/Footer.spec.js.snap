@@ -18,19 +18,11 @@ ShallowWrapper {
     "nodeType": "host",
     "props": Object {
       "children": <styled.p>
-         
-        <a
-          href="http://www.trevorlitsey.com"
-          target="blank"
-        >
-          trevorlitsey.com
-        </a>
-         | 
         <a
           href="https://github.com/trevorlitsey/cashflow-calc"
           target="blank"
         >
-          github
+          view on github
         </a>
          
       </styled.p>,
@@ -42,51 +34,28 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          " ",
-          <a
-            href="http://www.trevorlitsey.com"
-            target="blank"
-          >
-            trevorlitsey.com
-          </a>,
-          " | ",
           <a
             href="https://github.com/trevorlitsey/cashflow-calc"
             target="blank"
           >
-            github
+            view on github
           </a>,
           " ",
         ],
       },
       "ref": null,
       "rendered": Array [
-        " ",
         Object {
           "instance": null,
           "key": undefined,
           "nodeType": "host",
           "props": Object {
-            "children": "trevorlitsey.com",
-            "href": "http://www.trevorlitsey.com",
-            "target": "blank",
-          },
-          "ref": null,
-          "rendered": "trevorlitsey.com",
-          "type": "a",
-        },
-        " | ",
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": "github",
+            "children": "view on github",
             "href": "https://github.com/trevorlitsey/cashflow-calc",
             "target": "blank",
           },
           "ref": null,
-          "rendered": "github",
+          "rendered": "view on github",
           "type": "a",
         },
         " ",
@@ -102,19 +71,11 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": <styled.p>
-           
-          <a
-            href="http://www.trevorlitsey.com"
-            target="blank"
-          >
-            trevorlitsey.com
-          </a>
-           | 
           <a
             href="https://github.com/trevorlitsey/cashflow-calc"
             target="blank"
           >
-            github
+            view on github
           </a>
            
         </styled.p>,
@@ -126,51 +87,28 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": Array [
-            " ",
-            <a
-              href="http://www.trevorlitsey.com"
-              target="blank"
-            >
-              trevorlitsey.com
-            </a>,
-            " | ",
             <a
               href="https://github.com/trevorlitsey/cashflow-calc"
               target="blank"
             >
-              github
+              view on github
             </a>,
             " ",
           ],
         },
         "ref": null,
         "rendered": Array [
-          " ",
           Object {
             "instance": null,
             "key": undefined,
             "nodeType": "host",
             "props": Object {
-              "children": "trevorlitsey.com",
-              "href": "http://www.trevorlitsey.com",
-              "target": "blank",
-            },
-            "ref": null,
-            "rendered": "trevorlitsey.com",
-            "type": "a",
-          },
-          " | ",
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "children": "github",
+              "children": "view on github",
               "href": "https://github.com/trevorlitsey/cashflow-calc",
               "target": "blank",
             },
             "ref": null,
-            "rendered": "github",
+            "rendered": "view on github",
             "type": "a",
           },
           " ",

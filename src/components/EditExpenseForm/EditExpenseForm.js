@@ -173,8 +173,8 @@ class EditExpenseForm extends React.PureComponent {
 								onChange={isRecurring =>
 									this.setState({
 										isRecurring,
-										frequency: frequency || 1,
-										interval: interval || 'months',
+										frequency: isRecurring ? frequency || 1 : null,
+										interval: isRecurring ? interval || 'months' : null,
 									})
 								}
 								checked={isRecurring}
