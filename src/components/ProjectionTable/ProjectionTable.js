@@ -50,31 +50,6 @@ class ProjectionTable extends React.PureComponent {
 		resetExpenses: func.isRequired,
 	};
 
-	state = {
-		rows: [],
-	};
-
-	static getDerivedStateFromProps = (nextProps, prevState) => {
-		const { startingDate, endingDate, expenses, startingCash } = nextProps;
-
-		const rows = mergeExpensesForProjectionTable(
-			startingDate,
-			endingDate,
-			expenses
-		);
-
-		// insert balance
-		let balance = startingCash;
-		rows.forEach(row => {
-			if (row.amount) {
-				balance += row.amount;
-			}
-			row.balance = balance;
-		});
-
-		return { rows };
-	};
-
 	handleRangeChange = newDatesArr => {
 		const [newStartingDate, newEndingDate] = newDatesArr;
 		this.props.updateStartingDate(newStartingDate);
@@ -86,7 +61,6 @@ class ProjectionTable extends React.PureComponent {
 	};
 
 	render() {
-		const { rows } = this.state;
 		const {
 			startingDate,
 			endingDate,
@@ -94,7 +68,15 @@ class ProjectionTable extends React.PureComponent {
 			addOneTimeExpense,
 			resetExpenses,
 			editExpense,
+			expenses,
 		} = this.props;
+
+		const rows = mergeExpensesForProjectionTable(
+			startingDate,
+			endingDate,
+			startingCash,
+			expenses
+		);
 
 		const Head = (
 			<thead>

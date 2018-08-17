@@ -3,6 +3,7 @@ import moment from 'moment';
 const mergeExpensesForProjectionTable = (
 	startingRangeDate,
 	endingRangeDate,
+	startingCash,
 	expenses = {}
 ) => {
 	const expensesForTable = [];
@@ -23,9 +24,10 @@ const mergeExpensesForProjectionTable = (
 			const recurringExpenseDate = moment(startDate);
 			while (recurringExpenseDate <= endingRangeDate) {
 				if (recurringExpenseDate >= startingRangeDate) {
-					// ignore if we're not in the specified user range
+					// ignore if we're not in the specified date range
 					const expenseToAdd = {
 						...expense,
+						id: key,
 						date: recurringExpenseDate.valueOf(),
 						isRecurring: true,
 					};
@@ -34,10 +36,10 @@ const mergeExpensesForProjectionTable = (
 				recurringExpenseDate.add(frequency, interval);
 			}
 		} else {
-			const { startDate, name, amount } = expenses[key];
 			if (startDate >= startingRangeDate && startDate <= endingRangeDate) {
 				const expenseToAdd = {
 					...expense,
+					id: key,
 					date: startDate.valueOf(),
 					isRecurring: false,
 				};
@@ -48,6 +50,15 @@ const mergeExpensesForProjectionTable = (
 
 	// sort array by date
 	expensesForTable.sort((a, b) => a.date - b.date);
+
+	// insert balance
+	let balance = startingCash;
+	expensesForTable.forEach(expense => {
+		if (expense.amount) {
+			balance += expense.amount;
+		}
+		expense.balance = balance;
+	});
 
 	return expensesForTable;
 };
